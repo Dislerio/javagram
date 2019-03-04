@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="diplomWork.view.forms.ProfileSettings">
+  <grid id="27dc6" binding="rootPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="900" height="630"/>
+    </constraints>
+    <properties>
+      <background color="-16777216"/>
+      <maximumSize width="900" height="630"/>
+      <minimumSize width="900" height="630"/>
+      <preferredSize width="900" height="630"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="c8f77" layout-manager="FlowLayout" hgap="200" vgap="20" flow-align="1">
+        <constraints/>
+        <properties>
+          <minimumSize width="450" height="620"/>
+          <opaque value="false"/>
+          <preferredSize width="450" height="620"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2605e" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <font name="Open Sans Light" size="40"/>
+              <foreground color="-16720644"/>
+              <horizontalAlignment value="0"/>
+              <maximumSize width="390" height="100"/>
+              <minimumSize width="390" height="100"/>
+              <preferredSize width="400" height="100"/>
+              <text value="Настройки профиля"/>
+            </properties>
+          </component>
+          <grid id="56bac" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <minimumSize width="430" height="200"/>
+              <opaque value="false"/>
+              <preferredSize width="430" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="dad45" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints/>
+                <properties>
+                  <minimumSize width="170" height="190"/>
+                  <opaque value="false"/>
+                  <preferredSize width="170" height="190"/>
+                </properties>
+                <border type="none">
+                  <color color="-1"/>
+                </border>
+                <children>
+                  <grid id="55a76" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints/>
+                    <properties>
+                      <minimumSize width="160" height="160"/>
+                      <preferredSize width="160" height="160"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <component id="9cb0d" class="javax.swing.JLabel" binding="editAvatar">
+                    <constraints/>
+                    <properties>
+                      <foreground color="-1"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="f05ad" class="javax.swing.JLabel">
+                    <constraints/>
+                    <properties>
+                      <maximumSize width="100" height="16"/>
+                      <minimumSize width="100" height="16"/>
+                      <preferredSize width="100" height="16"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="c7f14" class="javax.swing.JLabel" binding="deleteAvatar">
+                    <constraints/>
+                    <properties>
+                      <foreground color="-1"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="72c44" layout-manager="FlowLayout" hgap="70" vgap="15" flow-align="1">
+                <constraints/>
+                <properties>
+                  <minimumSize width="200" height="170"/>
+                  <opaque value="false"/>
+                  <preferredSize width="250" height="170"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="b8d1f" class="javax.swing.JTextField" binding="nameTextField">
+                    <constraints/>
+                    <properties>
+                      <focusable value="true"/>
+                      <font name="Open Sans Light" size="28"/>
+                      <foreground color="-1"/>
+                      <maximumSize width="250" height="50"/>
+                      <minimumSize width="250" height="50"/>
+                      <opaque value="false"/>
+                      <preferredSize width="250" height="50"/>
+                      <text value="Имя"/>
+                    </properties>
+                  </component>
+                  <component id="e9493" class="javax.swing.JTextField" binding="surnameTextField">
+                    <constraints/>
+                    <properties>
+                      <font name="Open Sans Light" size="28"/>
+                      <foreground color="-1"/>
+                      <maximumSize width="250" height="50"/>
+                      <minimumSize width="250" height="50"/>
+                      <opaque value="false"/>
+                      <preferredSize width="250" height="50"/>
+                      <text value="Фамилия"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <component id="dace8" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value=" "/>
+            </properties>
+          </component>
+          <component id="85651" class="javax.swing.JButton" binding="SaveButton">
+            <constraints/>
+            <properties>
+              <background color="-16731162"/>
+              <font name="Open Sans" size="22"/>
+              <foreground color="-1"/>
+              <label value="СОХРАНИТЬ"/>
+              <maximumSize width="320" height="55"/>
+              <minimumSize width="320" height="55"/>
+              <preferredSize width="320" height="55"/>
+              <text value="СОХРАНИТЬ"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

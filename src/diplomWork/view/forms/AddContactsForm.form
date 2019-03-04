@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="diplomWork.view.forms.AddContactsForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="900" height="630"/>
+    </constraints>
+    <properties>
+      <background color="-16777216"/>
+      <minimumSize width="900" height="630"/>
+      <preferredSize width="900" height="630"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="4d85c" class="javax.swing.JLabel" binding="textTip">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <background color="-890561"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <opaque value="false"/>
+          <text value="addContactsToolTip"/>
+        </properties>
+      </component>
+      <grid id="885df" binding="numPanel" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="10" flow-align="1">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none">
+          <color color="-16731422"/>
+        </border>
+        <children>
+          <component id="b80c8" class="javax.swing.JLabel" binding="phoneLogo">
+            <constraints/>
+            <properties>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <opaque value="false"/>
+              <preferredSize width="50" height="50"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="950b8" class="javax.swing.JTextField" binding="numberField">
+            <constraints/>
+            <properties>
+              <caretColor color="-1"/>
+              <font name="Open Sans Light" size="36"/>
+              <foreground color="-1"/>
+              <horizontalAlignment value="2"/>
+              <maximumSize width="280" height="50"/>
+              <minimumSize width="280" height="50"/>
+              <opaque value="false"/>
+              <preferredSize width="280" height="50"/>
+              <text value="+7"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="3a43a" binding="searchRes" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="db92f" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <minimumSize width="80" height="80"/>
+              <preferredSize width="80" height="80"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="d5745" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <opaque value="false"/>
+              <preferredSize width="255" height="80"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="ddad8" class="javax.swing.JLabel" binding="findUserLabel">
+                <constraints/>
+                <properties>
+                  <font name="Open Sans" size="14"/>
+                  <foreground color="-16734511"/>
+                  <maximumSize width="240" height="20"/>
+                  <minimumSize width="240" height="20"/>
+                  <opaque value="false"/>
+                  <preferredSize width="240" height="20"/>
+                  <text value="Найден пользователь:"/>
+                  <verticalAlignment value="3"/>
+                </properties>
+              </component>
+              <component id="df436" class="javax.swing.JLabel" binding="findUserRes">
+                <constraints/>
+                <properties>
+                  <font name="Open Sans Light" size="24"/>
+                  <foreground color="-1"/>
+                  <opaque value="false"/>
+                  <preferredSize width="240" height="45"/>
+                  <text value="Иван Васильевич"/>
+                  <verticalAlignment value="1"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <component id="dfa7d" class="javax.swing.JButton" binding="addButton">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-16731162"/>
+          <font name="Open Sans" size="22"/>
+          <foreground color="-1"/>
+          <label value="ДОБАВИТЬ"/>
+          <text value="ДОБАВИТЬ"/>
+        </properties>
+      </component>
+      <component id="b454a" class="javax.swing.JLabel" binding="addContactsText">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <foreground color="-16720644"/>
+          <horizontalAlignment value="0"/>
+          <text value="addContactsText"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
