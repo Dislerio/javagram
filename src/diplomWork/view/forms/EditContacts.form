@@ -52,7 +52,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="75fd6" class="javax.swing.JLabel">
+                  <component id="75fd6" class="javax.swing.JLabel" binding="numberField">
                     <constraints/>
                     <properties>
                       <font name="Open Sans Light" size="16"/>

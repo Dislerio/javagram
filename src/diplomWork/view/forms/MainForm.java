@@ -1,8 +1,10 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.ChatFormPresenter;
 import diplomWork.view.components.ChatListRenderer;
 import diplomWork.view.components.ContactListRenderer;
+import diplomWork.viewInterface.ChatFormInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +15,7 @@ import tests.FakeChat;
 import tests.FakeContacts;
 */
 
-public class MainForm {
+public class MainForm implements ChatFormInterface {
     private JPanel titlePanel;
     private JLabel iconLabel;
     private JLabel selfNameLabel;
@@ -36,7 +38,9 @@ public class MainForm {
     private JPanel cList2;
     private JTextField searchField;
     private JPanel searchButton;
-    BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon;
+    private JButton addContactsButton;
+    BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon, addButtonIcon;
+    private ChatFormPresenter presenter;
 
 
     public MainForm() {     //отработано
@@ -78,6 +82,7 @@ public class MainForm {
         logo = Configs.LOGO_MICRO;
         settingsIcon = Configs.ICON_SETTINGS;
         editButtonIcon = Configs.ICON_EDIT;
+        addButtonIcon = Configs.ICON_PLUS;
         tavatar = Configs.tavatar;
         maskBlueMini = Configs.MASK_BLUE_MINI;
         maskGray = Configs.MASK_GRAY;
@@ -90,7 +95,13 @@ public class MainForm {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(settingsIcon, 6, 6, null);
-                ;
+            }
+        };
+        addContactsButton = new JButton() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(addButtonIcon, 0, 0, addContactsButton.getWidth(), addContactsButton.getHeight(), null);
             }
         };
         avatarPanelMini = new JPanel() {
@@ -140,4 +151,26 @@ public class MainForm {
 
 
     }
+
+    @Override
+    public void setPresenter(ChatFormPresenter presenter) {
+        this.presenter = presenter;
+    }
+
+    public Component getActionSettings() {
+        return settingsButton;
+    }
+
+    public Component getActionEdit() {
+        return editContactsButton;
+    }
+
+    public Component getActionAdd() {
+        return addContactsButton;
+    }
+
+    public String getChatWithName() {
+        return chatWithName.getText();
+    }
+
 }

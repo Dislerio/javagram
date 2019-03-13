@@ -1,12 +1,16 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.PhoneNumberPresenter;
+import diplomWork.viewInterface.PhoneNumberInterface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-public class PhoneNumber {
+public class PhoneNumber implements PhoneNumberInterface {
     private JPanel rootPanel;
     private JButton continueButton;
     private JPanel logoPanel;
@@ -19,6 +23,7 @@ public class PhoneNumber {
     BufferedImage logo;
     BufferedImage background;
     BufferedImage phoneLogoImage;
+    PhoneNumberPresenter presenter;
 
     public PhoneNumber(){   //отработано
         logo = Configs.LOGO;
@@ -31,6 +36,7 @@ public class PhoneNumber {
         continueButton.setBackground(new Color(0,178,226));
         continueButton.setForeground(Color.white);
         continueButton.setFont(Configs.font25);
+
         phoneLogo.setIcon(new ImageIcon(phoneLogoImage));
         numberField.setBorder(BorderFactory.createEmptyBorder());
         numberField.setFont(Configs.font32);
@@ -59,7 +65,46 @@ public class PhoneNumber {
 
     }
 
+    public JButton getContinueButton() {
+        return continueButton;
+    }
+
+    public String getText() {
+        return numberField.getText();
+    }
+
+    @Override
+    public void showError(String strError) {
+        //TO DO
+    }
+
+    @Override
+    public void clearError() {
+        //TO DO
+    }
+
+    @Override
+    public void showLoadingProcess() {
+        //TO DO
+    }
+
+    @Override
+    public void hideLoadingProcess() {
+        //TO DO
+    }
+
+    @Override
     public JPanel getRootPanel() {
         return rootPanel;
+    }
+
+    @Override
+    public void showPhoneFormatError(String strError) {
+        //TO DO
+    }
+
+    @Override
+    public void setPresenter(PhoneNumberPresenter presenter) {
+        this.presenter = presenter;
     }
 }

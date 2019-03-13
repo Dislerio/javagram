@@ -1,6 +1,7 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.ProfileSettingsPresenter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,9 +17,10 @@ public class ProfileSettings {      //отработано
     private JPanel rootPanel;
     private JTextField nameTextField;
     private JTextField surnameTextField;
-    private JButton SaveButton;
+    private JButton saveButton;
     private JLabel editAvatar;
     private JLabel deleteAvatar;
+    private ProfileSettingsPresenter presenter;
 
     public ProfileSettings(){
             logo = Configs.LOGO_MINI;
@@ -32,5 +34,13 @@ public class ProfileSettings {      //отработано
 }
     public JPanel getRootPanel() {
         return rootPanel;
+    }
+
+    public Component getSaveButton() {            //TO DO
+        return saveButton;
+    }
+
+    public void setPresenter(ProfileSettingsPresenter presenter) {
+        this.presenter = presenter;
     }
 }

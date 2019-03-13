@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Configs {
     public static BufferedImage LOGO, LOGO_MINI, LOGO_MICRO, ICON_EDIT, ICON_TRASH, BG_IMAGE, ICON_PHONE,
-            ICON_LOCK, ICON_SETTINGS, NO_AVATAR, MASK_BLUE_MINI, MASK_GRAY, IMG_BUTTON_SEND, IMG_BUTTON_SEARCH;
+            ICON_LOCK, ICON_SETTINGS, NO_AVATAR, MASK_BLUE_MINI, MASK_GRAY, IMG_BUTTON_SEND, IMG_BUTTON_SEARCH, ICON_PLUS;
     public static BufferedImage tavatar;
     public static String phoneNumberTooltipText, verificationCodeTooltipText, addContactsText,
             addContactsToolTip, editContactText, deleteContactText, saveButtonText;
@@ -38,6 +38,7 @@ public class Configs {
         ICON_EDIT = readImage("img/icon-edit.png");
         ICON_PHONE = readImage("img/icon-phone.png");
         ICON_SETTINGS = readImage("img/icon-settings.png");
+        ICON_PLUS = readImage("img/icon-plus.png");
         ICON_TRASH = readImage("img/icon-trash.png");
         ICON_LOCK = readImage("img/icon-lock.png");
         NO_AVATAR = readImage("img/placeholder_no_avatar.png");
@@ -58,5 +59,9 @@ public class Configs {
             e.printStackTrace();
         }
         return image;
+    }
+
+    public static Font getFont(int size){
+        return new Font("Open Sans",Font.BOLD, size);
     }
 }

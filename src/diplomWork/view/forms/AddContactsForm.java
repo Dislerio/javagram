@@ -1,12 +1,14 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.AddContactPresenter;
+import diplomWork.viewInterface.AddContactInterface;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class AddContactsForm {
+public class AddContactsForm implements AddContactInterface {
     private BufferedImage phoneIcon;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
@@ -20,6 +22,8 @@ public class AddContactsForm {
     private JLabel findUserLabel;
     private JLabel findUserRes;
     private JLabel addContactsText;
+    private AddContactPresenter presenter;
+
 
     public AddContactsForm() {      //отработано
 
@@ -37,6 +41,11 @@ public class AddContactsForm {
 
     }
 
+    @Override
+    public void setPresenter(AddContactPresenter af) {
+        this.presenter = af;
+    }
+
     public JPanel getRootPanel() {
         return rootPanel;
     }
@@ -44,5 +53,9 @@ public class AddContactsForm {
     private void createUIComponents() {
         numPanel = new JPanel();
         // TODO: place custom component creation code here
+    }
+
+    public Component getAddButton() {
+        return addButton;
     }
 }

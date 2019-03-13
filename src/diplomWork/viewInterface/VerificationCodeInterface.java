@@ -1,4 +1,8 @@
 package diplomWork.viewInterface;
 
-public interface VerificationCodeInterface {
+import diplomWork.presenter.VerificationCodePresenter;
+
+public interface VerificationCodeInterface extends viewInterface {
+    boolean isCodeValid(String code);
+    void setPresenter(VerificationCodePresenter presenter);
 }

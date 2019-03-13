@@ -1,9 +1,10 @@
 package diplomWork.viewInterface;
 
-public interface PhoneNumberInterface {
-    boolean checkAuthenticated();
-    boolean isPhoneRegistered(String phoneNumber);
-    boolean isPhoneValid(String phoneNumber);
-    void showError();
+import diplomWork.presenter.PhoneNumberPresenter;
+
+public interface PhoneNumberInterface extends viewInterface{
+
+    void showPhoneFormatError(String strError);
+    void setPresenter(PhoneNumberPresenter presenter);
 
 }

@@ -102,6 +102,16 @@
                 <border type="none"/>
                 <children/>
               </grid>
+              <component id="7c85e" class="javax.swing.JButton" binding="addContactsButton" custom-create="true">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <maximumSize width="35" height="35"/>
+                  <minimumSize width="35" height="35"/>
+                  <opaque value="false"/>
+                  <preferredSize width="35" height="35"/>
+                  <text value=""/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>
@@ -158,7 +168,9 @@
               <grid id="27b87" binding="editContactsButton" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="East"/>
                 <properties>
+                  <background color="-856795"/>
                   <minimumSize width="50" height="50"/>
+                  <opaque value="true"/>
                   <preferredSize width="50" height="50"/>
                 </properties>
                 <border type="none"/>

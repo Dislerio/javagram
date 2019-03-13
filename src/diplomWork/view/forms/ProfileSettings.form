@@ -131,7 +131,7 @@
               <text value=" "/>
             </properties>
           </component>
-          <component id="85651" class="javax.swing.JButton" binding="SaveButton">
+          <component id="85651" class="javax.swing.JButton" binding="saveButton">
             <constraints/>
             <properties>
               <background color="-16731162"/>

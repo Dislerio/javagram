@@ -1,6 +1,7 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.EditContactPresenter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,7 +20,9 @@ public class EditContacts {
     private JPanel namePanel;
     private JButton saveButton;
     private JLabel editContactsToolTip;
+    private JLabel numberField;
     BufferedImage logo, trashIcon, phoneLogoImage;
+    EditContactPresenter presenter;
 
    public EditContacts(){       //отработано
 
@@ -56,5 +59,17 @@ public class EditContacts {
 
     public JPanel getRootPanel() {
         return rootPanel;
+    }
+
+    public void setPresenter(EditContactPresenter presenter){
+       this.presenter = presenter;
+    }
+    public void setEditUser(String user, String number){       //TO DO     временно
+       nameTextField.setText(user);
+       numberField.setText(number);
+    }
+
+    public Component getActionSave() {
+        return saveButton;
     }
 }
