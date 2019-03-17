@@ -2,6 +2,7 @@ package diplomWork.view.forms;
 
 import diplomWork.Configs;
 import diplomWork.presenter.ChatFormPresenter;
+import diplomWork.tests.*;
 import diplomWork.view.components.ChatListRenderer;
 import diplomWork.view.components.ContactListRenderer;
 import diplomWork.viewInterface.ChatFormInterface;
@@ -21,7 +22,7 @@ public class MainForm implements ChatFormInterface {
     private JLabel selfNameLabel;
     private JPanel contactListPanel;
     private JList contactsList;
-    private JList list;
+    private JList list; // контакт лист
     private JPanel chatPanel;
     private JTextArea chatInputField;
     private JList chatArea;
@@ -30,7 +31,7 @@ public class MainForm implements ChatFormInterface {
     private JPanel avatarPanelMini;
     private JPanel chatWithPanel;
     private JPanel chatInfoPanel;
-    private JPanel editContactsButton;
+    private JLabel editContactsButton;
     private JPanel chatAvatarPanel;
     private JLabel chatWithName;
     private JPanel chatInputPanel;
@@ -50,16 +51,18 @@ public class MainForm implements ChatFormInterface {
 
         //JList list = new JList(FakeContacts.getContactsSample());
         JList list = new JList();
-        //list.setListData(FakeContacts.getContactPanels());
+        list.setListData(FakeContacts.getContactPanels());
         list.setCellRenderer(new ContactListRenderer());
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setBackground(new Color(230, 230, 230));
         list.setSelectionBackground(Color.white);
+        list.setAutoscrolls(false);
         JScrollPane scrollPane = new JScrollPane(list);
         cList2.add(scrollPane);
 
         chatArea.setCellRenderer(new ChatListRenderer());       // создание чата
-        //chatArea.setListData(FakeChat.getChatLabels());
+//        chatArea.setListData(FakeChat.getChatLabels());
+        chatArea.setListData(FakeChat.getChatPanels());
 
         JScrollPane chatScrollPane = new JScrollPane(chatArea);
         chatScrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -126,7 +129,7 @@ public class MainForm implements ChatFormInterface {
                 g.drawImage(maskGray, 0, 0, null);
             }
         };
-        editContactsButton = new JPanel() {
+        editContactsButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);

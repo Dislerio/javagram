@@ -19,6 +19,7 @@ public class EditContactPresenter {
     public void runView(String user){
         EditContacts ec = new EditContacts();
         ec.setPresenter(this);
+        frame.setContentPane(ec.getRootPanel());
         this.name = user;        //TO DO
         this.phone = "+79042149947";
         ec.setEditUser(name, phone);

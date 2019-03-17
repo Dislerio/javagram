@@ -165,17 +165,15 @@
                   </component>
                 </children>
               </grid>
-              <grid id="27b87" binding="editContactsButton" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+              <component id="5b3cc" class="javax.swing.JLabel" binding="editContactsButton" custom-create="true">
                 <constraints border-constraint="East"/>
                 <properties>
-                  <background color="-856795"/>
+                  <maximumSize width="50" height="50"/>
                   <minimumSize width="50" height="50"/>
-                  <opaque value="true"/>
                   <preferredSize width="50" height="50"/>
+                  <text value=""/>
                 </properties>
-                <border type="none"/>
-                <children/>
-              </grid>
+              </component>
             </children>
           </grid>
           <grid id="837e" binding="chatInputPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
