@@ -1,7 +1,9 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.ProfileSettingsPresenter;
+import diplomWork.viewInterface.IProfileSettings;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ProfileSettings {      //отработано
+public class ProfileSettings implements IProfileSettings {      //отработано
     private BufferedImage logo;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
@@ -32,6 +34,27 @@ public class ProfileSettings {      //отработано
     editAvatar.setIcon(new ImageIcon(editIcon));
     deleteAvatar.setIcon(new ImageIcon(deleteIcon));
 }
+
+    @Override
+    public void showError(String strError) {
+
+    }
+
+    @Override
+    public void clearError() {
+
+    }
+
+    @Override
+    public void showLoadingProcess() {
+
+    }
+
+    @Override
+    public void hideLoadingProcess() {
+
+    }
+
     public JPanel getRootPanel() {
         return rootPanel;
     }
@@ -40,7 +63,7 @@ public class ProfileSettings {      //отработано
         return saveButton;
     }
 
-    public void setPresenter(ProfileSettingsPresenter presenter) {
-        this.presenter = presenter;
+    public void setPresenter(IPresenter presenter) {
+        this.presenter = (ProfileSettingsPresenter) presenter;
     }
 }

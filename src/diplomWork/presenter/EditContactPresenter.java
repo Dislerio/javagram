@@ -1,18 +1,18 @@
 package diplomWork.presenter;
 
 import diplomWork.view.forms.EditContacts;
-import diplomWork.view.forms.MainScreen;
+import diplomWork.view.forms.MainFrame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class EditContactPresenter {
+public class EditContactPresenter implements IPresenter{
     String name;
     String phone;
     String nick;
-    MainScreen frame;
+    MainFrame frame;
 
-    public EditContactPresenter(MainScreen frame){
+    public EditContactPresenter(MainFrame frame){
         this.frame = frame;
     }
 

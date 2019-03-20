@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="diplomWork.view.components.messages.Incoming">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <enabled value="true"/>
+      <opaque value="false"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="8f198" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="408fa" class="javax.swing.JLabel" binding="top">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="1c32f" class="javax.swing.JLabel" binding="bottom">
+            <constraints border-constraint="South"/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="b0f40" class="javax.swing.JLabel" binding="message" custom-create="true">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="cc9d1" class="javax.swing.JLabel" binding="left">
+        <constraints border-constraint="West"/>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

@@ -2,13 +2,14 @@ package diplomWork.view.forms;
 
 import diplomWork.Configs;
 import diplomWork.presenter.AddContactPresenter;
-import diplomWork.viewInterface.AddContactInterface;
+import diplomWork.presenter.IPresenter;
+import diplomWork.viewInterface.IAddContact;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class AddContactsForm implements AddContactInterface {
+public class AddContactsForm implements IAddContact {
     private BufferedImage phoneIcon;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
@@ -34,16 +35,36 @@ public class AddContactsForm implements AddContactInterface {
         phoneLogo.setIcon(new ImageIcon(phoneIcon));
         numberField.setBorder(BorderFactory.createEmptyBorder());
         numPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.white));
-        textTip.setFont(Configs.font16);
+        textTip.setFont(Configs.getFont(16));
         textTip.setText(Configs.addContactsToolTip);
         addContactsText.setText(Configs.addContactsText);
-        addContactsText.setFont(Configs.font40);
+        addContactsText.setFont(Configs.getFont(40));
 
     }
 
     @Override
-    public void setPresenter(AddContactPresenter af) {
-        this.presenter = af;
+    public void setPresenter(IPresenter af) {
+        this.presenter = (AddContactPresenter)af;
+    }
+
+    @Override
+    public void showError(String strError) {
+
+    }
+
+    @Override
+    public void clearError() {
+
+    }
+
+    @Override
+    public void showLoadingProcess() {
+
+    }
+
+    @Override
+    public void hideLoadingProcess() {
+
     }
 
     public JPanel getRootPanel() {

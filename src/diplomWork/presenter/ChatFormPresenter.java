@@ -4,33 +4,33 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Map;
 
-import diplomWork.view.forms.MainForm;
-import diplomWork.view.forms.MainScreen;
+import diplomWork.view.forms.ChatForm;
+import diplomWork.view.forms.MainFrame;
 import org.javagram.response.object.*;
 
-public class ChatFormPresenter {
+public class ChatFormPresenter implements IPresenter{
     Map contactList;
     User user;
     Map messages;
     String userPhoneTemp;   //временная пременная
-    MainScreen frame;
-    MainForm mf;
+    MainFrame frame;
+    ChatForm mf;
     private static ChatFormPresenter presenter;
 
-    public static ChatFormPresenter getPresenter(MainScreen frame){
+    public static ChatFormPresenter getPresenter(MainFrame frame){
         if(presenter == null){
             presenter = new ChatFormPresenter(frame);
         }
         return presenter;
     }
 
-    private ChatFormPresenter(MainScreen frame){
+    private ChatFormPresenter(MainFrame frame){
         this.frame = frame;
     }
 
     public void runView(String userPhone){
         this.userPhoneTemp = userPhone;
-        mf = new MainForm();
+        mf = new ChatForm();
         mf.setPresenter(this);
         frame.setContentPane(mf.getRootPanel());
         mf.getSelfNameLabel().setText(userPhone);

@@ -2,10 +2,11 @@ package diplomWork.view.forms;
 
 import diplomWork.Configs;
 import diplomWork.presenter.ChatFormPresenter;
+import diplomWork.presenter.IPresenter;
 import diplomWork.tests.*;
 import diplomWork.view.components.ChatListRenderer;
 import diplomWork.view.components.ContactListRenderer;
-import diplomWork.viewInterface.ChatFormInterface;
+import diplomWork.viewInterface.IChatForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,7 @@ import tests.FakeChat;
 import tests.FakeContacts;
 */
 
-public class MainForm implements ChatFormInterface {
+public class ChatForm implements IChatForm {
     private JPanel titlePanel;
     private JLabel iconLabel;
     private JLabel selfNameLabel;
@@ -44,7 +45,7 @@ public class MainForm implements ChatFormInterface {
     private ChatFormPresenter presenter;
 
 
-    public MainForm() {     //отработано
+    public ChatForm() {     //отработано
         selfNameLabel.setText("Василий");
         cList2.setLayout(new BoxLayout(cList2, BoxLayout.Y_AXIS));
         searchField.setBorder(BorderFactory.createEmptyBorder());
@@ -156,8 +157,28 @@ public class MainForm implements ChatFormInterface {
     }
 
     @Override
-    public void setPresenter(ChatFormPresenter presenter) {
-        this.presenter = presenter;
+    public void setPresenter(IPresenter presenter) {
+        this.presenter = (ChatFormPresenter) presenter;
+    }
+
+    @Override
+    public void showError(String strError) {
+
+    }
+
+    @Override
+    public void clearError() {
+
+    }
+
+    @Override
+    public void showLoadingProcess() {
+
+    }
+
+    @Override
+    public void hideLoadingProcess() {
+
     }
 
     public Component getActionSettings() {

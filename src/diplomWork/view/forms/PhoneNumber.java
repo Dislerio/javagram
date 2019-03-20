@@ -1,16 +1,15 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.PhoneNumberPresenter;
-import diplomWork.viewInterface.PhoneNumberInterface;
+import diplomWork.viewInterface.IPhoneNumber;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-public class PhoneNumber implements PhoneNumberInterface {
+public class PhoneNumber implements IPhoneNumber {
     private JPanel rootPanel;
     private JButton continueButton;
     private JPanel logoPanel;
@@ -104,7 +103,7 @@ public class PhoneNumber implements PhoneNumberInterface {
     }
 
     @Override
-    public void setPresenter(PhoneNumberPresenter presenter) {
-        this.presenter = presenter;
+    public void setPresenter(IPresenter presenter) {
+        this.presenter = (PhoneNumberPresenter) presenter;
     }
 }

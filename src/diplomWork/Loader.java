@@ -1,7 +1,7 @@
 package diplomWork;
 
 import diplomWork.presenter.PhoneNumberPresenter;
-import diplomWork.view.forms.MainScreen;
+import diplomWork.view.forms.MainFrame;
 
 import javax.swing.*;
 
@@ -10,7 +10,7 @@ public class Loader {
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
-            MainScreen frame = new MainScreen();
+            MainFrame frame = new MainFrame();
             PhoneNumberPresenter phoneNumberPresenter = new PhoneNumberPresenter(frame);
             phoneNumberPresenter.runView();
         });

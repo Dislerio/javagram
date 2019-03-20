@@ -1,16 +1,16 @@
 package diplomWork.presenter;
 
-import diplomWork.view.forms.MainScreen;
+import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.ProfileSettings;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ProfileSettingsPresenter {
-    MainScreen frame;
+public class ProfileSettingsPresenter implements IPresenter{
+    MainFrame frame;
 
 
-    public ProfileSettingsPresenter(MainScreen frame){
+    public ProfileSettingsPresenter(MainFrame frame){
         this.frame = frame;
     }
 

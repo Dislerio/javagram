@@ -1,4 +1,4 @@
-package diplomWork.tests;
+package diplomWork.unneeded;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,6 +19,8 @@ public class ChatLabel extends JLabel {
     private static Color fg = new Color(255,255,255);
     static Font font = new Font("Open Sans", Font.BOLD, 14);
     boolean income = true;
+    static int arrowSize = 14;
+    static int lineSize = 10;
 
 
     static {
@@ -38,23 +40,21 @@ public class ChatLabel extends JLabel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        //g.drawImage(messageInLeft, 2, this.getHeight() / 2 - 4, null);
         if (income){
-            g.drawImage(messageInBottom, 14, this.getHeight() - 10,null);
-            g.drawImage(messageInTop, 14, 0, null);
+            g.drawImage(messageInBottom, arrowSize, this.getHeight() - lineSize, null);
+            g.drawImage(messageInTop, arrowSize, 0, null);
             g.setColor(bg);
-            g.fillRect(14,messageInTop.getHeight(null), messageInTop.getWidth(null), this.getHeight()-messageInBottom.getHeight(null)*2);
+            g.fillRect(arrowSize, messageInTop.getHeight(null), messageInTop.getWidth(null), this.getHeight()-messageInBottom.getHeight(null)*2);
             super.paintComponent(g);
         } else {
-            g.drawImage(messageOutBottom, this.getWidth()-messageOutBottom.getWidth(null)-14, this.getHeight() - 10,null);
-            g.drawImage(messageOutTop, this.getWidth()-messageOutBottom.getWidth(null)-14, 0, null);
+            g.drawImage(messageOutBottom, this.getWidth() - messageOutBottom.getWidth(null) - arrowSize, this.getHeight() - lineSize,null);
+            g.drawImage(messageOutTop, this.getWidth()- messageOutBottom.getWidth(null) - arrowSize, 0, null);
             g.setColor(bg2);
-            g.fillRect(this.getWidth()-messageOutBottom.getWidth(null)-14,messageOutTop.getHeight(null),
-                    messageOutTop.getWidth(null), this.getHeight()-messageOutBottom.getHeight(null)*2);
-            g.drawImage(messageOutRight, this.getWidth()-14, this.getHeight() / 2 - 6, null);
+            g.fillRect(this.getWidth()-messageOutBottom.getWidth(null) - arrowSize,messageOutTop.getHeight(null),
+                    messageOutTop.getWidth(null), this.getHeight() - messageOutBottom.getHeight(null)*2);
+            g.drawImage(messageOutRight, this.getWidth() - arrowSize, this.getHeight() / 2 - 6, null);
             g.setColor(fg);
             this.setHorizontalAlignment(JLabel.CENTER);
-            //g.drawString(this.getText(), this.getWidth()-messageOutBottom.getWidth(null), this.getHeight() / 2 + 4);
             this.setIcon(null);
             super.paintComponent(g);
         }

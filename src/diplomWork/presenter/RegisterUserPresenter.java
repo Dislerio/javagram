@@ -1,6 +1,6 @@
 package diplomWork.presenter;
 
-public class RegisterUserPresenter {
+public class RegisterUserPresenter implements IPresenter{
     String UserName;
     String UserSurname;
     String UserPhone;

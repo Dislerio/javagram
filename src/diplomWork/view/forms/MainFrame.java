@@ -5,7 +5,7 @@ import diplomWork.Loader;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainScreen extends JFrame{
+public class MainFrame extends JFrame{
     private JPanel rootPanel;
     private JPanel topPanel;
     private JLabel minButton;
@@ -13,7 +13,7 @@ public class MainScreen extends JFrame{
     private JFrame frame;
 
 
-    public MainScreen(){
+    public MainFrame(){
 
         frame = new JFrame("Javagram");
         //frame.setContentPane(phoneNumber.getRootPanel());

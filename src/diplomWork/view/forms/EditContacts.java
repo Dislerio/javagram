@@ -2,6 +2,9 @@ package diplomWork.view.forms;
 
 import diplomWork.Configs;
 import diplomWork.presenter.EditContactPresenter;
+import diplomWork.presenter.IPresenter;
+import diplomWork.viewInterface.IEditContact;
+import diplomWork.viewInterface.IView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class EditContacts {
+public class EditContacts implements IEditContact {
     private JPanel rootPanel;
     private JPanel dataPanel;
     private JButton deleteButton;
@@ -57,12 +60,32 @@ public class EditContacts {
         // TODO: place custom component creation code here
     }
 
+    @Override
+    public void showError(String strError) {
+
+    }
+
+    @Override
+    public void clearError() {
+
+    }
+
+    @Override
+    public void showLoadingProcess() {
+
+    }
+
+    @Override
+    public void hideLoadingProcess() {
+
+    }
+
     public JPanel getRootPanel() {
         return rootPanel;
     }
 
-    public void setPresenter(EditContactPresenter presenter){
-       this.presenter = presenter;
+    public void setPresenter(IPresenter presenter){
+       this.presenter = (EditContactPresenter) presenter;
     }
     public void setEditUser(String user, String number){       //TO DO     временно
        nameTextField.setText(user);

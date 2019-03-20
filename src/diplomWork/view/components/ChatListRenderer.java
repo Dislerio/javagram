@@ -1,7 +1,5 @@
 package diplomWork.view.components;
 
-import diplomWork.Configs;
-import diplomWork.tests.ChatLabel;
 import diplomWork.tests.ChatPanel;
 
 import javax.swing.*;
@@ -14,17 +12,6 @@ public class ChatListRenderer extends DefaultListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-//        ChatLabel label = (ChatLabel) value;
-//        label.setFont(Configs.font22);
-//
-//        if(isSelected){
-//            label.setBorder(BorderFactory.createMatteBorder(0,12,0,2,selected));
-//        } else {
-//            label.setBorder(BorderFactory.createMatteBorder(1,12,1,0,unselected));
-//        }
-//
-//        return label;
-
         ChatPanel panel = (ChatPanel) value;
         return panel.getRootPanel();
     }

@@ -1,20 +1,15 @@
 package diplomWork.presenter;
 
-import diplomWork.Loader;
-import diplomWork.view.forms.MainForm;
-import diplomWork.view.forms.MainScreen;
+import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.PhoneNumber;
-import diplomWork.view.forms.VerificationCode;
 
-import javax.swing.*;
-
-public class PhoneNumberPresenter {
+public class PhoneNumberPresenter implements IPresenter{
     String phoneNumber;
     boolean phoneRegistered;
     boolean phoneAuthenticated;
-    MainScreen frame;
+    MainFrame frame;
 
-    public PhoneNumberPresenter(MainScreen frame){
+    public PhoneNumberPresenter(MainFrame frame){
         this.frame = frame;
         runView();
     }

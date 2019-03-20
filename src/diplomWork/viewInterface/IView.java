@@ -1,8 +1,12 @@
 package diplomWork.viewInterface;
 
+import diplomWork.presenter.IPresenter;
+
 import javax.swing.*;
 
-public interface viewInterface {
+public interface IView {
+    void setPresenter(IPresenter af);
+
     //show various error
     void showError(String strError);
 

@@ -1,15 +1,16 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.VerificationCodePresenter;
-import diplomWork.viewInterface.VerificationCodeInterface;
+import diplomWork.viewInterface.IVerificationCode;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 
-public class VerificationCode implements VerificationCodeInterface {     //отработано
+public class VerificationCode implements IVerificationCode {     //отработано
     private JPanel logoPanel;
     private JPanel rootPanel;
     private JLabel labelNull;
@@ -90,7 +91,7 @@ public class VerificationCode implements VerificationCodeInterface {     //от�
     }
 
     @Override
-    public void setPresenter(VerificationCodePresenter presenter) {
-        this.verificationCodePresenter = presenter;
+    public void setPresenter(IPresenter presenter) {
+        this.verificationCodePresenter = (VerificationCodePresenter)presenter;
     }
 }

@@ -2,9 +2,6 @@ package diplomWork.viewInterface;
 
 import diplomWork.presenter.PhoneNumberPresenter;
 
-public interface PhoneNumberInterface extends viewInterface{
-
+public interface IPhoneNumber extends IView {
     void showPhoneFormatError(String strError);
-    void setPresenter(PhoneNumberPresenter presenter);
-
 }

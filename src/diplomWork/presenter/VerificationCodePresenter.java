@@ -1,15 +1,14 @@
 package diplomWork.presenter;
 
-import diplomWork.Loader;
-import diplomWork.view.forms.MainScreen;
+import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.VerificationCode;
 
-public class VerificationCodePresenter {
+public class VerificationCodePresenter implements IPresenter{
     String SmsCode;
     String userPhone;
-    MainScreen frame;
+    MainFrame frame;
 
-    public VerificationCodePresenter(MainScreen frame){
+    public VerificationCodePresenter(MainFrame frame){
         this.frame = frame;
     }
 
