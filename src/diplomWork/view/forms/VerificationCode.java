@@ -3,6 +3,7 @@ package diplomWork.view.forms;
 import diplomWork.Configs;
 import diplomWork.model.TLHandler;
 import diplomWork.presenter.IPresenter;
+import diplomWork.presenter.RegisterUserPresenter;
 import diplomWork.presenter.VerificationCodePresenter;
 import diplomWork.viewInterface.IVerificationCode;
 
@@ -23,12 +24,22 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
     private JPasswordField codeField;
     private JButton continueButton;
     private JLabel errLabel;
+    private JLabel btnBack;
     private BufferedImage logo, background, phoneLogoImage;
     private VerificationCodePresenter presenter;
     ImageIcon imageIcon;
+    private static VerificationCode instance;
 
+    public static VerificationCode getInstance(){
+        if(instance == null){
+            instance = new VerificationCode();
+        }
+        instance.setPhoneNumber(TLHandler.getInstance().getUserPhone());
+        instance.setPresenter(VerificationCodePresenter.getInstance(instance));
+        return instance;
+    }
 
-    public VerificationCode() {
+    private VerificationCode() {
         logo = Configs.LOGO_MINI;
         background = Configs.BG_IMAGE;
         phoneLogoImage = Configs.ICON_LOCK;
@@ -38,13 +49,13 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
         continueButton.setBorder(BorderFactory.createLineBorder(new Color(0, 178, 230), 15, true));
         textTip.setFont(Configs.font18);
         textTip.setText(Configs.verificationCodeTooltipText);
-        numLabel.setText(TLHandler.getInstance().getUserPhone());
+        //numLabel.setText("+" + TLHandler.getInstance().getUserPhone());
         numLabel.setFont(Configs.font40);
-
+        btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
         continueButton.addActionListener(e -> {
             presenter.checkCode(String.valueOf(codeField.getPassword()));     //Todo
         });
-        errLabel.addMouseListener(new MouseAdapter() {
+        btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -72,6 +83,11 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
         };
         labelNull = new JLabel();
         labelNull.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.white));
+    }
+
+    @Override
+    public void callViewSignUp() {
+        RegForm.getInstance();
     }
 
     @Override
@@ -125,4 +141,5 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
     public JPanel getRootPanel() {
         return rootPanel;
     }
+
 }

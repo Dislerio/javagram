@@ -13,9 +13,7 @@ public class Loader {
         SwingUtilities.invokeLater(() -> {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    frame = MainFrame.getInstance();
-                    PhoneNumber view = new PhoneNumber();
-                    view.setPresenter(new PhoneNumberPresenter(view));
+                    PhoneNumber.getInstance();
 
 //                    PhoneNumberPresenter phoneNumberPresenter = new PhoneNumberPresenter(frame);
 //                    phoneNumberPresenter.runView();

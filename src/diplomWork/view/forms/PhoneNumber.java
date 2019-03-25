@@ -28,8 +28,17 @@ public class PhoneNumber implements IPhoneNumber {  //++
     BufferedImage background;
     BufferedImage phoneLogoImage;
     PhoneNumberPresenter presenter;
+    static PhoneNumber instance;
 
-    public PhoneNumber(){   //отработано
+    public static PhoneNumber getInstance(){
+        if(instance == null){
+            instance = new PhoneNumber();
+        }
+        instance.setPresenter(PhoneNumberPresenter.getInstance(instance));
+        return instance;
+    }
+
+    private PhoneNumber(){   //отработано
         logo = Configs.LOGO;
         background = Configs.BG_IMAGE;
         phoneLogoImage = Configs.ICON_PHONE;
@@ -40,18 +49,15 @@ public class PhoneNumber implements IPhoneNumber {  //++
         continueButton.setForeground(Color.white);
         continueButton.setFont(Configs.getFont(25));
         continueButton.setText(Configs.continueButtonText);
-
         phoneLogo.setIcon(new ImageIcon(phoneLogoImage));
         numberField.setBorder(BorderFactory.createEmptyBorder());
         numberField.setFont(Configs.getFont(32));
         label1.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-
         continueButton.addActionListener(e -> {
             presenter.checkPhone(numberField.getText());
         });
         setNumberFieldMask(numberField);
         numberField.setText("9996624444");
-
     }
 
     private void createUIComponents() {
@@ -134,7 +140,7 @@ public class PhoneNumber implements IPhoneNumber {  //++
     }
 
     public void fillPhoneNumberTextField(String phone) {
-        numberField.setText(phone);
+        numberField.setText("+" + phone);
     }
 
     @Override

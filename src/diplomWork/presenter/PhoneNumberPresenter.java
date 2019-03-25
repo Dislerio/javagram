@@ -13,11 +13,19 @@ public class PhoneNumberPresenter implements IPresenter{        //++
     String phoneNumber;
     MainFrame frame;
     PhoneNumber view;
+    private static PhoneNumberPresenter instance;
+    public static PhoneNumberPresenter getInstance(IView iView){
+        if(instance == null){
+            instance = new PhoneNumberPresenter(iView);
+        }
+        instance.frame.setContentPane(instance.view.getRootPanel());
+        return instance;
+    }
 
-    public PhoneNumberPresenter(IView iView){
+    private PhoneNumberPresenter(IView iView){
         frame = MainFrame.getInstance();
         this.view = (PhoneNumber) iView;
-        frame.setContentPane(view.getRootPanel());
+        //frame.setContentPane(view.getRootPanel());
     }
 
 
@@ -47,8 +55,7 @@ public class PhoneNumberPresenter implements IPresenter{        //++
                 //check phone on telegram server
                 TLHandler.getInstance().checkPhoneRegistered(phoneNumber);
                 if (TLHandler.getInstance().isPhoneRegistered()) {
-                    VerificationCode view = new VerificationCode();
-                    view.setPresenter(new VerificationCodePresenter(view));
+                    VerificationCode.getInstance();
                 }
                 view.hideLoadingProcess();
             }

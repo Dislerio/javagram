@@ -1,12 +1,16 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.presenter.IPresenter;
+import diplomWork.presenter.RegisterUserPresenter;
+import diplomWork.viewInterface.IRegisterUser;
+import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class RegForm {
+public class RegForm implements IRegisterUser {
     private BufferedImage logo, background, avatarNoImage;
     private JPanel rootPanel;
     private JLabel textTip;
@@ -14,9 +18,19 @@ public class RegForm {
     private JTextField nameTextField;
     private JTextField surnameTextField;
     private JPanel logoPanel;
-    private JButton RegButton;
+    private JButton regButton;
+    private static RegForm instance;
+    private RegisterUserPresenter presenter;
 
-    public RegForm() { //отработано
+    public static RegForm getInstance(){
+        if(instance == null){
+            instance = new RegForm();
+        }
+        instance.setPresenter(RegisterUserPresenter.getInstance(instance));
+        return instance;
+    }
+
+    private RegForm() { //отработано
 
         logo = Configs.LOGO_MINI;
         background = Configs.BG_IMAGE;
@@ -25,11 +39,11 @@ public class RegForm {
         surnameTextField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.white));
         nameTextField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.white));
         avatarField.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        // listeners
+        regButton.addActionListener( e -> {
+                presenter.signUp(nameTextField.getText().trim(), surnameTextField.getText().trim());
+        });
 
-    }
-
-    public JPanel getRootPanel() {
-        return rootPanel;
     }
 
     private void createUIComponents() {
@@ -57,5 +71,38 @@ public class RegForm {
         logoPanel.setOpaque(false);
 
 
+    }
+
+    @Override
+    public void setPresenter(IPresenter af) {
+        this.presenter = (RegisterUserPresenter)af;
+    }
+
+    @Override
+    public void showError(String strError) {
+
+    }
+
+    @Override
+    public void clearError() {
+
+    }
+
+    @Override
+    public void showLoadingProcess() {
+
+    }
+
+    @Override
+    public void hideLoadingProcess() {
+
+    }
+
+    public JPanel getRootPanel() {
+        return rootPanel;
+    }
+
+    public void callViewChat() {
+        ChatForm.getInstance();
     }
 }

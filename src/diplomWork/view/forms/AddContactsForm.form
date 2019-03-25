@@ -64,9 +64,76 @@
           </component>
         </children>
       </grid>
-      <grid id="3a43a" binding="searchRes" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <component id="b454a" class="javax.swing.JLabel" binding="addContactsText">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <foreground color="-16720644"/>
+          <horizontalAlignment value="0"/>
+          <text value="addContactsText"/>
+        </properties>
+      </component>
+      <grid id="2ea54" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="10" flow-align="1">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none">
+          <color color="-16731422"/>
+        </border>
+        <children>
+          <component id="c3d28" class="javax.swing.JTextField" binding="firstName">
+            <constraints/>
+            <properties>
+              <caretColor color="-1"/>
+              <font name="Open Sans Light" size="36"/>
+              <foreground color="-1"/>
+              <horizontalAlignment value="2"/>
+              <maximumSize width="345" height="50"/>
+              <minimumSize width="345" height="50"/>
+              <opaque value="false"/>
+              <preferredSize width="345" height="50"/>
+              <text value="+7"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="2f308" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="10" flow-align="1">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none">
+          <color color="-16731422"/>
+        </border>
+        <children>
+          <component id="ee31d" class="javax.swing.JTextField" binding="lastName">
+            <constraints/>
+            <properties>
+              <caretColor color="-1"/>
+              <font name="Open Sans Light" size="36"/>
+              <foreground color="-1"/>
+              <horizontalAlignment value="2"/>
+              <maximumSize width="345" height="50"/>
+              <minimumSize width="345" height="50"/>
+              <opaque value="false"/>
+              <preferredSize width="345" height="50"/>
+              <text value="+7"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="3a43a" binding="searchRes" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -121,7 +188,7 @@
       </grid>
       <component id="dfa7d" class="javax.swing.JButton" binding="addButton">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -130,17 +197,6 @@
           <foreground color="-1"/>
           <label value="ДОБАВИТЬ"/>
           <text value="ДОБАВИТЬ"/>
-        </properties>
-      </component>
-      <component id="b454a" class="javax.swing.JLabel" binding="addContactsText">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <foreground color="-16720644"/>
-          <horizontalAlignment value="0"/>
-          <text value="addContactsText"/>
         </properties>
       </component>
     </children>

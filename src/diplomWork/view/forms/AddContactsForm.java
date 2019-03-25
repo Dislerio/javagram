@@ -25,6 +25,8 @@ public class AddContactsForm implements IAddContact {
     private JLabel findUserLabel;
     private JLabel findUserRes;
     private JLabel addContactsText;
+    private JTextField firstName;
+    private JTextField lastName;
     private AddContactPresenter presenter;
     private static AddContactsForm instance;
 
@@ -32,6 +34,7 @@ public class AddContactsForm implements IAddContact {
         if(instance == null){
             instance = new AddContactsForm();
         }
+        instance.setPresenter(AddContactPresenter.getPresenter(instance));
         return instance;
     }
 
@@ -48,12 +51,14 @@ public class AddContactsForm implements IAddContact {
         textTip.setText(Configs.addContactsToolTip);
         addContactsText.setText(Configs.addContactsText);
         addContactsText.setFont(Configs.getFont(40));
-
+        searchRes.setVisible(false);
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                presenter.goToMainForm();
+                presenter.addContact(numberField.getText(), firstName.getText(),
+                        lastName.getText().trim());
+                //presenter.goToMainForm();
             }
         });
     }
@@ -92,4 +97,6 @@ public class AddContactsForm implements IAddContact {
         // TODO: place custom component creation code here
     }
 
+    public void showInfo(String info) {
+    }
 }

@@ -11,15 +11,24 @@ import org.telegram.api.engine.RpcException;
 
 import java.io.IOException;
 
-public class VerificationCodePresenter implements IPresenter{       //++
+public class VerificationCodePresenter implements IPresenter{
     MainFrame frame;
     VerificationCode view;
+    private static VerificationCodePresenter instance;
 
-    public VerificationCodePresenter(IView iView){
+    public static VerificationCodePresenter getInstance(IView iView){
+        if(instance == null){
+            instance = new VerificationCodePresenter(iView);
+        }
+        instance.frame.setContentPane(instance.view.getRootPanel());
+        instance.sendCode();
+        return instance;
+    }
+
+
+    private VerificationCodePresenter(IView iView){
         frame = MainFrame.getInstance();
         this.view = (VerificationCode)iView;
-        frame.setContentPane(view.getRootPanel());
-        sendCode();
     }
 
     private void sendCode(){
@@ -42,6 +51,7 @@ public class VerificationCodePresenter implements IPresenter{       //++
                     view.showError(Configs.errPhoneCodeInvalid);
                 } else if(e.getErrorTag().equals("PHONE_NUMBER_UNOCCUPIED")){
                     view.showInfo(Configs.errPhoneUnoccupied);
+                    view.callViewSignUp();
                 } else {
                     view.showError(Configs.errUnknown);
                 }
@@ -53,19 +63,16 @@ public class VerificationCodePresenter implements IPresenter{       //++
                 view.hideLoadingProcess();
             }
             // и если все хорошо - окрываем чат
-            ChatForm chat  = ChatForm.getInstance();
-            chat.setPresenter(ChatFormPresenter.getPresenter(chat));
-
+            ChatForm.getInstance();
         });
         thread.start();
 
     }
 
     public void goBackToPhoneInput() {
-        PhoneNumber phoneNumber = new PhoneNumber();        //Todo Переделать на синглтон
-        phoneNumber.fillPhoneNumberTextField(TLHandler.getInstance().getUserPhone());
-        phoneNumber.setPresenter(new PhoneNumberPresenter(phoneNumber));
+        PhoneNumber view = PhoneNumber.getInstance();
+        view.fillPhoneNumberTextField(TLHandler.getInstance().getUserPhone());
+        view.clearError();
         TLHandler.getInstance().clearApiBridge();
     }
-
 }

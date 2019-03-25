@@ -27,32 +27,31 @@ import tests.FakeContacts;
 */
 
 public class ChatForm implements IChatForm {
-    private JPanel titlePanel;
-    private JLabel iconLabel;
-    private JLabel selfNameLabel;
     private JPanel contactListPanel;
-    //private JList contactsList;
-    private JList contactsList; // контакт лист
     private DefaultListModel<ContactPanel> contactListModel;
     private DefaultListModel<ChatPanel> chatListModel;
     private JPanel chatPanel;
-    private JTextArea chatInputField;
-    private JList chatArea;
     private JPanel rootPanel;
     private JLabel settingsButton;
     private JPanel avatarPanelMini;
     private JPanel chatWithPanel;
     private JPanel chatInfoPanel;
-    private JLabel editContactsButton;
     private JPanel chatAvatarPanel;
-    private JLabel chatWithName;
     private JPanel chatInputPanel;
     private JPanel sendButtonPanel;
-    private JPanel cList2;
-    private JTextField searchField;
     private JPanel searchButton;
+    private JPanel titlePanel;
+    private JPanel cList2;
+    private JTextArea chatInputField;
+    private JTextField searchField;
     private JButton addContactsButton;
+    private JLabel iconLabel;
+    private JLabel selfNameLabel;
+    private JLabel chatWithName;
+    private JLabel editContactsButton;
     private JLabel errLabel;
+    private JList chatArea;
+    private JList contactsList; // контакт лист
     BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon, addButtonIcon;
     private ChatFormPresenter presenter;
     private static ChatForm instance;
@@ -60,6 +59,7 @@ public class ChatForm implements IChatForm {
 
     public static ChatForm getInstance(){
         if(instance == null) instance = new ChatForm();
+        instance.setPresenter(ChatFormPresenter.getPresenter(instance));
         return instance;
     }
 

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import diplomWork.Configs;
 import diplomWork.model.TLHandler;
-import diplomWork.tests.FakeChat;
 import diplomWork.view.components.ChatPanel;
 import diplomWork.view.components.ContactPanel;
 import diplomWork.view.forms.AddContactsForm;
@@ -21,9 +20,6 @@ import org.javagram.response.object.*;
 import javax.imageio.ImageIO;
 
 public class ChatFormPresenter implements IPresenter{       //+ +/-
-//    Map contactList;
-//    User user;
-//    Map messages;
     String userPhoneTemp;   //временная пременная
     private MainFrame frame;
     private ChatForm view;
@@ -33,6 +29,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         if(presenter == null){
             presenter = new ChatFormPresenter(iView);
         }
+        presenter.frame.setContentPane(presenter.view.getRootPanel());
         return presenter;
     }
 
@@ -42,7 +39,6 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         view.setSelfName(TLHandler.getInstance().getUserNameFull());
         view.setSelfUserPhoto(TLHandler.getInstance().getUserPhoto());
         view.showInfo(String.valueOf(TLHandler.getInstance().getUserId()));
-//        view.setChatList();
         frame.setContentPane(view.getRootPanel());
         getContactList();
     }
@@ -72,7 +68,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         //return FakeContacts.getContactPanels();     //Todo
     }
 
-    public BufferedImage getUserPhoto(UserContact user) {
+    public BufferedImage getUserPhoto(UserContact user) {       //Todo убрать это отсюда
         BufferedImage img = Configs.IMG_DEFAULT_USER_PHOTO_41_41;
         try {
             BufferedImage imgApi = ImageIO.read(new ByteArrayInputStream(user.getPhoto(true)));
