@@ -7,6 +7,8 @@ import diplomWork.viewInterface.IAddContact;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class AddContactsForm implements IAddContact {
@@ -24,9 +26,16 @@ public class AddContactsForm implements IAddContact {
     private JLabel findUserRes;
     private JLabel addContactsText;
     private AddContactPresenter presenter;
+    private static AddContactsForm instance;
 
+    public static AddContactsForm getInstance(){
+        if(instance == null){
+            instance = new AddContactsForm();
+        }
+        return instance;
+    }
 
-    public AddContactsForm() {      //отработано
+    private AddContactsForm() {      //отработано
 
         phoneIcon = Configs.ICON_PHONE;
         editIcon = Configs.ICON_EDIT;
@@ -40,6 +49,13 @@ public class AddContactsForm implements IAddContact {
         addContactsText.setText(Configs.addContactsText);
         addContactsText.setFont(Configs.getFont(40));
 
+        addButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                presenter.goToMainForm();
+            }
+        });
     }
 
     @Override
@@ -76,7 +92,4 @@ public class AddContactsForm implements IAddContact {
         // TODO: place custom component creation code here
     }
 
-    public Component getAddButton() {
-        return addButton;
-    }
 }

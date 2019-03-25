@@ -1,47 +1,39 @@
 package diplomWork.presenter;
 
 import diplomWork.view.forms.AddContactsForm;
+import diplomWork.view.forms.ChatForm;
 import diplomWork.view.forms.MainFrame;
+import diplomWork.viewInterface.IView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class AddContactPresenter implements IPresenter{
-    String name;
-    String phone;
-    String nick;
     MainFrame frame;
+    AddContactsForm view;
+    public static AddContactPresenter presenter;
 
-    public AddContactPresenter(MainFrame frame){
-        this.frame = frame;
+    public static AddContactPresenter getPresenter(IView iView){
+        if(presenter == null) presenter = new AddContactPresenter(iView);
+        return presenter;
     }
 
-    public void runView(){
-        AddContactsForm acf = new AddContactsForm();
-        acf.setPresenter(this);
-        frame.setContentPane(acf.getRootPanel());
-        acf.getAddButton().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                goToMainForm();
-            }
-        });
+    private AddContactPresenter(IView iView){
+        this.view = (AddContactsForm) iView;
+        this.frame = MainFrame.getInstance();
+        frame.setContentPane(view.getRootPanel());
+
     }
 
     void addContact(){
-
+        //Todo
     }
     void showError(){
-
-    }
-    boolean validUser(){
-        return true;
+        //Todo
     }
 
-    private void goToMainForm(){
-        ChatFormPresenter cfp = ChatFormPresenter.getPresenter(frame);
-        cfp.runView("Что-то там");
+    public void goToMainForm(){
+        frame.setContentPane(ChatForm.getInstance().getRootPanel());
     }
 
 

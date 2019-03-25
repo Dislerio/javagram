@@ -208,6 +208,14 @@
           </grid>
         </children>
       </grid>
+      <component id="b8cdd" class="javax.swing.JLabel" binding="errLabel">
+        <constraints border-constraint="South"/>
+        <properties>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value=""/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

@@ -2,17 +2,25 @@ package diplomWork;
 
 import diplomWork.presenter.PhoneNumberPresenter;
 import diplomWork.view.forms.MainFrame;
+import diplomWork.view.forms.PhoneNumber;
 
 import javax.swing.*;
 
 public class Loader {
-    // public static JFrame frame;
+    public static MainFrame frame;
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
-            MainFrame frame = new MainFrame();
-            PhoneNumberPresenter phoneNumberPresenter = new PhoneNumberPresenter(frame);
-            phoneNumberPresenter.runView();
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    frame = MainFrame.getInstance();
+                    PhoneNumber view = new PhoneNumber();
+                    view.setPresenter(new PhoneNumberPresenter(view));
+
+//                    PhoneNumberPresenter phoneNumberPresenter = new PhoneNumberPresenter(frame);
+//                    phoneNumberPresenter.runView();
+                }
+            });
         });
 
 

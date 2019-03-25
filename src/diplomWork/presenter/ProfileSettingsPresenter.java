@@ -1,17 +1,28 @@
 package diplomWork.presenter;
 
+import diplomWork.view.forms.ChatForm;
 import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.ProfileSettings;
+import diplomWork.viewInterface.IView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ProfileSettingsPresenter implements IPresenter{
     MainFrame frame;
+    ProfileSettings view;
+    public static ProfileSettingsPresenter presenter;
 
+    public static ProfileSettingsPresenter getPresenter(IView iView){
+        if(presenter == null){
+            presenter = new ProfileSettingsPresenter(iView);
+        }
+        return presenter;
+    }
 
-    public ProfileSettingsPresenter(MainFrame frame){
-        this.frame = frame;
+    private ProfileSettingsPresenter(IView iView){
+        this.frame = MainFrame.getInstance();
+        this.view = (ProfileSettings)iView;
     }
 
     public void runView(String user){
@@ -28,7 +39,7 @@ public class ProfileSettingsPresenter implements IPresenter{
     }
 
     private void goToMainForm(){
-            ChatFormPresenter cp = ChatFormPresenter.getPresenter(frame);
-            cp.runView("Что-то там");
+        frame.setContentPane(ChatForm.getInstance().getRootPanel());
+
     }
 }

@@ -20,6 +20,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <maximumSize width="340" height="65"/>
+          <minimumSize width="340" height="65"/>
+          <preferredSize width="340" height="65"/>
           <text value="ПРОДОЛЖИТЬ"/>
         </properties>
       </component>
@@ -71,7 +74,7 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="8d895" class="javax.swing.JTextField" binding="numberField">
+          <component id="11d45" class="javax.swing.JFormattedTextField" binding="numberField">
             <constraints border-constraint="Center"/>
             <properties>
               <caretColor color="-1"/>
@@ -92,6 +95,17 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="512b2" class="javax.swing.JLabel" binding="errLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
           <text value=""/>
         </properties>
       </component>

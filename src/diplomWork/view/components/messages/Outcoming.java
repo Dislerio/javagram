@@ -11,31 +11,28 @@ import java.io.IOException;
 public class Outcoming extends JPanel {
     private JPanel rootPanel;
     private JLabel right;
-    private JLabel top;
-    private JLabel bottom;
     private JLabel message;
+    private JPanel pnlMessage;
     private static Color bg2 = new Color(75, 65, 172);
-    private static Color fg = new Color(255,255,255);
+    private static Color fg = new Color(255, 255, 255);
     ImageIcon messageOutTop, messageOutRight, messageOutBottom;
-    private JLabel dateOfMessage = new JLabel();
+    private JLabel dateOfMessage;
+    int radius = 10;
+    private int maxLineLength;
+    Font f = Configs.font18;
 
-    public Outcoming(String text, String date){
-        try {
-            messageOutBottom = new ImageIcon(ImageIO.read(new File("img/message-out-bottom.png")));
-            messageOutRight = new ImageIcon(ImageIO.read(new File("img/message-out-right.png")));
-            messageOutTop = new ImageIcon(ImageIO.read(new File("img/message-out-top.png")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        message.setFont(Configs.font18);
+    public Outcoming(String text, String dateText) {
+
+
+        message.setFont(f);
         message.setText(text);
-        top.setIcon(messageOutTop);
-        bottom.setIcon(messageOutBottom);
-        right.setIcon(messageOutRight);
-        dateOfMessage.setText(date);
-        dateOfMessage.setOpaque(false);
+        message.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));       // отступы!!!
+
+
+        dateOfMessage.setText(dateText);
         dateOfMessage.setHorizontalAlignment(SwingConstants.LEFT);
         rootPanel.add(dateOfMessage, BorderLayout.SOUTH);
+
     }
 
     public JPanel getRootPanel() {
@@ -44,14 +41,20 @@ public class Outcoming extends JPanel {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        message = new JLabel(){
+        dateOfMessage = new JLabel();
+        message = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.setColor(bg2);
-                g.fillRect(0,0, this.getWidth(), this.getHeight());
+                g.fillRoundRect(0, 0, this.getWidth() - radius, this.getHeight(), radius, radius);
+                int[] y = {this.getHeight() / 2, this.getHeight() / 2 - radius / 2, this.getHeight() / 2 + radius / 2};
+                int[] x = {this.getWidth(), this.getWidth() - radius, this.getWidth() - radius};
+                g.fillPolygon(x, y, 3);
                 super.paintComponent(g);
             }
         };
         message.setForeground(fg);
     }
+
 }
+

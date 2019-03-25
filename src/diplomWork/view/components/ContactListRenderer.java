@@ -1,7 +1,5 @@
 package diplomWork.view.components;
 
-import diplomWork.tests.ContactPanelTest;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +10,7 @@ public class ContactListRenderer extends DefaultListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        ContactPanelTest label = (ContactPanelTest) value;
+        ContactPanel label = (ContactPanel) value;
 
         if(isSelected){
             label.getRootPanel().setBorder(BorderFactory.createMatteBorder(0,0,0,3,selected));

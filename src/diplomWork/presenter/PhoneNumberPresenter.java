@@ -1,63 +1,63 @@
 package diplomWork.presenter;
 
+import diplomWork.Configs;
+import diplomWork.model.TLHandler;
+import diplomWork.tests.PhoneFormatError;
 import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.PhoneNumber;
+import diplomWork.view.forms.VerificationCode;
+import diplomWork.viewInterface.IView;
 
-public class PhoneNumberPresenter implements IPresenter{
+
+public class PhoneNumberPresenter implements IPresenter{        //++
     String phoneNumber;
-    boolean phoneRegistered;
-    boolean phoneAuthenticated;
     MainFrame frame;
+    PhoneNumber view;
 
-    public PhoneNumberPresenter(MainFrame frame){
-        this.frame = frame;
-        runView();
+    public PhoneNumberPresenter(IView iView){
+        frame = MainFrame.getInstance();
+        this.view = (PhoneNumber) iView;
+        frame.setContentPane(view.getRootPanel());
     }
 
-    public void runView(){
-        PhoneNumber phoneNumber = new PhoneNumber();
-        phoneNumber.setPresenter(this);
-        frame.setContentPane(phoneNumber.getRootPanel());
-        frame.setDefaultCloseOperation(3);
-        frame.setSize(900, 630);
-        frame.setLocationRelativeTo(null);
 
-        phoneNumber.getContinueButton().addActionListener(e -> {
-            //if(presenter.isPhoneRegistered(text.getText())) {
-            isPhoneRegistered(phoneNumber.getText());
-            callNextPresenter();
-            //}
-        });
-        frame.setVisible(true);
-    }
-
-    boolean checkAuthenticated(){
-        return phoneAuthenticated;
-    }
-
-    public boolean isPhoneRegistered(String phoneNumber){
-        this.phoneNumber = phoneNumber;
-        if(isPhoneValid()){
-            if(checkAuthenticated()){
-               phoneRegistered = true;
+    public void checkPhone(String phone){
+        view.clearError();
+        phoneNumber = phone.trim().replaceAll("[^0-9]", "");
+        if(phoneNumber.isEmpty()){
+            view.showError(Configs.errNoNumber + phone);
+            return;
+        }
+        try{
+            if(phoneNumber.length() != Configs.SYS_PHONE_NUMBER_LENGTH){        //999 662 4444
+                view.showError(Configs.errPhoneFormat);
+                throw new PhoneFormatError(Configs.errPhoneFormat);
             }
-        } else phoneRegistered = false;
-        return phoneRegistered;
+        } catch (PhoneFormatError e){
+            e.printStackTrace();
+            return;
+        }
+
+        view.showInfo(Configs.infoConnectingToServer + " " + Configs.TL_SERVER.substring(0, 14));
+        view.showLoadingProcess();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //check phone on telegram server
+                TLHandler.getInstance().checkPhoneRegistered(phoneNumber);
+                if (TLHandler.getInstance().isPhoneRegistered()) {
+                    VerificationCode view = new VerificationCode();
+                    view.setPresenter(new VerificationCodePresenter(view));
+                }
+                view.hideLoadingProcess();
+            }
+        });
+        thread.start();
     }
 
-    boolean isPhoneValid(){
+    private boolean isPhoneValid(){
         return phoneNumber.matches("^\\+*[78][9]\\d{9}");
     }
-
-    public void showError(){
-
-    }
-
-    public void callNextPresenter(){
-        VerificationCodePresenter vcp = new VerificationCodePresenter(frame);
-        vcp.runView(phoneNumber);
-
-    }
-
 
 }

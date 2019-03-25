@@ -6,19 +6,24 @@ import diplomWork.presenter.PhoneNumberPresenter;
 import diplomWork.viewInterface.IPhoneNumber;
 
 import javax.swing.*;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.text.ParseException;
 
-public class PhoneNumber implements IPhoneNumber {
+public class PhoneNumber implements IPhoneNumber {  //++
     private JPanel rootPanel;
     private JButton continueButton;
     private JPanel logoPanel;
     private JLabel text;
-    private JTextField numberField;
+    private JFormattedTextField numberField;
     private JLabel phoneLogo;
     private JPanel numPanel;
     private JLabel label1;
+    private JLabel errLabel;
     private JLabel label2;
+    ImageIcon imageIcon;
     BufferedImage logo;
     BufferedImage background;
     BufferedImage phoneLogoImage;
@@ -28,18 +33,24 @@ public class PhoneNumber implements IPhoneNumber {
         logo = Configs.LOGO;
         background = Configs.BG_IMAGE;
         phoneLogoImage = Configs.ICON_PHONE;
-
-        text.setFont(Configs.font18);
+        text.setFont(Configs.getFont(18));
         text.setText(Configs.phoneNumberTooltipText);
         text.setBorder(BorderFactory.createEmptyBorder(50,0,10,0));
         continueButton.setBackground(new Color(0,178,226));
         continueButton.setForeground(Color.white);
-        continueButton.setFont(Configs.font25);
+        continueButton.setFont(Configs.getFont(25));
+        continueButton.setText(Configs.continueButtonText);
 
         phoneLogo.setIcon(new ImageIcon(phoneLogoImage));
         numberField.setBorder(BorderFactory.createEmptyBorder());
-        numberField.setFont(Configs.font32);
+        numberField.setFont(Configs.getFont(32));
         label1.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+
+        continueButton.addActionListener(e -> {
+            presenter.checkPhone(numberField.getText());
+        });
+        setNumberFieldMask(numberField);
+        numberField.setText("9996624444");
 
     }
 
@@ -61,35 +72,60 @@ public class PhoneNumber implements IPhoneNumber {
         numPanel = new JPanel();
         numPanel.setBorder(BorderFactory.createMatteBorder(0,0,3, 0 ,(new Color (255,255,255))));
 
-
     }
 
-    public JButton getContinueButton() {
-        return continueButton;
-    }
-
-    public String getText() {
-        return numberField.getText();
+    private void setNumberFieldMask(JFormattedTextField numberField) {
+        MaskFormatter maskFormatter;
+        try {
+            maskFormatter = new MaskFormatter(Configs.INTERFACE_PHONE_MASK);
+            maskFormatter.setPlaceholder(null);
+            maskFormatter.setPlaceholderCharacter(Configs.INTERFACE_PHONE_MASK_PLACEHOLDER);
+            numberField.setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void showError(String strError) {
-        //TO DO
+        clearError();
+        errLabel.setForeground(Color.RED);
+        errLabel.setText(strError);
+    }
+
+    @Override
+    public void showInfo(String strError) {
+        clearError();
+        errLabel.setText(strError);
     }
 
     @Override
     public void clearError() {
-        //TO DO
+        errLabel.setText("");
+        errLabel.setForeground(Color.WHITE);
     }
 
     @Override
     public void showLoadingProcess() {
-        //TO DO
+        numberField.setEnabled(false);
+        continueButton.setEnabled(false);
+        continueButton.setText("");
+        imageIcon = Configs.IMG_LOADING_GIF;
+        imageIcon.setImageObserver(continueButton);
+        continueButton.setDisabledIcon(imageIcon);
     }
 
     @Override
     public void hideLoadingProcess() {
-        //TO DO
+        continueButton.setIcon(null);
+        continueButton.setText(Configs.continueButtonText);
+        continueButton.setEnabled(true);
+        numberField.setEnabled(true);
+    }
+
+    @Override
+    public void showPhoneFormatError(String strError) {
+        //TODO
     }
 
     @Override
@@ -97,9 +133,8 @@ public class PhoneNumber implements IPhoneNumber {
         return rootPanel;
     }
 
-    @Override
-    public void showPhoneFormatError(String strError) {
-        //TO DO
+    public void fillPhoneNumberTextField(String phone) {
+        numberField.setText(phone);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package diplomWork.tests;
 
+import diplomWork.view.components.ChatPanel;
+
 public class FakeChat {
     public static String[] getChat() {
         return chat;
@@ -10,11 +12,12 @@ public class FakeChat {
     static ChatPanel[] chatPanels = new ChatPanel[chat.length];
     static {
         for(int i = 0; i < chat.length; i++){
-            chatPanels[i] = (new ChatPanel(chat[i], (i % 2 == 0 ? true : false)));
+            //chatPanels[i] = (new ChatPanel(chat[i], (i % 2 == 0 ? true : false)));
+
         }
     }
 
-    public static ChatPanel[] getChatPanels(){
+    public static synchronized ChatPanel[] xgetChatPanels(){
         return chatPanels;
     }
 }

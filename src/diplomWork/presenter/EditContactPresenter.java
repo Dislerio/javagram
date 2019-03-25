@@ -1,5 +1,6 @@
 package diplomWork.presenter;
 
+import diplomWork.view.forms.ChatForm;
 import diplomWork.view.forms.EditContacts;
 import diplomWork.view.forms.MainFrame;
 
@@ -43,8 +44,7 @@ public class EditContactPresenter implements IPresenter{
     }
 
     void goToMainForm(){
-        ChatFormPresenter cp = ChatFormPresenter.getPresenter(frame);
-        cp.runView("Что-то там");
+        frame.setContentPane(ChatForm.getInstance().getRootPanel());
     }
 
 

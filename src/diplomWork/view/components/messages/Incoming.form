@@ -17,18 +17,6 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="408fa" class="javax.swing.JLabel" binding="top">
-            <constraints border-constraint="North"/>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
-          <component id="1c32f" class="javax.swing.JLabel" binding="bottom">
-            <constraints border-constraint="South"/>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
           <component id="b0f40" class="javax.swing.JLabel" binding="message" custom-create="true">
             <constraints border-constraint="Center"/>
             <properties>

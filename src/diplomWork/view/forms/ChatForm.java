@@ -5,12 +5,21 @@ import diplomWork.presenter.ChatFormPresenter;
 import diplomWork.presenter.IPresenter;
 import diplomWork.tests.*;
 import diplomWork.view.components.ChatListRenderer;
+import diplomWork.view.components.ChatPanel;
 import diplomWork.view.components.ContactListRenderer;
+import diplomWork.view.components.ContactPanel;
 import diplomWork.viewInterface.IChatForm;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /*
 import tests.FakeChat;
@@ -22,8 +31,10 @@ public class ChatForm implements IChatForm {
     private JLabel iconLabel;
     private JLabel selfNameLabel;
     private JPanel contactListPanel;
-    private JList contactsList;
-    private JList list; // контакт лист
+    //private JList contactsList;
+    private JList contactsList; // контакт лист
+    private DefaultListModel<ContactPanel> contactListModel;
+    private DefaultListModel<ChatPanel> chatListModel;
     private JPanel chatPanel;
     private JTextArea chatInputField;
     private JList chatArea;
@@ -41,47 +52,68 @@ public class ChatForm implements IChatForm {
     private JTextField searchField;
     private JPanel searchButton;
     private JButton addContactsButton;
+    private JLabel errLabel;
     BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon, addButtonIcon;
     private ChatFormPresenter presenter;
+    private static ChatForm instance;
+    private ArrayList<ContactPanel> contactPanels;
 
+    public static ChatForm getInstance(){
+        if(instance == null) instance = new ChatForm();
+        return instance;
+    }
 
-    public ChatForm() {     //отработано
+    private ChatForm() {     //отработано
         selfNameLabel.setText("Василий");
         cList2.setLayout(new BoxLayout(cList2, BoxLayout.Y_AXIS));
+        JScrollPane contactsScrollPane = new JScrollPane(contactsList);
+        cList2.add(contactsScrollPane);
         searchField.setBorder(BorderFactory.createEmptyBorder());
-
-        //JList list = new JList(FakeContacts.getContactsSample());
-        JList list = new JList();
-        list.setListData(FakeContacts.getContactPanels());
-        list.setCellRenderer(new ContactListRenderer());
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setBackground(new Color(230, 230, 230));
-        list.setSelectionBackground(Color.white);
-        list.setAutoscrolls(false);
-        JScrollPane scrollPane = new JScrollPane(list);
-        cList2.add(scrollPane);
-
-        chatArea.setCellRenderer(new ChatListRenderer());       // создание чата
-//        chatArea.setListData(FakeChat.getChatLabels());
-        chatArea.setListData(FakeChat.getChatPanels());
+        errLabel.setBackground(Color.BLUE);
 
         JScrollPane chatScrollPane = new JScrollPane(chatArea);
         chatScrollPane.setBorder(BorderFactory.createEmptyBorder());
         chatPanel.add(chatScrollPane);
 
-    }
-
-    public JPanel getRootPanel() {
-        return rootPanel;
-    }
-
-    public JLabel getSelfNameLabel() {
-        return selfNameLabel;
+        addContactsButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                presenter.callAddPresenter();
+            }
+        });
+        editContactsButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                presenter.callEditPresenter();
+            }
+        });
+        settingsButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                presenter.callSettingsPresenter();
+            }
+        });
+        contactsList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                ContactPanel cp = (ContactPanel) contactsList.getSelectedValue();
+                presenter.getChat(cp.getUserId());
+            }
+        });
     }
 
     private void createUIComponents() {   // создание интерфейса
         iconLabel = new JLabel();
         chatArea = new JList();
+        contactsList = new JList();
+        contactsList.setCellRenderer(new ContactListRenderer());
+        contactsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        contactsList.setBackground(new Color(230, 230, 230));
+        contactsList.setSelectionBackground(Color.white);
+        contactsList.setAutoscrolls(false);
 
         logo = Configs.LOGO_MICRO;
         settingsIcon = Configs.ICON_SETTINGS;
@@ -157,18 +189,68 @@ public class ChatForm implements IChatForm {
     }
 
     @Override
+    public void setContactList(ArrayList<ContactPanel> panels) {
+        //Todo
+        this.contactPanels = panels;
+        contactListModel = new DefaultListModel<>();
+        contactListModel.ensureCapacity(1);;
+        for(ContactPanel panel : panels){
+            contactListModel.addElement(panel);
+        }
+        contactsList.setModel(contactListModel);
+        //contactsList.setListData(FakeContacts.getContactPanels());
+    }
+
+    @Override
+    public void setChatList(ArrayList<ChatPanel> panels) {
+        //Todo
+        Collections.reverse(panels);
+        chatArea.setCellRenderer(new ChatListRenderer());       // создание чата
+        chatListModel = new DefaultListModel<>();
+        chatListModel.ensureCapacity(1);;
+        for(ChatPanel panel : panels){
+            chatListModel.addElement(panel);
+        }
+        chatArea.setModel(chatListModel);
+        //chatArea.setListData(FakeChat.getChatPanels());
+    }
+
+    public void setSelfUserPhoto(Image photo){
+        //Todo
+    }
+    // стандартные методы
+
+    public void setSelfName(String fullName) {
+        selfNameLabel.setText(fullName);
+    }
+
+    @Override
+    public JPanel getRootPanel() {
+        return rootPanel;
+    }
+
+    @Override
     public void setPresenter(IPresenter presenter) {
         this.presenter = (ChatFormPresenter) presenter;
     }
 
     @Override
     public void showError(String strError) {
+        clearError();
+        errLabel.setForeground(Color.RED);
+        errLabel.setText(strError);
+    }
 
+    @Override
+    public void showInfo(String strError){
+        clearError();
+        errLabel.setText(strError);
     }
 
     @Override
     public void clearError() {
-
+        errLabel.setText("");
+        errLabel.setForeground(Color.BLACK);
     }
 
     @Override
@@ -181,17 +263,7 @@ public class ChatForm implements IChatForm {
 
     }
 
-    public Component getActionSettings() {
-        return settingsButton;
-    }
-
-    public Component getActionEdit() {
-        return editContactsButton;
-    }
-
-    public Component getActionAdd() {
-        return addContactsButton;
-    }
+            //Todo избавиться от того что ниже
 
     public String getChatWithName() {
         return chatWithName.getText();

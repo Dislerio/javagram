@@ -68,7 +68,7 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="47ca3" class="javax.swing.JPasswordField" binding="passwordField">
+              <component id="47ca3" class="javax.swing.JPasswordField" binding="codeField">
                 <constraints/>
                 <properties>
                   <font name="Open Sans" size="36" style="1"/>
@@ -99,11 +99,22 @@
               <background color="-16731162"/>
               <font name="Open Sans" size="22"/>
               <foreground color="-1"/>
-              <maximumSize width="320" height="55"/>
-              <minimumSize width="320" height="55"/>
+              <maximumSize width="300" height="55"/>
+              <minimumSize width="300" height="55"/>
               <opaque value="true"/>
-              <preferredSize width="320" height="55"/>
+              <preferredSize width="300" height="55"/>
               <text value="ПРОДОЛЖИТЬ"/>
+            </properties>
+          </component>
+          <component id="cac66" class="javax.swing.JLabel" binding="errLabel">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <maximumSize width="390" height="80"/>
+              <minimumSize width="390" height="80"/>
+              <preferredSize width="390" height="80"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

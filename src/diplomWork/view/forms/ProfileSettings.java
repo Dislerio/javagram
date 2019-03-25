@@ -4,6 +4,7 @@ import diplomWork.Configs;
 import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.ProfileSettingsPresenter;
 import diplomWork.viewInterface.IProfileSettings;
+import diplomWork.viewInterface.IView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ProfileSettings implements IProfileSettings {      //отработано
+public class ProfileSettings implements IProfileSettings {      //+
     private BufferedImage logo;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
@@ -23,6 +24,12 @@ public class ProfileSettings implements IProfileSettings {      //отработ
     private JLabel editAvatar;
     private JLabel deleteAvatar;
     private ProfileSettingsPresenter presenter;
+    private static ProfileSettings instance;
+
+    private static ProfileSettings getInstance(){
+        if(instance == null) instance = new ProfileSettings();
+        return  instance;
+    }
 
     public ProfileSettings(){
             logo = Configs.LOGO_MINI;

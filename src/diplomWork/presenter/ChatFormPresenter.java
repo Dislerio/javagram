@@ -1,75 +1,127 @@
 package diplomWork.presenter;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Map;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import diplomWork.Configs;
+import diplomWork.model.TLHandler;
+import diplomWork.tests.FakeChat;
+import diplomWork.view.components.ChatPanel;
+import diplomWork.view.components.ContactPanel;
+import diplomWork.view.forms.AddContactsForm;
 import diplomWork.view.forms.ChatForm;
 import diplomWork.view.forms.MainFrame;
+import diplomWork.view.forms.ProfileSettings;
+import diplomWork.viewInterface.IView;
 import org.javagram.response.object.*;
 
-public class ChatFormPresenter implements IPresenter{
-    Map contactList;
-    User user;
-    Map messages;
+import javax.imageio.ImageIO;
+
+public class ChatFormPresenter implements IPresenter{       //+ +/-
+//    Map contactList;
+//    User user;
+//    Map messages;
     String userPhoneTemp;   //временная пременная
-    MainFrame frame;
-    ChatForm mf;
+    private MainFrame frame;
+    private ChatForm view;
     private static ChatFormPresenter presenter;
 
-    public static ChatFormPresenter getPresenter(MainFrame frame){
+    public static ChatFormPresenter getPresenter(IView iView){
         if(presenter == null){
-            presenter = new ChatFormPresenter(frame);
+            presenter = new ChatFormPresenter(iView);
         }
         return presenter;
     }
 
-    private ChatFormPresenter(MainFrame frame){
-        this.frame = frame;
+    private ChatFormPresenter(IView iView){
+        this.frame = MainFrame.getInstance();
+        view = (ChatForm)iView;
+        view.setSelfName(TLHandler.getInstance().getUserNameFull());
+        view.setSelfUserPhoto(TLHandler.getInstance().getUserPhoto());
+        view.showInfo(String.valueOf(TLHandler.getInstance().getUserId()));
+//        view.setChatList();
+        frame.setContentPane(view.getRootPanel());
+        getContactList();
     }
 
-    public void runView(String userPhone){
-        this.userPhoneTemp = userPhone;
-        mf = new ChatForm();
-        mf.setPresenter(this);
-        frame.setContentPane(mf.getRootPanel());
-        mf.getSelfNameLabel().setText(userPhone);
+    public synchronized void getContactList(){
+        ArrayList<ContactPanel> panels = new ArrayList<>();
 
-        mf.getActionAdd().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                callAddPresenter();
-            }
+        Thread thread = new Thread(() ->{           //Todo сделать сначала подгрузку списка, после - обновление аватарок
+            try{
+                ArrayList<UserContact> userContacts = TLHandler.getInstance().getContacts();
+                for(UserContact uc : userContacts){
+                    Thread.sleep(150);
+                    view.showInfo("Получаю контакт № " + panels.size());
+                    ContactPanel panel = new ContactPanel(getUserPhoto(uc),
+                            uc.toString(), null, null, uc.getId());
+                    panels.add(panel);
+                    //i++;
+                }
+            } catch (IOException e){
+                view.showError("Ошибка получения списка контактов IOException");
+                e.printStackTrace();
+            } catch (InterruptedException e){e.printStackTrace();}
+            view.showInfo("Контактов получено: " + panels.size());
+            view.setContactList(panels);
         });
-        mf.getActionEdit().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                callEditPresenter();
+        thread.start();
+        //return FakeContacts.getContactPanels();     //Todo
+    }
+
+    public BufferedImage getUserPhoto(UserContact user) {
+        BufferedImage img = Configs.IMG_DEFAULT_USER_PHOTO_41_41;
+        try {
+            BufferedImage imgApi = ImageIO.read(new ByteArrayInputStream(user.getPhoto(true)));
+            if (imgApi != null) {
+                Image i = imgApi.getScaledInstance(41, 41, Image.SCALE_SMOOTH);
+                img = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D bGr = img.createGraphics();
+                bGr.drawImage(i, 0, 0, null);
+                bGr.dispose();
             }
-        });
-        mf.getActionSettings().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                callSettingsPresenter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.out.println("      -------     NullPointerException");
+        }
+        // Create a buffered image with transparency
+        return img;
+    }
+
+    public synchronized void getChat(int userId){
+        ArrayList<ChatPanel> panels = new ArrayList<>();
+        Thread thread = new Thread(() ->{           //Todo сделать сначала подгрузку списка, после - обновление аватарок
+            try{
+                ArrayList<Message> messages = TLHandler.getInstance().messagesGetHistoryByUserId(userId);
+                view.showInfo("Сообщений получено - " + messages.size());
+                for(Message m : messages){
+                    panels.add(new ChatPanel(m));
+                }
+            } catch (IOException e) {
+                view.showError("Ошибка получения списка контактов IOException");
+                e.printStackTrace();
             }
+            view.setChatList(panels);
         });
+        thread.start();
+        //FakeChat.getChatPanels();            //Todo
     }
 
     public void callAddPresenter(){
-        AddContactPresenter acp = new AddContactPresenter(frame);
-        acp.runView();
-
+        AddContactsForm acf= AddContactsForm.getInstance();
+        acf.setPresenter(AddContactPresenter.getPresenter(acf));
     }
     public void callEditPresenter(){
         EditContactPresenter ecp = new EditContactPresenter(frame);
-        ecp.runView(mf.getChatWithName());
+        ecp.runView(view.getChatWithName());
 
     }
     public void callSettingsPresenter(){
-        ProfileSettingsPresenter psp = new ProfileSettingsPresenter(frame);
-        psp.runView(mf.getSelfNameLabel().getText());
+        ProfileSettings psf = new ProfileSettings();
+        psf.setPresenter(ProfileSettingsPresenter.getPresenter(psf));
     }
 }
