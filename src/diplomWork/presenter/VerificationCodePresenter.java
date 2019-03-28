@@ -63,16 +63,14 @@ public class VerificationCodePresenter implements IPresenter{
                 view.hideLoadingProcess();
             }
             // и если все хорошо - окрываем чат
-            ChatForm.getInstance();
+            view.callChatForm();
         });
         thread.start();
 
     }
 
     public void goBackToPhoneInput() {
-        PhoneNumber view = PhoneNumber.getInstance();
-        view.fillPhoneNumberTextField(TLHandler.getInstance().getUserPhone());
-        view.clearError();
-        TLHandler.getInstance().clearApiBridge();
+//        view.goBackToPhoneInput(TLHandler.getInstance().getUserPhone());
+        view.goBackToPhoneInput();
     }
 }

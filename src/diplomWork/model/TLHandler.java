@@ -105,6 +105,7 @@ public class TLHandler {    //++
 
   public void checkCode(String confirmCode) throws IOException {
     //проверка кода
+    smsCodeChecked = confirmCode;
     authorization = bridge.authSignIn(confirmCode);
     //получаем имя, фамилию юзера и записываем
     userNameFull = authorization.getUser().toString();

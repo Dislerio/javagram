@@ -27,6 +27,7 @@ public class AddContactsForm implements IAddContact {
     private JLabel addContactsText;
     private JTextField firstName;
     private JTextField lastName;
+    private JLabel btnBack;
     private AddContactPresenter presenter;
     private static AddContactsForm instance;
 
@@ -44,6 +45,7 @@ public class AddContactsForm implements IAddContact {
         editIcon = Configs.ICON_EDIT;
         deleteIcon = Configs.ICON_TRASH;
 
+        btnBack.setFont(Configs.getFont(26));
         phoneLogo.setIcon(new ImageIcon(phoneIcon));
         numberField.setBorder(BorderFactory.createEmptyBorder());
         numPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.white));
@@ -59,6 +61,13 @@ public class AddContactsForm implements IAddContact {
                 presenter.addContact(numberField.getText(), firstName.getText(),
                         lastName.getText().trim());
                 //presenter.goToMainForm();
+            }
+        });
+        btnBack.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                presenter.goToMainForm();
             }
         });
     }

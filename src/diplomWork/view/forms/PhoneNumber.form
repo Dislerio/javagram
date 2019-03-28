@@ -14,16 +14,18 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="68222" class="javax.swing.JButton" binding="continueButton">
+      <component id="f03bc" class="javax.swing.JLabel" binding="continueButton" custom-create="true">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="340" height="65"/>
-          <minimumSize width="340" height="65"/>
-          <preferredSize width="340" height="65"/>
-          <text value="ПРОДОЛЖИТЬ"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <maximumSize width="337" height="65"/>
+          <minimumSize width="337" height="65"/>
+          <opaque value="false"/>
+          <preferredSize width="337" height="65"/>
         </properties>
       </component>
       <grid id="d5045" binding="logoPanel" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">

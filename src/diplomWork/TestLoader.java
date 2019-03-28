@@ -11,7 +11,7 @@ public class TestLoader {
 
         JFrame frame = new JFrame();
 
-        //MainFrame inputNumber = new MainFrame();
+        //RegForm inputNumber = RegForm.getInstance();
 
         //frame.setContentPane(inputNumber.getRootPanel());
         frame.setDefaultCloseOperation(3);

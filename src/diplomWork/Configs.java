@@ -14,9 +14,9 @@ public class Configs {
     public static final String TL_APP_HASH = "87ec4522ab7da2903206d4715eb4801a";
     //public static final int SYS_PHONE_NUMBER_LENGTH_TEST = 10;   //Todo для продакт сервера = 11,  для тестового - 10!
     public static final int SYS_PHONE_NUMBER_LENGTH = 10;   //Todo для продакт сервера = 11,  для тестового - 10!
-    public static ImageIcon IMG_LOADING_GIF;
+    public static Image IMG_LOADING_GIF;
     public static BufferedImage LOGO, LOGO_MINI, LOGO_MICRO, ICON_BACK, ICON_EDIT, ICON_TRASH, BG_IMAGE, ICON_PHONE,
-            ICON_LOCK, ICON_SETTINGS, NO_AVATAR, MASK_BLUE_MINI, MASK_GRAY, IMG_BUTTON_SEND, IMG_BUTTON_SEARCH, ICON_PLUS, IMG_DEFAULT_USER, IMG_DEFAULT_USER_PHOTO_41_41;
+            ICON_LOCK, ICON_SETTINGS, NO_AVATAR, MASK_BLUE_MINI, MASK_GRAY, IMG_BUTTON_BG, IMG_BUTTON_SEND, IMG_BUTTON_SEARCH, ICON_PLUS, IMG_DEFAULT_USER, IMG_DEFAULT_USER_PHOTO_41_41;
     public static BufferedImage tavatar;
     public static String phoneNumberTooltipText, verificationCodeTooltipText, addContactsText,
             addContactsToolTip, editContactText, deleteContactText, saveButtonText, continueButtonText, infoConnectingToServer;
@@ -69,8 +69,9 @@ public class Configs {
         MASK_BLUE_MINI = readImage("img/mask-blue-mini.png");
         MASK_GRAY = readImage("img/mask-gray.png");
         IMG_BUTTON_SEND = readImage("img/button-send.png");
+        IMG_BUTTON_BG = readImage("img/button-background.png");
         IMG_BUTTON_SEARCH = readImage("img/icon-search.png");
-        IMG_LOADING_GIF = new ImageIcon(Toolkit.getDefaultToolkit().createImage("img/loading_100.gif"));
+        IMG_LOADING_GIF = Toolkit.getDefaultToolkit().createImage("img/loading_100.gif");
         //test avatar
         tavatar = readImage("img/tavatar.jpg");
         IMG_DEFAULT_USER = readImage("img/icon-default-user.png");

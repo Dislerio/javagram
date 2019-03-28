@@ -9,12 +9,14 @@ import javax.swing.*;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.ParseException;
 
 public class PhoneNumber implements IPhoneNumber {  //++
     private JPanel rootPanel;
-    private JButton continueButton;
+    private JLabel continueButton;
     private JPanel logoPanel;
     private JLabel text;
     private JFormattedTextField numberField;
@@ -26,6 +28,7 @@ public class PhoneNumber implements IPhoneNumber {  //++
     ImageIcon imageIcon;
     BufferedImage logo;
     BufferedImage background;
+    BufferedImage buttonBG;
     BufferedImage phoneLogoImage;
     PhoneNumberPresenter presenter;
     static PhoneNumber instance;
@@ -35,6 +38,7 @@ public class PhoneNumber implements IPhoneNumber {  //++
             instance = new PhoneNumber();
         }
         instance.setPresenter(PhoneNumberPresenter.getInstance(instance));
+        instance.clearError();
         return instance;
     }
 
@@ -42,20 +46,25 @@ public class PhoneNumber implements IPhoneNumber {  //++
         logo = Configs.LOGO;
         background = Configs.BG_IMAGE;
         phoneLogoImage = Configs.ICON_PHONE;
+        buttonBG = Configs.IMG_BUTTON_BG;
+
+        text.setForeground(Color.WHITE);
         text.setFont(Configs.getFont(18));
         text.setText(Configs.phoneNumberTooltipText);
         text.setBorder(BorderFactory.createEmptyBorder(50,0,10,0));
-        continueButton.setBackground(new Color(0,178,226));
-        continueButton.setForeground(Color.white);
-        continueButton.setFont(Configs.getFont(25));
-        continueButton.setText(Configs.continueButtonText);
+
         phoneLogo.setIcon(new ImageIcon(phoneLogoImage));
         numberField.setBorder(BorderFactory.createEmptyBorder());
         numberField.setFont(Configs.getFont(32));
         label1.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        continueButton.addActionListener(e -> {
-            presenter.checkPhone(numberField.getText());
+        continueButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                presenter.checkPhone(numberField.getText());
+            }
         });
+
         setNumberFieldMask(numberField);
         numberField.setText("9996624444");
     }
@@ -75,6 +84,19 @@ public class PhoneNumber implements IPhoneNumber {  //++
                 g.drawImage(logo, 18,10, null);
             }
         };
+        continueButton = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(buttonBG, 0, 3, null);
+                super.paintComponent(g);
+
+            }
+        };
+
+        continueButton.setForeground(Color.white);
+        continueButton.setFont(Configs.getFont(25));
+        continueButton.setText(Configs.continueButtonText);
+
         numPanel = new JPanel();
         numPanel.setBorder(BorderFactory.createMatteBorder(0,0,3, 0 ,(new Color (255,255,255))));
 
@@ -116,7 +138,7 @@ public class PhoneNumber implements IPhoneNumber {  //++
         numberField.setEnabled(false);
         continueButton.setEnabled(false);
         continueButton.setText("");
-        imageIcon = Configs.IMG_LOADING_GIF;
+        imageIcon = new ImageIcon(Configs.IMG_LOADING_GIF);
         imageIcon.setImageObserver(continueButton);
         continueButton.setDisabledIcon(imageIcon);
     }
@@ -139,7 +161,8 @@ public class PhoneNumber implements IPhoneNumber {  //++
         return rootPanel;
     }
 
-    public void fillPhoneNumberTextField(String phone) {
+    @Deprecated
+    public void fillPhoneNumberTextField(String phone) {        //после введения синглтонов не требуется
         numberField.setText("+" + phone);
     }
 

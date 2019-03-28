@@ -1,5 +1,6 @@
 package diplomWork.presenter;
 
+import diplomWork.Log;
 import diplomWork.model.TLHandler;
 import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.RegForm;
@@ -8,9 +9,6 @@ import diplomWork.viewInterface.IView;
 import java.io.IOException;
 
 public class RegisterUserPresenter implements IPresenter{
-    String UserName;
-    String UserSurname;
-    String UserPhone;
     private MainFrame frame;
     private RegForm view;
     private static RegisterUserPresenter instance;
@@ -42,6 +40,8 @@ public class RegisterUserPresenter implements IPresenter{
     }
 
     public void signUp(String firstName, String lastName) {
+        Log.info(repository.getSmsCodeChecked());
+
         if(isValidFirstLastNames(firstName, lastName)){
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -62,6 +62,10 @@ public class RegisterUserPresenter implements IPresenter{
             });
             thread.start();
         }
+    }
+
+    public void goBackToPhoneInput() {
+        view.goBackToPhoneInput();
     }
 
     private boolean isValidFirstLastNames(String firstName, String lastName) {
