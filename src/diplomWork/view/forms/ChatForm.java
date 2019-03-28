@@ -1,6 +1,7 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
+import diplomWork.Log;
 import diplomWork.presenter.ChatFormPresenter;
 import diplomWork.presenter.IPresenter;
 import diplomWork.tests.*;

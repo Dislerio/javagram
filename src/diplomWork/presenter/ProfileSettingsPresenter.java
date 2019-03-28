@@ -22,16 +22,18 @@ public class ProfileSettingsPresenter implements IPresenter{
         if(presenter == null){
             presenter = new ProfileSettingsPresenter(iView);
         }
+        presenter.frame.setContentPane(presenter.view.getRootPanel());
         return presenter;
     }
 
     private ProfileSettingsPresenter(IView iView){
+        this.frame = MainFrame.getInstance();
         this.view = (ProfileSettings) iView;
     }
 
     public void getUserProfileData() {
         view.fillUserProfileData(repository.getUserFirstName(), repository.getUserLastName(),
-                repository.getUserPhone());
+                "+" + repository.getUserPhone());
         view.fillUserPhoto(repository.getUserPhoto());
     }
 

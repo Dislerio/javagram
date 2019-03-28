@@ -111,7 +111,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         AddContactsForm.getInstance();
     }
     public void callEditPresenter(){
-        EditContactPresenter ecp = new EditContactPresenter(frame);
+        EditContactPresenter ecp = new EditContactPresenter(frame);     //Todo не работает
         ecp.runView(view.getChatWithName());
 
     }

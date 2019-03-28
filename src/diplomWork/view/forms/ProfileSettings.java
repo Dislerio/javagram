@@ -35,6 +35,7 @@ public class ProfileSettings implements IProfileSettings {      //+
     public static ProfileSettings getInstance() {
         if (instance == null) instance = new ProfileSettings();
         instance.setPresenter(ProfileSettingsPresenter.getPresenter(instance));
+        instance.presenter.getUserProfileData();
         return instance;
     }
 
@@ -50,10 +51,12 @@ public class ProfileSettings implements IProfileSettings {      //+
         editAvatar.setIcon(new ImageIcon(editIcon));
         deleteAvatar.setIcon(new ImageIcon(deleteIcon));
 
-        presenter.getUserProfileData();
 
+
+        numLabel.setForeground(Color.RED);
+        numLabel.setFont(Configs.getFont(14));
         btnLogout.setForeground(Color.RED);
-        btnLogout.setFont(Configs.getFont(10));
+        btnLogout.setFont(Configs.getFont(12));
         btnLogout.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         btnLogout.setText("Выйти");
         btnLogout.addMouseListener(new MouseAdapter() {
