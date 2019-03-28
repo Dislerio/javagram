@@ -51,6 +51,7 @@ public class ChatForm implements IChatForm {
     private JLabel editContactsButton;
     private JLabel errLabel;
     private JList chatArea;
+    private JPanel sPanel;
     private JList contactsList; // контакт лист
     BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon, addButtonIcon;
     private ChatFormPresenter presenter;
@@ -60,6 +61,7 @@ public class ChatForm implements IChatForm {
     public static ChatForm getInstance(){
         if(instance == null) instance = new ChatForm();
         instance.setPresenter(ChatFormPresenter.getPresenter(instance));
+        instance.presenter.getContactList();
         return instance;
     }
 
@@ -89,13 +91,18 @@ public class ChatForm implements IChatForm {
                 presenter.callEditPresenter();
             }
         });
-        settingsButton.addMouseListener(new MouseAdapter() {
+        MouseAdapter settingsAdapter = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 presenter.callSettingsPresenter();
             }
-        });
+        };
+        sPanel.addMouseListener(settingsAdapter);
+        avatarPanelMini.addMouseListener(settingsAdapter);
+        selfNameLabel.addMouseListener(settingsAdapter);
+        settingsButton.addMouseListener(settingsAdapter);
+
         contactsList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {

@@ -32,9 +32,7 @@ public class AddContactsForm implements IAddContact {
     private static AddContactsForm instance;
 
     public static AddContactsForm getInstance(){
-        if(instance == null){
-            instance = new AddContactsForm();
-        }
+        if(instance == null) instance = new AddContactsForm();
         instance.setPresenter(AddContactPresenter.getPresenter(instance));
         return instance;
     }
@@ -60,9 +58,11 @@ public class AddContactsForm implements IAddContact {
                 super.mouseClicked(e);
                 presenter.addContact(numberField.getText(), firstName.getText(),
                         lastName.getText().trim());
-                //presenter.goToMainForm();
+                presenter.goToMainForm();
             }
         });
+        btnBack.setText("");
+        btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

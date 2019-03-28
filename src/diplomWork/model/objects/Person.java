@@ -1,4 +1,4 @@
-package diplomWork.presenter.objects;
+package diplomWork.model.objects;
 
 import diplomWork.Configs;
 import org.javagram.response.object.UserContact;
@@ -11,11 +11,12 @@ import java.io.IOException;
 
 public class Person {
     private UserContact userContact;
+    private String time, lastMessage;
 
     public Person(UserContact userContact) {
         this.userContact = userContact;
-
     }
+
     public boolean isOnline(){
         return userContact.isOnline();
     }
@@ -77,4 +78,29 @@ public class Person {
         }
         return img;
     }
+
+    public String getFullName() {
+        return  userContact.toString();
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
+    }
+
+    public UserContact getTLUserContact() {
+        return userContact;
+    }
+
 }

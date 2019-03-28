@@ -26,7 +26,7 @@
               <text value=""/>
             </properties>
           </component>
-          <grid id="9029d" layout-manager="FlowLayout" hgap="15" vgap="5" flow-align="1">
+          <grid id="9029d" binding="sPanel" layout-manager="FlowLayout" hgap="15" vgap="5" flow-align="1">
             <constraints border-constraint="East"/>
             <properties>
               <opaque value="false"/>

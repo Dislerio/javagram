@@ -48,7 +48,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
 
         Thread thread = new Thread(() ->{           //Todo сделать сначала подгрузку списка, после - обновление аватарок
             try{
-                ArrayList<UserContact> userContacts = TLHandler.getInstance().getContacts();
+                ArrayList<UserContact> userContacts = TLHandler.getInstance().getContactsTemp();        //Todo переделывать на кэш
                 for(UserContact uc : userContacts){
                     Thread.sleep(150);
                     view.showInfo("Получаю контакт № " + panels.size());
@@ -108,8 +108,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
     }
 
     public void callAddPresenter(){
-        AddContactsForm acf= AddContactsForm.getInstance();
-        acf.setPresenter(AddContactPresenter.getPresenter(acf));
+        AddContactsForm.getInstance();
     }
     public void callEditPresenter(){
         EditContactPresenter ecp = new EditContactPresenter(frame);
@@ -117,7 +116,6 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
 
     }
     public void callSettingsPresenter(){
-        ProfileSettings psf = new ProfileSettings();
-        psf.setPresenter(ProfileSettingsPresenter.getPresenter(psf));
+        ProfileSettings.getInstance();
     }
 }

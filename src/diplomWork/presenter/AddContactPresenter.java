@@ -40,7 +40,8 @@ public class AddContactPresenter implements IPresenter{
                 int numberAddedContacts = repository.addContact(this.phone, this.firstName, this.lastName);
                 if (numberAddedContacts == 1) {
                     view.showInfo("Контакт успешно добавлен");
-                    //repository.getContactListForceReload();           //Todo сделать нормально загрузку контактов и плавающие окошки
+
+                    repository.getContactsForceUpdate();           //Todo сделать нормально загрузку контактов и плавающие окошки
                     //view.closeModalView();
                 } else if (numberAddedContacts == -1) {
                     view.showError("Пользователь с таким именем уже существует!");
@@ -57,12 +58,9 @@ public class AddContactPresenter implements IPresenter{
         }
 
     }
-    void showError(){
-        //Todo
-    }
 
     public void goToMainForm(){
-        frame.setContentPane(ChatForm.getInstance().getRootPanel());
+        ChatForm.getInstance();
     }
 
     private boolean isContactFieldsValid() {
