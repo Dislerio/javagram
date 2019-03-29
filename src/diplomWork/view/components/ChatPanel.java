@@ -15,7 +15,7 @@ public class ChatPanel extends JPanel {
     private String messageText;
     private boolean income;
     private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy в HH:mm:ss");
     private static SimpleDateFormat dateWithoutTime = new SimpleDateFormat("dd.MM.yyyy");
 
     public ChatPanel (Message message){
@@ -23,7 +23,7 @@ public class ChatPanel extends JPanel {
     }
 
     public ChatPanel(String text,int dateInt, boolean income) {
-        this.messageText = setBreaksInText(text);
+        this.messageText = setBreaks(text);
         this.income = income;
 
         Date date = new Date((long)dateInt * 1000);
@@ -42,97 +42,14 @@ public class ChatPanel extends JPanel {
         }
     }
 
+    private String setBreaks(String text){
+        text = text.replaceAll("\n", "<br>");
+        return ("<html><p style=\"width:350px\">"+text+"</p></html>");
+    }
+
     public JPanel getRootPanel() {
         return rootPanel;
     }
 
-    private String setBreaksInText(String text) {    //расстановка переносов через html
-        int len = maxLength;       //длина отрезки
-        if (text.length() <= len)
-            return "<html>" + text + "</html>";        //если текст короче длины отрезки - обрамляем его в теги и отдаем обратно
-
-        String result = "";
-        int left = 0;       //сдвиг при поиске
-        int lastSpace = 0;      //последний пробел
-        boolean found = false;  //индикатор найденного пробела
-
-        for (int i = 0; i < text.length(); i += len) {
-            if (i == 0 && text.length() > len) {
-                result = "<html>";
-                continue;
-            }
-            for (int j = 1; j <= len; j++) {
-                left = i - j;
-                if (left % len == 0) {      //тот случай, когда слово длиннее ддлины - режем без пробела
-                    result = result + text.substring(lastSpace, lastSpace + len + 1) + "<br>";
-                    lastSpace += len;
-                    found = true;
-                    break;
-                }
-                if (text.charAt(i) == ' ') {      //тот случай когда мы сразу попали на пробел
-                    result = result + text.substring(lastSpace == 0 ? lastSpace : lastSpace + 1, i) + "<br>";
-                    lastSpace = i;
-                    found = true;
-                    break;
-                } else if (text.charAt(left) == ' ') {   // иначе ищем назад пробел
-                    result = result + text.substring(lastSpace == 0 ? lastSpace : lastSpace + 1, left) + "<br>";
-                    lastSpace = left;
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                result = result + text.substring(lastSpace, i) + "<br>";
-                lastSpace = i - 1;
-                found = false;
-            }
-        }
-        result = result + text.substring(lastSpace + 1) + "</html>";
-        return result;
-    }
-
-//    private String setBreaksInText(String text){    //расстановка переносов через html, версия до 24-03
-//        int len = maxLength;       //длина отрезки
-//        if(text.length() <= len) return "<html>" + text + "</html>";        //если текст короче длины отрезки - обрамляем его в теги и отдаем обратно
-//
-//        String result = "";
-//        int left = 0;       //сдвиг при поиске
-//        int lastSpace = 0;      //последний пробел
-//        boolean found = false;  //индикатор найденного пробела
-//
-//        for (int i = 0; i < text.length();i +=len){
-//            if(i == 0 && text.length() > len) {
-//                result = "<html>";
-//                continue;
-//            }
-//            for (int j = 1; j <= len; j++){
-//                left = i - j;
-//                if(left%len == 0){      //тот случай, когда слово длиннее ддлины - режем без пробела
-//                    result = result + text.substring(lastSpace, lastSpace + len + 1) + "<br>";
-//                    lastSpace += len;
-//                    found = true;
-//                    break;
-//                }
-//                if(text.charAt(i) == ' '){      //тот случай когда мы сразу попали на пробел
-//                    result = result + text.substring(lastSpace == 0 ? lastSpace : lastSpace + 1, i) + "<br>";
-//                    lastSpace = i;
-//                    found = true;
-//                    break;
-//                } else if (text.charAt(left) == ' '){   // иначе ищем назад пробел
-//                    result = result + text.substring(lastSpace == 0 ? lastSpace : lastSpace + 1, left) + "<br>";
-//                    lastSpace = left;
-//                    found = true;
-//                    break;
-//                }
-//            }
-//            if(!found){
-//                result = result + text.substring(lastSpace, i) + "<br>";
-//                lastSpace = i-1;
-//                found = false;
-//            }
-//        }
-//        result = result + text.substring(lastSpace + 1) + "</html>";
-//        return result;
-//    }
 
 }

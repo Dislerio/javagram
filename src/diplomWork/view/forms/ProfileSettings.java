@@ -121,10 +121,10 @@ public class ProfileSettings implements IProfileSettings {      //+
         this.presenter = (ProfileSettingsPresenter) presenter;
     }
 
-    public void fillUserProfileData(String userFirstName, String userLastName, String userPhone) {
-        nameTextField.setText(userFirstName);
-        surnameTextField.setText(userLastName);
-        numLabel.setText(userPhone);
+    public void fillUserProfileData(String... names) {
+        nameTextField.setText(names[0]);
+        surnameTextField.setText(names[1]);
+        numLabel.setText("+" + names[2]);
     }
 
     public void fillUserPhoto(Image photo) {
@@ -133,7 +133,7 @@ public class ProfileSettings implements IProfileSettings {      //+
         } else {
             avatar = resizeAndCropImage(photo, 160, 160);
         }
-        //avPanel.getGraphics().drawImage(avatar, 0, 0, 160, 160, avPanel);     //Todo не работает
+        avPanel.getGraphics().drawImage(avatar, 0, 0, 160, 160, avPanel);     //Todo не работает
 
     }
 

@@ -1,26 +1,29 @@
 package diplomWork.presenter;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import diplomWork.Configs;
+import diplomWork.Log;
 import diplomWork.model.TLHandler;
+import diplomWork.model.objects.Person;
 import diplomWork.view.components.ChatPanel;
 import diplomWork.view.components.ContactPanel;
-import diplomWork.view.forms.AddContactsForm;
-import diplomWork.view.forms.ChatForm;
-import diplomWork.view.forms.MainFrame;
-import diplomWork.view.forms.ProfileSettings;
+import diplomWork.view.forms.*;
 import diplomWork.viewInterface.IView;
 import org.javagram.response.object.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class ChatFormPresenter implements IPresenter{       //+ +/-
-    String userPhoneTemp;   //временная пременная
+    private volatile ArrayList<Person> contactList = new ArrayList<>();
+    private volatile DefaultListModel<Person> contactsListModel = new DefaultListModel<>();
+    TLHandler repository = TLHandler.getInstance();
     private MainFrame frame;
     private ChatForm view;
     private static ChatFormPresenter presenter;
@@ -40,52 +43,64 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         view.setSelfUserPhoto(TLHandler.getInstance().getUserPhoto());
         view.showInfo(String.valueOf(TLHandler.getInstance().getUserId()));
         frame.setContentPane(view.getRootPanel());
-        getContactList();
+        //getContactList();
+        frame.addWindowListener(new WindowAdapter() {
+        });
     }
 
     public synchronized void getContactList(){
-        ArrayList<ContactPanel> panels = new ArrayList<>();
 
-        Thread thread = new Thread(() ->{           //Todo сделать сначала подгрузку списка, после - обновление аватарок
-            try{
-                ArrayList<UserContact> userContacts = TLHandler.getInstance().getContactsTemp();        //Todo переделывать на кэш
-                for(UserContact uc : userContacts){
-                    Thread.sleep(150);
-                    view.showInfo("Получаю контакт № " + panels.size());
-                    ContactPanel panel = new ContactPanel(getUserPhoto(uc),
-                            uc.toString(), null, null, uc.getId());
-                    panels.add(panel);
-                    //i++;
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //get from Telegram Api
+                    contactList = repository.getContacts();
+                    Log.info("contactList.size() = " + contactList.size());
+                    //clear
+                    contactsListModel.clear();
+                    for (Person contact : contactList) {
+                        Log.info("add contact " + contact.getId() + ":" + contact.getFullName());
+                        contactsListModel.addElement(contact);
+                    }
+
+                    view.setContactList(contactsListModel);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    view.showError("Ошибка при получении списка контактов! IOException getContactList()");
                 }
-            } catch (IOException e){
-                view.showError("Ошибка получения списка контактов IOException");
-                e.printStackTrace();
-            } catch (InterruptedException e){e.printStackTrace();}
-            view.showInfo("Контактов получено: " + panels.size());
-            view.setContactList(panels);
+            }
+
         });
-        thread.start();
-        //return FakeContacts.getContactPanels();     //Todo
+        th.start();
     }
 
-    public BufferedImage getUserPhoto(UserContact user) {       //Todo убрать это отсюда
-        BufferedImage img = Configs.IMG_DEFAULT_USER_PHOTO_41_41;
+    public synchronized void refreshUserPhotos() {
+        //wait for Moon Phase
         try {
-            BufferedImage imgApi = ImageIO.read(new ByteArrayInputStream(user.getPhoto(true)));
-            if (imgApi != null) {
-                Image i = imgApi.getScaledInstance(41, 41, Image.SCALE_SMOOTH);
-                img = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-                Graphics2D bGr = img.createGraphics();
-                bGr.drawImage(i, 0, 0, null);
-                bGr.dispose();
-            }
-        } catch (IOException e) {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (NullPointerException e) {
-            System.out.println("      -------     NullPointerException");
         }
-        // Create a buffered image with transparency
-        return img;
+        // and go...
+        Thread threadGetPhotos = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < contactsListModel.getSize(); i++) {
+                    Person c = contactsListModel.get(i);
+                    Log.info("start set small photo to contact " + c.getFullName() + "(" + c.getId() + ")");
+                    BufferedImage photoSmall = repository.getContactPhotoSmall(c);
+                    if (photoSmall != null) {
+                        c.setPhotoSmall(photoSmall);
+                        Log.info("small photo have setted for " + c.getFullName());
+                    }
+                    view.repaintContactList();
+                }
+            }
+        }
+        );
+        threadGetPhotos.start();
     }
 
     public synchronized void getChat(int userId){
@@ -98,24 +113,26 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
                     panels.add(new ChatPanel(m));
                 }
             } catch (IOException e) {
-                view.showError("Ошибка получения списка контактов IOException");
+                view.showError("Ошибка получения списка контактов IOException getChat()");
                 e.printStackTrace();
             }
             view.setChatList(panels);
         });
         thread.start();
-        //FakeChat.getChatPanels();            //Todo
     }
 
     public void callAddPresenter(){
         AddContactsForm.getInstance();
     }
-    public void callEditPresenter(){
-        EditContactPresenter ecp = new EditContactPresenter(frame);     //Todo не работает
-        ecp.runView(view.getChatWithName());
 
+    public void callEditPresenter(Person person){
+        EditContacts.getInstance(person);
     }
     public void callSettingsPresenter(){
         ProfileSettings.getInstance();
+    }
+
+    public void sendMessage(String text, Person personTo) {
+        repository.sendMessage(text, personTo.getId());
     }
 }

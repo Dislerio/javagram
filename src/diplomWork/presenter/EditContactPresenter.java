@@ -1,41 +1,51 @@
 package diplomWork.presenter;
 
+import diplomWork.model.TLHandler;
+import diplomWork.model.objects.Person;
 import diplomWork.view.forms.ChatForm;
 import diplomWork.view.forms.EditContacts;
 import diplomWork.view.forms.MainFrame;
+import diplomWork.viewInterface.IView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class EditContactPresenter implements IPresenter{
-    String name;
-    String phone;
-    String nick;
+    TLHandler repository = TLHandler.getInstance();
     MainFrame frame;
+    private static EditContactPresenter presenter;
+    private EditContacts view;
 
-    public EditContactPresenter(MainFrame frame){
-        this.frame = frame;
+    public static EditContactPresenter getPresenter(IView iView) {
+        if (presenter == null) presenter = new EditContactPresenter(iView);
+        presenter.frame.setContentPane(presenter.view.getRootPanel());
+        return presenter;
     }
 
-    public void runView(String user){
-        EditContacts ec = new EditContacts();
-        ec.setPresenter(this);
-        frame.setContentPane(ec.getRootPanel());
-        this.name = user;        //TO DO
-        this.phone = "+79042149947";
-        ec.setEditUser(name, phone);
-        ec.getActionSave().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                goToMainForm();
-            }
-        });
+    public EditContactPresenter(IView iView){
+        this.frame = MainFrame.getInstance();
+        this.view = (EditContacts)iView;
     }
 
-    void editContact(){
-
+    public void editContact(String phone, String name, String surname){
+        try {
+            repository.addContact(phone, name, surname);
+        } catch (IOException e) {
+            e.printStackTrace();
+            view.showError(e.getMessage());
+        }
     }
+
+    public void deleteContact(int userId){
+        try {
+            repository.deleteContact(userId);
+        } catch (IOException e) {
+            e.printStackTrace();
+            view.showError(e.getMessage());
+        }
+    }
+
     void showError(){
 
     }
@@ -44,7 +54,6 @@ public class EditContactPresenter implements IPresenter{
     }
 
     void goToMainForm(){
-        frame.setContentPane(ChatForm.getInstance().getRootPanel());
     }
 
 

@@ -116,6 +116,8 @@ public class TLHandler {    //++
         smsCodeChecked = confirmCode;
         authorization = bridge.authSignIn(confirmCode);
         //получаем имя, фамилию юзера и записываем
+        userFirstName = authorization.getUser().getFirstName();
+        userLastName = authorization.getUser().getLastName();
         userFullName = authorization.getUser().toString();
     }
 
@@ -369,10 +371,28 @@ public class TLHandler {    //++
         return listIC.size();
     }
 
+    public boolean deleteContact(int userId) throws IOException {
+
+        return  bridge.contactsDeleteContact(userId);
+    }
+
     public void updateUserPhoto(BufferedImage photo) throws IOException {
         File outputFile = new File(Configs.PATH_USER_PHOTO + "_user-small.jpg");
         ImageIO.write(photo, "jpg", outputFile);
     }
 
 
+    public void sendMessage(String text, int id) {
+        Long l = (long)(Math.random()*1000000);
+        try {
+            bridge.messagesSendMessage(id, text, l);
+            Log.info("sendMessage" + id + ", " + text + ", " + l);
+        } catch (IOException e) {
+            Log.warning("Error in sendMessage" + id + ", " + text + ", " + l);
+            e.printStackTrace();
+        }
+    }
+    public void getDialogs(){
+
+    }
 }

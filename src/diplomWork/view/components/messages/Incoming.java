@@ -22,7 +22,7 @@ public class Incoming extends JPanel {
 
         message.setText(text);
         message.setFont(Configs.font18);
-        message.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
+        message.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 5));
 
 
         dateOfMessage.setText(dateText);

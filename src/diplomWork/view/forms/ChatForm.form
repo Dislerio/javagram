@@ -160,7 +160,7 @@
                       <font name="Open Sans" size="18" style="1"/>
                       <foreground color="-5921371"/>
                       <opaque value="false"/>
-                      <text value="Тимофей Петров"/>
+                      <text value="Чат не выбран"/>
                     </properties>
                   </component>
                 </children>

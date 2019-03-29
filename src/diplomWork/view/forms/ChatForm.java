@@ -2,6 +2,7 @@ package diplomWork.view.forms;
 
 import diplomWork.Configs;
 import diplomWork.Log;
+import diplomWork.model.objects.Person;
 import diplomWork.presenter.ChatFormPresenter;
 import diplomWork.presenter.IPresenter;
 import diplomWork.tests.*;
@@ -15,6 +16,8 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -30,6 +33,7 @@ import tests.FakeContacts;
 public class ChatForm implements IChatForm {
     private JPanel contactListPanel;
     private DefaultListModel<ContactPanel> contactListModel;
+    private DefaultListModel<Person> clModel;
     private DefaultListModel<ChatPanel> chatListModel;
     private JPanel chatPanel;
     private JPanel rootPanel;
@@ -63,6 +67,7 @@ public class ChatForm implements IChatForm {
         if(instance == null) instance = new ChatForm();
         instance.setPresenter(ChatFormPresenter.getPresenter(instance));
         instance.presenter.getContactList();
+        instance.presenter.refreshUserPhotos();
         return instance;
     }
 
@@ -89,7 +94,7 @@ public class ChatForm implements IChatForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                presenter.callEditPresenter();
+                presenter.callEditPresenter((Person)contactsList.getSelectedValue());
             }
         });
         MouseAdapter settingsAdapter = new MouseAdapter() {
@@ -103,12 +108,29 @@ public class ChatForm implements IChatForm {
         avatarPanelMini.addMouseListener(settingsAdapter);
         selfNameLabel.addMouseListener(settingsAdapter);
         settingsButton.addMouseListener(settingsAdapter);
-
-        contactsList.addListSelectionListener(new ListSelectionListener() {
+        contactsList.setCellRenderer(new ContactListRenderer());
+        contactsList.addListSelectionListener(e -> {
+            Person person = (Person) contactsList.getSelectedValue();
+            chatWithName.setText(person.getFullName());
+            chatAvatarPanel.getGraphics().drawImage(person.getPhotoSmall(),0,0,41,41, null);
+            chatAvatarPanel.repaint();
+            presenter.getChat(person.getId());
+        });
+        searchField.addKeyListener(new KeyAdapter() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {
-                ContactPanel cp = (ContactPanel) contactsList.getSelectedValue();
-                presenter.getChat(cp.getUserId());
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                showContactListFilter(searchField.getText().trim());
+            }
+        });
+        sendButtonPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                Person person = (Person)contactsList.getSelectedValue();
+                presenter.sendMessage(chatInputField.getText(), person);
+                chatInputField.setText("");
+                presenter.getChat(person.getId());
             }
         });
     }
@@ -166,7 +188,7 @@ public class ChatForm implements IChatForm {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(tavatar, 0, 0, 41, 41, null);
+                //g.drawImage(tavatar, 0, 0, 41, 41, null);
                 g.drawImage(maskGray, 0, 0, null);
             }
         };
@@ -197,19 +219,6 @@ public class ChatForm implements IChatForm {
     }
 
     @Override
-    public void setContactList(ArrayList<ContactPanel> panels) {
-        //Todo
-        this.contactPanels = panels;
-        contactListModel = new DefaultListModel<>();
-        contactListModel.ensureCapacity(1);;
-        for(ContactPanel panel : panels){
-            contactListModel.addElement(panel);
-        }
-        contactsList.setModel(contactListModel);
-        //contactsList.setListData(FakeContacts.getContactPanels());
-    }
-
-    @Override
     public void setChatList(ArrayList<ChatPanel> panels) {
         //Todo
         Collections.reverse(panels);
@@ -221,6 +230,27 @@ public class ChatForm implements IChatForm {
         }
         chatArea.setModel(chatListModel);
         //chatArea.setListData(FakeChat.getChatPanels());
+    }
+
+//    public void setContactList(ArrayList<ContactPanel> panels) {
+//        //Todo
+//        this.contactPanels = panels;
+//        contactListModel = new DefaultListModel<>();
+//        contactListModel.ensureCapacity(1);;
+//        for(ContactPanel panel : panels){
+//            contactListModel.addElement(panel);
+//        }
+//        contactsList.setModel(contactListModel);
+//    }
+
+    public void setContactList(DefaultListModel<Person> model) {
+        this.clModel = model;
+        contactsList.setModel(this.clModel);
+        repaintContactList();
+    }
+
+    public void repaintContactList(){
+        contactsList.repaint();
     }
 
     public void setSelfUserPhoto(Image photo){
@@ -270,11 +300,18 @@ public class ChatForm implements IChatForm {
     public void hideLoadingProcess() {
 
     }
+    private synchronized void showContactListFilter(String searchString) {
+        if (searchString.equals("")) {
+            contactsList.setModel(clModel);
+        } else {
+            DefaultListModel<Person> searchModel = new DefaultListModel<>();
+            contactsList.setModel(searchModel);
+            for (int i = 0; i < clModel.getSize(); i++) {
+                if (clModel.get(i).getFullName().toLowerCase().contains(searchString.toLowerCase())) {
+                    searchModel.addElement(clModel.get(i));
+                }
+            }
+        }
 
-            //Todo избавиться от того что ниже
-
-    public String getChatWithName() {
-        return chatWithName.getText();
     }
-
 }

@@ -12,6 +12,9 @@ import java.io.IOException;
 public class Person {
     private UserContact userContact;
     private String time, lastMessage;
+    private BufferedImage photoSmall = null;
+
+
 
     public Person(UserContact userContact) {
         this.userContact = userContact;
@@ -55,7 +58,7 @@ public class Person {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NullPointerException e) {
-            System.out.println("      -------     NullPointerException");
+            System.out.println(" Photo:     -------     NullPointerException");
         }
         return img;
     }
@@ -101,6 +104,15 @@ public class Person {
 
     public UserContact getTLUserContact() {
         return userContact;
+    }
+
+    public BufferedImage getPhotoSmall() {
+        if(photoSmall != null) return photoSmall;
+        else return Configs.IMG_USER_PHOTO_EMPTY_160;
+    }
+
+    public void setPhotoSmall(BufferedImage photoSmall) {
+        this.photoSmall = photoSmall;
     }
 
 }

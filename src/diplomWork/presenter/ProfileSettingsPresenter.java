@@ -33,7 +33,7 @@ public class ProfileSettingsPresenter implements IPresenter{
 
     public void getUserProfileData() {
         view.fillUserProfileData(repository.getUserFirstName(), repository.getUserLastName(),
-                "+" + repository.getUserPhone());
+                repository.getUserPhone());
         view.fillUserPhoto(repository.getUserPhoto());
     }
 

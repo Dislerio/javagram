@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="diplomWork.view.forms.EditContacts">
-  <grid id="27dc6" binding="rootPanel" layout-manager="FlowLayout" hgap="400" vgap="5" flow-align="1">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="20" y="20" width="900" height="630"/>
     </constraints>
@@ -12,121 +12,194 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="bd6d8" binding="mainPanel" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="40" flow-align="1">
-        <constraints/>
+      <component id="5ae32" class="javax.swing.JLabel" binding="editContactsToolTip">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
         <properties>
-          <minimumSize width="500" height="620"/>
+          <font name="Open Sans Light" size="39"/>
+          <foreground color="-16720129"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <maximumSize width="500" height="100"/>
+          <minimumSize width="500" height="100"/>
+          <preferredSize width="500" height="100"/>
+          <text value="editContactText"/>
+          <verticalAlignment value="3"/>
+        </properties>
+      </component>
+      <grid id="411e5" layout-manager="FlowLayout" hgap="10" vgap="20" flow-align="1">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
           <opaque value="false"/>
-          <preferredSize width="500" height="620"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="5ae32" class="javax.swing.JLabel" binding="editContactsToolTip">
+          <component id="75fd6" class="javax.swing.JLabel" binding="numberField">
             <constraints/>
             <properties>
-              <font name="Open Sans Light" size="39"/>
-              <foreground color="-16720129"/>
-              <horizontalAlignment value="0"/>
-              <horizontalTextPosition value="0"/>
-              <maximumSize width="500" height="100"/>
-              <minimumSize width="500" height="100"/>
-              <preferredSize width="500" height="100"/>
-              <text value="editContactText"/>
-              <verticalAlignment value="3"/>
+              <font name="Open Sans Light" size="16"/>
+              <foreground color="-8355712"/>
+              <text value="+7 999 000-00-00"/>
             </properties>
           </component>
-          <grid id="6a35c" binding="dataPanel" layout-manager="BorderLayout" hgap="0" vgap="10">
+          <component id="caecf" class="javax.swing.JButton" binding="deleteButton" custom-create="true">
             <constraints/>
             <properties>
-              <maximumSize width="450" height="150"/>
-              <minimumSize width="450" height="150"/>
+              <alignmentX value="1.0"/>
+              <alignmentY value="1.0"/>
+              <font name="Open Sans Light" size="14"/>
+              <foreground color="-917248"/>
+              <horizontalTextPosition value="11"/>
+              <iconTextGap value="5"/>
+              <margin top="3" left="3" bottom="3" right="3"/>
+              <maximumSize width="200" height="30"/>
+              <minimumSize width="200" height="30"/>
               <opaque value="false"/>
-              <preferredSize width="450" height="150"/>
-            </properties>
-            <border type="none"/>
-            <children>
-              <grid id="411e5" layout-manager="FlowLayout" hgap="10" vgap="20" flow-align="1">
-                <constraints border-constraint="South"/>
-                <properties>
-                  <opaque value="false"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <component id="75fd6" class="javax.swing.JLabel" binding="numberField">
-                    <constraints/>
-                    <properties>
-                      <font name="Open Sans Light" size="16"/>
-                      <foreground color="-8355712"/>
-                      <text value="+7 999 000-00-00"/>
-                    </properties>
-                  </component>
-                  <component id="caecf" class="javax.swing.JButton" binding="deleteButton" custom-create="true">
-                    <constraints/>
-                    <properties>
-                      <alignmentX value="1.0"/>
-                      <alignmentY value="1.0"/>
-                      <font name="Open Sans Light" size="14"/>
-                      <foreground color="-917248"/>
-                      <horizontalTextPosition value="11"/>
-                      <iconTextGap value="5"/>
-                      <margin top="3" left="3" bottom="3" right="3"/>
-                      <maximumSize width="200" height="30"/>
-                      <minimumSize width="200" height="30"/>
-                      <opaque value="false"/>
-                      <preferredSize width="200" height="30"/>
-                      <text value="deleteContactText"/>
-                    </properties>
-                  </component>
-                </children>
-              </grid>
-              <grid id="c1e75" binding="namePanel" layout-manager="FlowLayout" hgap="10" vgap="10" flow-align="1">
-                <constraints border-constraint="Center"/>
-                <properties>
-                  <opaque value="false"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <grid id="f43b0" binding="avatarPanel" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                    <constraints/>
-                    <properties>
-                      <maximumSize width="60" height="50"/>
-                      <minimumSize width="60" height="50"/>
-                      <opaque value="false"/>
-                      <preferredSize width="60" height="50"/>
-                    </properties>
-                    <border type="none"/>
-                    <children/>
-                  </grid>
-                  <component id="8a4d1" class="javax.swing.JTextField" binding="nameTextField">
-                    <constraints/>
-                    <properties>
-                      <font name="Open Sans Light" size="28"/>
-                      <foreground color="-1"/>
-                      <horizontalAlignment value="2"/>
-                      <maximumSize width="350" height="55"/>
-                      <minimumSize width="350" height="55"/>
-                      <opaque value="false"/>
-                      <preferredSize width="350" height="50"/>
-                      <text value="Екатерина Смирнова"/>
-                    </properties>
-                  </component>
-                </children>
-              </grid>
-            </children>
-          </grid>
-          <component id="1a362" class="javax.swing.JButton" binding="saveButton">
-            <constraints/>
-            <properties>
-              <background color="-16731162"/>
-              <foreground color="-1"/>
-              <label value="saveText"/>
-              <maximumSize width="320" height="55"/>
-              <minimumSize width="320" height="55"/>
-              <preferredSize width="320" height="55"/>
-              <text value="saveText"/>
+              <preferredSize width="200" height="30"/>
+              <text value="deleteContactText"/>
             </properties>
           </component>
         </children>
+      </grid>
+      <grid id="7c334" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="f43b0" binding="avatarPanel" custom-create="true" layout-manager="GridBagLayout">
+            <constraints border-constraint="West"/>
+            <properties>
+              <maximumSize width="60" height="50"/>
+              <minimumSize width="60" height="50"/>
+              <opaque value="false"/>
+              <preferredSize width="60" height="50"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="18863" binding="avatar" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="50" height="50"/>
+                  <minimumSize width="50" height="50"/>
+                  <opaque value="false"/>
+                  <preferredSize width="50" height="50"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+          <grid id="c1e75" binding="namePanel" layout-manager="GridBagLayout">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <minimumSize width="410" height="100"/>
+              <opaque value="false"/>
+              <preferredSize width="410" height="100"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="8a4d1" class="javax.swing.JTextField" binding="nameField">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <font name="Open Sans Light" size="28"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="2"/>
+                  <maximumSize width="350" height="55"/>
+                  <minimumSize width="350" height="55"/>
+                  <opaque value="false"/>
+                  <preferredSize width="350" height="50"/>
+                  <text value="Екатерина Смирнова"/>
+                </properties>
+              </component>
+              <component id="4b086" class="javax.swing.JTextField" binding="surNameField">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <font name="Open Sans Light" size="28"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="2"/>
+                  <maximumSize width="350" height="55"/>
+                  <minimumSize width="350" height="55"/>
+                  <opaque value="false"/>
+                  <preferredSize width="350" height="50"/>
+                  <text value="Екатерина Смирнова"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <component id="1a362" class="javax.swing.JButton" binding="saveButton">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-16731162"/>
+          <foreground color="-1"/>
+          <label value="saveText"/>
+          <maximumSize width="320" height="55"/>
+          <minimumSize width="320" height="55"/>
+          <preferredSize width="320" height="55"/>
+          <text value="saveText"/>
+        </properties>
+      </component>
+      <grid id="89d06" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <minimumSize width="10" height="10"/>
+          <opaque value="false"/>
+          <preferredSize width="10" height="10"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="ff81b" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <minimumSize width="10" height="10"/>
+          <opaque value="false"/>
+          <preferredSize width="10" height="10"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="ecd2a" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <minimumSize width="10" height="10"/>
+          <opaque value="false"/>
+          <preferredSize width="10" height="10"/>
+        </properties>
+        <border type="none"/>
+        <children/>
       </grid>
     </children>
   </grid>

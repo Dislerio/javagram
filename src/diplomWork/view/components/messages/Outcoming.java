@@ -26,7 +26,7 @@ public class Outcoming extends JPanel {
 
         message.setFont(f);
         message.setText(text);
-        message.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));       // отступы!!!
+        message.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 15));       // отступы!!!
 
 
         dateOfMessage.setText(dateText);

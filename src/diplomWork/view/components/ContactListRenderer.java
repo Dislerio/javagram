@@ -1,5 +1,7 @@
 package diplomWork.view.components;
 
+import diplomWork.model.objects.Person;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,14 +12,14 @@ public class ContactListRenderer extends DefaultListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        ContactPanel label = (ContactPanel) value;
-
+        Person person = (Person) value;
+        ContactPanel cp = new ContactPanel(person);
         if(isSelected){
-            label.getRootPanel().setBorder(BorderFactory.createMatteBorder(0,0,0,3,selected));
+            cp.getRootPanel().setBorder(BorderFactory.createMatteBorder(0,0,0,3,selected));
 
         } else {
-            label.getRootPanel().setBorder(BorderFactory.createMatteBorder(1,0,1,0,unselected));
+            cp.getRootPanel().setBorder(BorderFactory.createMatteBorder(1,0,1,0,unselected));
         }
-        return label.getRootPanel();
+        return cp.getRootPanel();
     }
 }
