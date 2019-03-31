@@ -1,14 +1,10 @@
 package diplomWork.presenter;
 
-import diplomWork.model.TLHandler;
 import diplomWork.view.forms.ChatForm;
-import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.PhoneNumber;
 import diplomWork.view.forms.ProfileSettings;
-import diplomWork.viewInterface.IView;
+import diplomWork.view.forms.IView;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class ProfileSettingsPresenter implements IPresenter{

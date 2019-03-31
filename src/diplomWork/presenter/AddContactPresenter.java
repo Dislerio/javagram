@@ -1,10 +1,8 @@
 package diplomWork.presenter;
 
-import diplomWork.model.TLHandler;
 import diplomWork.view.forms.AddContactsForm;
 import diplomWork.view.forms.ChatForm;
-import diplomWork.view.forms.MainFrame;
-import diplomWork.viewInterface.IView;
+import diplomWork.view.forms.IView;
 
 import java.io.IOException;
 

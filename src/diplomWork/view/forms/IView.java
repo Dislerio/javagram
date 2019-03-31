@@ -1,4 +1,4 @@
-package diplomWork.viewInterface;
+package diplomWork.view.forms;
 
 import diplomWork.presenter.IPresenter;
 import diplomWork.view.forms.ChatForm;

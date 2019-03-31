@@ -1,10 +1,8 @@
 package diplomWork.presenter;
 
 import diplomWork.Log;
-import diplomWork.model.TLHandler;
-import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.RegForm;
-import diplomWork.viewInterface.IView;
+import diplomWork.view.forms.IView;
 
 import java.io.IOException;
 

@@ -4,7 +4,6 @@ import diplomWork.Configs;
 import diplomWork.Log;
 import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.ProfileSettingsPresenter;
-import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;

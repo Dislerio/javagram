@@ -4,7 +4,6 @@ import diplomWork.Configs;
 import diplomWork.model.objects.Person;
 import diplomWork.presenter.EditContactPresenter;
 import diplomWork.presenter.IPresenter;
-import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;

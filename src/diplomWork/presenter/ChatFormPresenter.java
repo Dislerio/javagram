@@ -1,23 +1,18 @@
 package diplomWork.presenter;
 
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import diplomWork.Configs;
 import diplomWork.Log;
 import diplomWork.model.TLHandler;
 import diplomWork.model.objects.Person;
 import diplomWork.view.components.ChatPanel;
-import diplomWork.view.components.ContactPanel;
 import diplomWork.view.forms.*;
-import diplomWork.viewInterface.IView;
+import diplomWork.view.forms.IView;
 import org.javagram.response.object.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class ChatFormPresenter implements IPresenter{       //+ +/-

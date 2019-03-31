@@ -3,10 +3,9 @@ package diplomWork.presenter;
 import diplomWork.Configs;
 import diplomWork.model.TLHandler;
 import diplomWork.tests.PhoneFormatError;
-import diplomWork.view.forms.MainFrame;
 import diplomWork.view.forms.PhoneNumber;
 import diplomWork.view.forms.VerificationCode;
-import diplomWork.viewInterface.IView;
+import diplomWork.view.forms.IView;
 
 
 public class PhoneNumberPresenter implements IPresenter{        //++

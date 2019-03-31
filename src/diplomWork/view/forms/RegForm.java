@@ -3,7 +3,6 @@ package diplomWork.view.forms;
 import diplomWork.Configs;
 import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.RegisterUserPresenter;
-import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;

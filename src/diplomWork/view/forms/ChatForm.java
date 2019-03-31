@@ -8,7 +8,6 @@ import diplomWork.view.components.ChatListRenderer;
 import diplomWork.view.components.ChatPanel;
 import diplomWork.view.components.ContactListRenderer;
 import diplomWork.view.components.ContactPanel;
-import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;
