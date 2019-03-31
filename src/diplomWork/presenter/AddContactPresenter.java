@@ -6,18 +6,14 @@ import diplomWork.view.forms.ChatForm;
 import diplomWork.view.forms.MainFrame;
 import diplomWork.viewInterface.IView;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class AddContactPresenter implements IPresenter{
-    MainFrame frame;
-    private TLHandler repository = TLHandler.getInstance();
     AddContactsForm view;
     public static AddContactPresenter presenter;
     private String phone, firstName, lastName;
 
-    public static AddContactPresenter getPresenter(IView iView){
+    public synchronized static AddContactPresenter getPresenter(IView iView){
         if(presenter == null) presenter = new AddContactPresenter(iView);
         presenter.frame.setContentPane(presenter.view.getRootPanel());
         return presenter;
@@ -25,7 +21,6 @@ public class AddContactPresenter implements IPresenter{
 
     private AddContactPresenter(IView iView){
         this.view = (AddContactsForm) iView;
-        this.frame = MainFrame.getInstance();
     }
 
     public void addContact(String phone, String firstName, String lastName ){
@@ -37,10 +32,9 @@ public class AddContactPresenter implements IPresenter{
         if (isContactFieldsValid()) {
             view.showInfo("Поиск и добавление контакта...");
             try {
-                int numberAddedContacts = repository.addContact(this.phone, this.firstName, this.lastName);
+                int numberAddedContacts = repository.updateContact(this.phone, this.firstName, this.lastName);
                 if (numberAddedContacts == 1) {
                     view.showInfo("Контакт успешно добавлен");
-
                     repository.getContactsForceUpdate();           //Todo сделать нормально загрузку контактов и плавающие окошки
                     //view.closeModalView();
                 } else if (numberAddedContacts == -1) {
@@ -58,9 +52,9 @@ public class AddContactPresenter implements IPresenter{
         }
 
     }
-
+    @Override
     public void goToMainForm(){
-        ChatForm.getInstance();
+        ChatForm.getInstance().getContactsForce();
     }
 
     private boolean isContactFieldsValid() {

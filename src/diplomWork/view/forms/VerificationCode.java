@@ -1,11 +1,9 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
-import diplomWork.model.TLHandler;
 import diplomWork.presenter.IPresenter;
-import diplomWork.presenter.RegisterUserPresenter;
 import diplomWork.presenter.VerificationCodePresenter;
-import diplomWork.viewInterface.IVerificationCode;
+import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,28 +12,28 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 
-public class VerificationCode implements IVerificationCode {     //отработано
+public class VerificationCode implements IView {     //отработано
     private JPanel logoPanel;
     private JPanel rootPanel;
     private JLabel labelNull;
     private JLabel numLabel;
     private JLabel phonePict;
     private JLabel textTip;
-    private JPasswordField codeField;
     private JLabel continueButton;
     private JLabel errLabel;
     private JLabel btnBack;
+    private ImageIcon imageIcon;
+    private JPasswordField codeField;
     private BufferedImage logo, background, phoneLogoImage, buttonBG;
     private VerificationCodePresenter presenter;
-    ImageIcon imageIcon;
     private static VerificationCode instance;
 
-    public static VerificationCode getInstance(){
+    public static synchronized VerificationCode getInstance(){
         if(instance == null){
             instance = new VerificationCode();
         }
-        instance.setPhoneNumber(TLHandler.getInstance().getUserPhone());
-        instance.setPresenter(VerificationCodePresenter.getInstance(instance));
+        instance.setPresenter(VerificationCodePresenter.getPresenter(instance));
+        instance.fillPhoneNumber(instance.presenter.getPhoneNumber());
         return instance;
     }
 
@@ -50,10 +48,8 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
         codeField.selectAll();
         textTip.setFont(Configs.font18);
         textTip.setText(Configs.verificationCodeTooltipText);
-        //numLabel.setText("+" + TLHandler.getInstance().getUserPhone());
         numLabel.setFont(Configs.font40);
         btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
-//        continueButton.setBorder(BorderFactory.createLineBorder(new Color(0, 178, 230), 15, true));
         continueButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -70,6 +66,10 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
                 presenter.goBackToPhoneInput();
             }
         });
+    }
+
+    public void fillPhoneNumber(String phone){
+        numLabel.setText(formatPhoneNumber(phone));
     }
 
     private void createUIComponents() {
@@ -103,6 +103,10 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
 
         labelNull = new JLabel();
         labelNull.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.white));
+    }
+
+    public void callViewSignUp() {
+        RegForm.getInstance();
     }
 
     @Override
@@ -143,29 +147,11 @@ public class VerificationCode implements IVerificationCode {     //отрабо�
     }
 
     @Override
-    public void setPhoneNumber(String phone){
-        String phoneFormat = "+" + phone.substring(0,1) + " (" + phone.substring(1,4) + ") " + phone.substring(4);
-        numLabel.setText(phoneFormat);
-    }
-
-    public void callChatForm(){
-        ChatForm.getInstance();
-    }
-
-    public void goBackToPhoneInput(){
-        PhoneNumber.getInstance();
-    }
-
-    @Override
-    public void callViewSignUp() {
-        RegForm.getInstance();
-    }
-
-    @Override
     public void setPresenter(IPresenter presenter) {
         this.presenter = (VerificationCodePresenter)presenter;
     }
 
+    @Override
     public JPanel getRootPanel() {
         return rootPanel;
     }

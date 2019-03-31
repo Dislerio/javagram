@@ -23,63 +23,65 @@ import javax.swing.*;
 public class ChatFormPresenter implements IPresenter{       //+ +/-
     private volatile ArrayList<Person> contactList = new ArrayList<>();
     private volatile DefaultListModel<Person> contactsListModel = new DefaultListModel<>();
-    TLHandler repository = TLHandler.getInstance();
-    private MainFrame frame;
     private ChatForm view;
     private static ChatFormPresenter presenter;
 
-    public static ChatFormPresenter getPresenter(IView iView){
+    public synchronized static ChatFormPresenter getPresenter(IView iView){
         if(presenter == null){
             presenter = new ChatFormPresenter(iView);
         }
-        presenter.frame.setContentPane(presenter.view.getRootPanel());
+        frame.setContentPane(presenter.view.getRootPanel());
         return presenter;
     }
 
     private ChatFormPresenter(IView iView){
-        this.frame = MainFrame.getInstance();
         view = (ChatForm)iView;
         view.setSelfName(TLHandler.getInstance().getUserNameFull());
         view.setSelfUserPhoto(TLHandler.getInstance().getUserPhoto());
         view.showInfo(String.valueOf(TLHandler.getInstance().getUserId()));
         frame.setContentPane(view.getRootPanel());
-        //getContactList();
         frame.addWindowListener(new WindowAdapter() {
         });
+        getContactList(false);
     }
 
-    public synchronized void getContactList(){
+    public synchronized void getContactList(boolean force){
 
-        Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    //get from Telegram Api
+        Thread th = new Thread(() -> {
+            try {
+                //get from Telegram Api
+                if(force)
+                    contactList = repository.getContactsForceUpdate();
+                else
                     contactList = repository.getContacts();
-                    Log.info("contactList.size() = " + contactList.size());
-                    //clear
-                    contactsListModel.clear();
-                    for (Person contact : contactList) {
-                        Log.info("add contact " + contact.getId() + ":" + contact.getFullName());
-                        contactsListModel.addElement(contact);
-                    }
-
-                    view.setContactList(contactsListModel);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    view.showError("Ошибка при получении списка контактов! IOException getContactList()");
+                Log.info("contactList.size() = " + contactList.size());
+                //clear
+                contactsListModel.clear();
+                for (Person contact : contactList) {
+                    Log.info("add contact " + contact.getId() + ":" + contact.getFullName());
+                    contactsListModel.addElement(contact);
                 }
+                view.setContactList(contactsListModel);
+                refreshUserPhotos();
+            } catch (Exception e) {
+                e.printStackTrace();
+                view.showError("Ошибка при получении списка контактов! IOException getContactList()");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }   //пауза
+                getContactList(false);
             }
-
         });
         th.start();
     }
 
+
     public synchronized void refreshUserPhotos() {
         //wait for Moon Phase
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -89,14 +91,15 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
             public void run() {
                 for (int i = 0; i < contactsListModel.getSize(); i++) {
                     Person c = contactsListModel.get(i);
+                    if(c.isNoFoto()) continue;
                     Log.info("start set small photo to contact " + c.getFullName() + "(" + c.getId() + ")");
                     BufferedImage photoSmall = repository.getContactPhotoSmall(c);
                     if (photoSmall != null) {
                         c.setPhotoSmall(photoSmall);
                         Log.info("small photo have setted for " + c.getFullName());
                     }
-                    view.repaintContactList();
                 }
+                view.repaintContactList();
             }
         }
         );
@@ -128,6 +131,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
     public void callEditPresenter(Person person){
         EditContacts.getInstance(person);
     }
+
     public void callSettingsPresenter(){
         ProfileSettings.getInstance();
     }
@@ -135,4 +139,5 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
     public void sendMessage(String text, Person personTo) {
         repository.sendMessage(text, personTo.getId());
     }
+
 }

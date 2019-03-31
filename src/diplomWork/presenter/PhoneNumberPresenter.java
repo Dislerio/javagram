@@ -11,23 +11,20 @@ import diplomWork.viewInterface.IView;
 
 public class PhoneNumberPresenter implements IPresenter{        //++
     String phoneNumber;
-    MainFrame frame;
     PhoneNumber view;
     private static PhoneNumberPresenter instance;
-    public static PhoneNumberPresenter getInstance(IView iView){
+
+    public static synchronized IPresenter getPresenter(IView iView){
         if(instance == null){
             instance = new PhoneNumberPresenter(iView);
         }
-        instance.frame.setContentPane(instance.view.getRootPanel());
+        frame.setContentPane(instance.view.getRootPanel());
         return instance;
     }
 
     private PhoneNumberPresenter(IView iView){
-        frame = MainFrame.getInstance();
         this.view = (PhoneNumber) iView;
-        //frame.setContentPane(view.getRootPanel());
     }
-
 
     public void checkPhone(String phone){
         view.clearError();
@@ -62,9 +59,4 @@ public class PhoneNumberPresenter implements IPresenter{        //++
         });
         thread.start();
     }
-
-    private boolean isPhoneValid(){
-        return phoneNumber.matches("^\\+*[78][9]\\d{9}");
-    }
-
 }

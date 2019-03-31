@@ -193,6 +193,17 @@ public class TLHandler {    //++
         return getContactList(true);
     }
 
+    private synchronized ArrayList<Person> getContactList(boolean force) throws IOException {
+        if (contactList.isEmpty() || contactListCache.isEmpty() || force){
+            contactList = bridge.contactsGetContacts();
+            contactListCache.clear();
+            for (UserContact user : contactList) {
+                contactListCache.add(new Person(user));
+            }
+        }
+        return contactListCache;
+    }
+
     public synchronized boolean editUserProfile(BufferedImage newPhoto, String firstName,
                                                 String lastName) {
         try {
@@ -212,6 +223,7 @@ public class TLHandler {    //++
     }
 
     public synchronized BufferedImage getContactPhotoSmall(Person contact) {
+        if(contact.isNoFoto() == true) return null;
         BufferedImage photoSmall = null;
         if (contactListCache.contains(contact)) {
             //get native UserContact for use API methods
@@ -226,7 +238,6 @@ public class TLHandler {    //++
                     e.printStackTrace();
                 }
             }
-
             //get contact from Telegram API
             try {
                 photoSmall = ImageIO.read(new ByteArrayInputStream(tlContact.getPhoto(true)));
@@ -244,6 +255,7 @@ public class TLHandler {    //++
             } catch (NullPointerException e) {
                 Log.warning(
                         "NullPointerException Repository getContactPhotoSmall()" + contact.getFullName());
+                contact.setNoFoto(true);
                 return null;
             }
             //after every request do sleep more than 1 second or you can get ban for 12-24 hours (FLOOD_WAIT)
@@ -256,23 +268,6 @@ public class TLHandler {    //++
             }
         }
         return photoSmall;
-    }
-
-    private synchronized ArrayList<Person> getContactList(boolean force) throws IOException {
-        if (contactList.isEmpty() || contactListCache.isEmpty() || force){
-            contactList = bridge.contactsGetContacts();
-            contactListCache.clear();
-            for (UserContact user : contactList) {
-                contactListCache.add(new Person(user));
-            }
-        }
-        return contactListCache;
-    }
-
-    public ArrayList<UserContact> getContactsTemp() throws IOException {        //Todo удалить, временный метод!
-        ArrayList<UserContact> userContacts;
-        userContacts = bridge.contactsGetContacts();
-        return userContacts;
     }
 
     public void logOut() {
@@ -347,7 +342,7 @@ public class TLHandler {    //++
         return smsCodeChecked;
     }
 
-    public int addContact(String phone, String firstname, String lastName) throws IOException {
+    public int updateContact(String phone, String firstname, String lastName) throws IOException {
 
         //check if contact already exist
         for (UserContact userContact : contactList) {

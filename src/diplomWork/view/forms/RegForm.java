@@ -3,7 +3,6 @@ package diplomWork.view.forms;
 import diplomWork.Configs;
 import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.RegisterUserPresenter;
-import diplomWork.viewInterface.IRegisterUser;
 import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
@@ -12,17 +11,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class RegForm implements IRegisterUser {
+public class RegForm implements IView {
     private BufferedImage logo, background, avatarNoImage;
-    private JPanel rootPanel;
-    private JLabel textTip;
-    private JPanel avatarField;
-    private JTextField nameTextField;
-    private JTextField surnameTextField;
-    private JPanel logoPanel;
     private JButton regButton;
-    private JLabel btnBack;
-    private JLabel errLabel;
+    private JLabel btnBack, errLabel, textTip;
+    private JPanel avatarField, logoPanel, rootPanel;
+    private JTextField nameTextField, surnameTextField;
     private static RegForm instance;
     private RegisterUserPresenter presenter;
 
@@ -30,12 +24,12 @@ public class RegForm implements IRegisterUser {
         if(instance == null){
             instance = new RegForm();
         }
-        instance.setPresenter(RegisterUserPresenter.getInstance(instance));
+        instance.setPresenter(RegisterUserPresenter.getPresenter(instance));
         return instance;
     }
 
     private RegForm() {
-        setPresenter(RegisterUserPresenter.getInstance(this));
+        setPresenter(RegisterUserPresenter.getPresenter(this));     //костыль1
 
         logo = Configs.LOGO_MINI;
         background = Configs.BG_IMAGE;
@@ -56,7 +50,6 @@ public class RegForm implements IRegisterUser {
                 presenter.goBackToPhoneInput();
             }
         });
-
     }
 
     private void createUIComponents() {
@@ -82,8 +75,6 @@ public class RegForm implements IRegisterUser {
             }
         };
         logoPanel.setOpaque(false);
-
-
     }
 
     @Override
@@ -126,9 +117,6 @@ public class RegForm implements IRegisterUser {
         return rootPanel;
     }
 
-    public void callViewChat() {
-        ChatForm.getInstance();
-    }
     public void goBackToPhoneInput(){
         PhoneNumber.getInstance();
     }

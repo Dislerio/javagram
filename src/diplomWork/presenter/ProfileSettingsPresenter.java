@@ -12,13 +12,11 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class ProfileSettingsPresenter implements IPresenter{
-    MainFrame frame;
     ProfileSettings view;
-    TLHandler repository = TLHandler.getInstance();
     public static ProfileSettingsPresenter presenter;
     private String firstName, lastName;
 
-    public static ProfileSettingsPresenter getPresenter(IView iView){
+    public synchronized static ProfileSettingsPresenter getPresenter(IView iView){
         if(presenter == null){
             presenter = new ProfileSettingsPresenter(iView);
         }
@@ -27,7 +25,6 @@ public class ProfileSettingsPresenter implements IPresenter{
     }
 
     private ProfileSettingsPresenter(IView iView){
-        this.frame = MainFrame.getInstance();
         this.view = (ProfileSettings) iView;
     }
 
@@ -62,11 +59,6 @@ public class ProfileSettingsPresenter implements IPresenter{
             return false;
         }
         return true;
-    }
-
-    public void goToMainForm(){
-        frame.setContentPane(ChatForm.getInstance().getRootPanel());
-
     }
 
     public void logOut() {

@@ -13,6 +13,7 @@ public class Person {
     private UserContact userContact;
     private String time, lastMessage;
     private BufferedImage photoSmall = null;
+    private boolean noFoto = false;
 
 
 
@@ -115,4 +116,11 @@ public class Person {
         this.photoSmall = photoSmall;
     }
 
+    public boolean isNoFoto() {
+        return noFoto;
+    }
+
+    public void setNoFoto(boolean noFoto) {
+        this.noFoto = noFoto;
+    }
 }

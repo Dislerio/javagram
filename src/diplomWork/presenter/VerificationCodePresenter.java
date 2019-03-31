@@ -12,11 +12,10 @@ import org.telegram.api.engine.RpcException;
 import java.io.IOException;
 
 public class VerificationCodePresenter implements IPresenter{
-    MainFrame frame;
     VerificationCode view;
     private static VerificationCodePresenter instance;
 
-    public static VerificationCodePresenter getInstance(IView iView){
+    public synchronized static VerificationCodePresenter getPresenter(IView iView){
         if(instance == null){
             instance = new VerificationCodePresenter(iView);
         }
@@ -25,9 +24,7 @@ public class VerificationCodePresenter implements IPresenter{
         return instance;
     }
 
-
     private VerificationCodePresenter(IView iView){
-        frame = MainFrame.getInstance();
         this.view = (VerificationCode)iView;
     }
 
@@ -63,14 +60,13 @@ public class VerificationCodePresenter implements IPresenter{
                 view.hideLoadingProcess();
             }
             // и если все хорошо - окрываем чат
-            view.callChatForm();
+            view.goToMainForm();
         });
         thread.start();
-
     }
 
+@Override
     public void goBackToPhoneInput() {
-//        view.goBackToPhoneInput(TLHandler.getInstance().getUserPhone());
         view.goBackToPhoneInput();
     }
 }

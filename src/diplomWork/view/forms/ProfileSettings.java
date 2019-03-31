@@ -4,7 +4,7 @@ import diplomWork.Configs;
 import diplomWork.Log;
 import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.ProfileSettingsPresenter;
-import diplomWork.viewInterface.IProfileSettings;
+import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,27 +12,27 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class ProfileSettings implements IProfileSettings {      //+
+public class ProfileSettings implements IView {
     private BufferedImage logo;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
+    private BufferedImage avatar;
+    private BufferedImage userPhotoNew;
+    private JButton saveButton;
+    private JLabel btnLogout;
+    private JLabel deleteAvatar;
+    private JLabel editAvatar;
+    private JLabel errLabel;
+    private JLabel numLabel;
+    private JLabel title;
+    private JPanel avPanel;
     private JPanel rootPanel;
     private JTextField nameTextField;
     private JTextField surnameTextField;
-    private JButton saveButton;
-    private JLabel editAvatar;
-    private JLabel deleteAvatar;
-    private JLabel title;
-    private JLabel errLabel;
-    private JLabel btnLogout;
-    private JLabel numLabel;
-    private JPanel avPanel;
     private ProfileSettingsPresenter presenter;
     private static ProfileSettings instance;
-    BufferedImage avatar;
-    BufferedImage userPhotoNew;
 
-    public static ProfileSettings getInstance() {
+    public synchronized static ProfileSettings getInstance() {
         if (instance == null) instance = new ProfileSettings();
         instance.setPresenter(ProfileSettingsPresenter.getPresenter(instance));
         instance.presenter.getUserProfileData();
@@ -50,15 +50,13 @@ public class ProfileSettings implements IProfileSettings {      //+
         surnameTextField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.white));
         editAvatar.setIcon(new ImageIcon(editIcon));
         deleteAvatar.setIcon(new ImageIcon(deleteIcon));
-
-
-
         numLabel.setForeground(Color.RED);
         numLabel.setFont(Configs.getFont(14));
         btnLogout.setForeground(Color.RED);
         btnLogout.setFont(Configs.getFont(12));
         btnLogout.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         btnLogout.setText("Выйти");
+
         btnLogout.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -81,6 +79,7 @@ public class ProfileSettings implements IProfileSettings {      //+
                 super.mouseClicked(e);
                 presenter.setNewUserData(userPhotoNew, nameTextField.getText(),
                         surnameTextField.getText());
+                presenter.goToMainForm();
             }
         });
     }
@@ -90,6 +89,7 @@ public class ProfileSettings implements IProfileSettings {      //+
 
     }
 
+    @Override
     public void showInfo(String strError) {
 
     }
@@ -109,17 +109,16 @@ public class ProfileSettings implements IProfileSettings {      //+
 
     }
 
+    @Override
     public JPanel getRootPanel() {
         return rootPanel;
     }
 
-    public Component getSaveButton() {            //TO DO
-        return saveButton;
-    }
-
+    @Override
     public void setPresenter(IPresenter presenter) {
         this.presenter = (ProfileSettingsPresenter) presenter;
     }
+
 
     public void fillUserProfileData(String... names) {
         nameTextField.setText(names[0]);

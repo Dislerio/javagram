@@ -3,7 +3,7 @@ package diplomWork.view.forms;
 import diplomWork.Configs;
 import diplomWork.presenter.AddContactPresenter;
 import diplomWork.presenter.IPresenter;
-import diplomWork.viewInterface.IAddContact;
+import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,28 +11,29 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class AddContactsForm implements IAddContact {
+public class AddContactsForm implements IView {
     private BufferedImage phoneIcon;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
     private JButton addButton;
+    private JLabel addContactsText;
+    private JLabel btnBack;
     private JLabel textTip;
-    private JPanel rootPanel;
-    private JPanel numPanel;
     private JLabel phoneLogo;
-    private JTextField numberField;
-    private JPanel searchRes;
     private JLabel findUserLabel;
     private JLabel findUserRes;
-    private JLabel addContactsText;
+    private JPanel numPanel;
+    private JPanel rootPanel;
+    private JPanel searchRes;
     private JTextField firstName;
     private JTextField lastName;
-    private JLabel btnBack;
+    private JTextField numberField;
     private AddContactPresenter presenter;
     private static AddContactsForm instance;
 
-    public static AddContactsForm getInstance(){
+    public synchronized static AddContactsForm getInstance(){
         if(instance == null) instance = new AddContactsForm();
+        instance.clearFields();
         instance.setPresenter(AddContactPresenter.getPresenter(instance));
         return instance;
     }
@@ -72,9 +73,24 @@ public class AddContactsForm implements IAddContact {
         });
     }
 
+    private void clearFields(){
+        numberField.setText("");
+        firstName.setText("");
+        lastName.setText("");
+    }
+
+    private void createUIComponents() {
+        numPanel = new JPanel();
+        // TODO: place custom component creation code here
+    }
+
     @Override
     public void setPresenter(IPresenter af) {
         this.presenter = (AddContactPresenter)af;
+    }
+
+    @Override
+    public void showInfo(String info) {
     }
 
     @Override
@@ -97,15 +113,8 @@ public class AddContactsForm implements IAddContact {
 
     }
 
+    @Override
     public JPanel getRootPanel() {
         return rootPanel;
-    }
-
-    private void createUIComponents() {
-        numPanel = new JPanel();
-        // TODO: place custom component creation code here
-    }
-
-    public void showInfo(String info) {
     }
 }

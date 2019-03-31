@@ -3,7 +3,7 @@ package diplomWork.view.forms;
 import diplomWork.Configs;
 import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.PhoneNumberPresenter;
-import diplomWork.viewInterface.IPhoneNumber;
+import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
 import javax.swing.text.DefaultFormatterFactory;
@@ -14,30 +14,20 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.ParseException;
 
-public class PhoneNumber implements IPhoneNumber {  //++
-    private JPanel rootPanel;
-    private JLabel continueButton;
-    private JPanel logoPanel;
-    private JLabel text;
+public class PhoneNumber implements IView {  //++
+    private JPanel rootPanel, logoPanel, numPanel;
+    private JLabel continueButton, text, phoneLogo, label1, label2, errLabel;
     private JFormattedTextField numberField;
-    private JLabel phoneLogo;
-    private JPanel numPanel;
-    private JLabel label1;
-    private JLabel errLabel;
-    private JLabel label2;
-    ImageIcon imageIcon;
-    BufferedImage logo;
-    BufferedImage background;
-    BufferedImage buttonBG;
-    BufferedImage phoneLogoImage;
-    PhoneNumberPresenter presenter;
-    static PhoneNumber instance;
+    private ImageIcon imageIcon;
+    private BufferedImage logo, background, buttonBG, phoneLogoImage;
+    private PhoneNumberPresenter presenter;
+    private static PhoneNumber instance;
 
     public static PhoneNumber getInstance(){
         if(instance == null){
             instance = new PhoneNumber();
         }
-        instance.setPresenter(PhoneNumberPresenter.getInstance(instance));
+        instance.setPresenter(PhoneNumberPresenter.getPresenter(instance));
         instance.clearError();
         return instance;
     }
@@ -152,16 +142,10 @@ public class PhoneNumber implements IPhoneNumber {  //++
     }
 
     @Override
-    public void showPhoneFormatError(String strError) {
-        //TODO
-    }
-
-    @Override
     public JPanel getRootPanel() {
         return rootPanel;
     }
 
-    @Deprecated
     public void fillPhoneNumberTextField(String phone) {        //после введения синглтонов не требуется
         numberField.setText("+" + phone);
     }

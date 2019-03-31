@@ -4,32 +4,26 @@ import diplomWork.Configs;
 import diplomWork.model.objects.Person;
 import diplomWork.presenter.EditContactPresenter;
 import diplomWork.presenter.IPresenter;
-import diplomWork.viewInterface.IEditContact;
 import diplomWork.viewInterface.IView;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class EditContacts implements IEditContact {
-    private JPanel rootPanel;
+public class EditContacts implements IView {
     private JButton deleteButton;
-    private JPanel mainPanel;
-    private JTextField nameField;
-    private JPanel avatarPanel;
-    private JPanel namePanel;
     private JButton saveButton;
+    private JPanel avatar;
+    private JPanel avatarPanel;
+    private JPanel mainPanel;
+    private JPanel namePanel;
+    private JPanel rootPanel;
     private JLabel editContactsToolTip;
     private JLabel numberField;
+    private JTextField nameField;
     private JTextField surNameField;
-    private JPanel avatar;
     BufferedImage logo, trashIcon, phoneLogoImage;
     EditContactPresenter presenter;
     private static EditContacts instance;
@@ -42,7 +36,7 @@ public class EditContacts implements IEditContact {
         return instance;
     }
 
-   private EditContacts() {       //отработано
+   private EditContacts() {
 
         trashIcon = Configs.ICON_TRASH;
         deleteButton.setIcon(new ImageIcon(trashIcon));
@@ -60,8 +54,14 @@ public class EditContacts implements IEditContact {
                ChatForm.getInstance().repaintContactList();
            }
        });
-       saveButton.addActionListener(e -> presenter.editContact(numberField.getText(), nameField.getText(), surNameField.getText()));
-       deleteButton.addActionListener(e -> presenter.deleteContact(person.getId()));
+       saveButton.addActionListener(e -> {
+           presenter.editContact(numberField.getText(), nameField.getText(), surNameField.getText());
+           ChatForm.getInstance().getContactsForce();
+       });
+       deleteButton.addActionListener(e -> {
+           presenter.deleteContact(person.getId());
+           ChatForm.getInstance().getContactsForce();
+       });
    }
 
     private void createUIComponents() {
@@ -79,6 +79,14 @@ public class EditContacts implements IEditContact {
         };
         avatarPanel.setBorder(BorderFactory.createLineBorder(Color.RED, 2,true));
         // TODO: place custom component creation code here
+    }
+
+    public void setEditUser(Person person){
+        this.person = person;
+        nameField.setText(person.getFirstName());
+        surNameField.setText(person.getLastName());
+        numberField.setText("+" + person.getPhone());
+        this.avatar.getGraphics().drawImage(person.getPhotoSmall(), 0,0, avatar.getWidth(), avatar.getHeight(), null);
     }
 
     @Override
@@ -101,20 +109,14 @@ public class EditContacts implements IEditContact {
 
     }
 
+    @Override
     public JPanel getRootPanel() {
         return rootPanel;
     }
 
+    @Override
     public void setPresenter(IPresenter presenter){
        this.presenter = (EditContactPresenter) presenter;
-    }
-
-    public void setEditUser(Person person){
-        this.person = person;
-       nameField.setText(person.getFirstName());
-       surNameField.setText(person.getLastName());
-       numberField.setText("+" + person.getPhone());
-       this.avatar.getGraphics().drawImage(person.getPhotoSmall(), 0,0, avatar.getWidth(), avatar.getHeight(), null);
     }
 
 }

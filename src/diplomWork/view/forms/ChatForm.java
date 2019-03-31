@@ -1,63 +1,34 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
-import diplomWork.Log;
 import diplomWork.model.objects.Person;
 import diplomWork.presenter.ChatFormPresenter;
 import diplomWork.presenter.IPresenter;
-import diplomWork.tests.*;
 import diplomWork.view.components.ChatListRenderer;
 import diplomWork.view.components.ChatPanel;
 import diplomWork.view.components.ContactListRenderer;
 import diplomWork.view.components.ContactPanel;
-import diplomWork.viewInterface.IChatForm;
+import diplomWork.viewInterface.IView;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
-/*
-import tests.FakeChat;
-import tests.FakeContacts;
-*/
 
-public class ChatForm implements IChatForm {
-    private JPanel contactListPanel;
-    private DefaultListModel<ContactPanel> contactListModel;
+public class ChatForm implements IView {
+    //private DefaultListModel<ContactPanel> contactListModel;
     private DefaultListModel<Person> clModel;
     private DefaultListModel<ChatPanel> chatListModel;
-    private JPanel chatPanel;
-    private JPanel rootPanel;
-    private JLabel settingsButton;
-    private JPanel avatarPanelMini;
-    private JPanel chatWithPanel;
-    private JPanel chatInfoPanel;
-    private JPanel chatAvatarPanel;
-    private JPanel chatInputPanel;
-    private JPanel sendButtonPanel;
-    private JPanel searchButton;
-    private JPanel titlePanel;
-    private JPanel cList2;
+    private JPanel contactListPanel, chatPanel, rootPanel, avatarPanelMini, chatWithPanel, chatInfoPanel, chatAvatarPanel,
+            chatInputPanel, sendButtonPanel, searchButton, titlePanel, cList2, sPanel;
     private JTextArea chatInputField;
     private JTextField searchField;
     private JButton addContactsButton;
-    private JLabel iconLabel;
-    private JLabel selfNameLabel;
-    private JLabel chatWithName;
-    private JLabel editContactsButton;
-    private JLabel errLabel;
-    private JList chatArea;
-    private JPanel sPanel;
-    private JList contactsList; // контакт лист
+    private JLabel settingsButton, iconLabel, selfNameLabel, chatWithName, editContactsButton, errLabel;
+    private JList chatArea, contactsList; // контакт лист
     BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon, addButtonIcon;
     private ChatFormPresenter presenter;
     private static ChatForm instance;
@@ -66,8 +37,6 @@ public class ChatForm implements IChatForm {
     public static ChatForm getInstance(){
         if(instance == null) instance = new ChatForm();
         instance.setPresenter(ChatFormPresenter.getPresenter(instance));
-        instance.presenter.getContactList();
-        instance.presenter.refreshUserPhotos();
         return instance;
     }
 
@@ -111,10 +80,13 @@ public class ChatForm implements IChatForm {
         contactsList.setCellRenderer(new ContactListRenderer());
         contactsList.addListSelectionListener(e -> {
             Person person = (Person) contactsList.getSelectedValue();
-            chatWithName.setText(person.getFullName());
-            chatAvatarPanel.getGraphics().drawImage(person.getPhotoSmall(),0,0,41,41, null);
-            chatAvatarPanel.repaint();
-            presenter.getChat(person.getId());
+            if(person != null){
+                chatWithName.setText(person.getFullName());
+                chatAvatarPanel.getGraphics().drawImage(person.getPhotoSmall(),0,0,41,41, null);
+                chatAvatarPanel.repaint();
+                presenter.getChat(person.getId());
+                chatListModel.removeAllElements();
+            }
         });
         searchField.addKeyListener(new KeyAdapter() {
             @Override
@@ -128,9 +100,11 @@ public class ChatForm implements IChatForm {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Person person = (Person)contactsList.getSelectedValue();
-                presenter.sendMessage(chatInputField.getText(), person);
-                chatInputField.setText("");
-                presenter.getChat(person.getId());
+                if(person != null){
+                    presenter.sendMessage(chatInputField.getText(), person);
+                    chatInputField.setText("");
+                    presenter.getChat(person.getId());
+                }
             }
         });
     }
@@ -174,7 +148,6 @@ public class ChatForm implements IChatForm {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(tavatar, 0, 0, 30, 30, null);
                 g.drawImage(maskBlueMini, 0, 0, 30, 30, null);
             }
         };
@@ -188,7 +161,6 @@ public class ChatForm implements IChatForm {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                //g.drawImage(tavatar, 0, 0, 41, 41, null);
                 g.drawImage(maskGray, 0, 0, null);
             }
         };
@@ -218,7 +190,6 @@ public class ChatForm implements IChatForm {
 
     }
 
-    @Override
     public void setChatList(ArrayList<ChatPanel> panels) {
         //Todo
         Collections.reverse(panels);
@@ -229,24 +200,18 @@ public class ChatForm implements IChatForm {
             chatListModel.addElement(panel);
         }
         chatArea.setModel(chatListModel);
-        //chatArea.setListData(FakeChat.getChatPanels());
-    }
+        chatArea.ensureIndexIsVisible(chatListModel.getSize() -1);
 
-//    public void setContactList(ArrayList<ContactPanel> panels) {
-//        //Todo
-//        this.contactPanels = panels;
-//        contactListModel = new DefaultListModel<>();
-//        contactListModel.ensureCapacity(1);;
-//        for(ContactPanel panel : panels){
-//            contactListModel.addElement(panel);
-//        }
-//        contactsList.setModel(contactListModel);
-//    }
+    }
 
     public void setContactList(DefaultListModel<Person> model) {
         this.clModel = model;
         contactsList.setModel(this.clModel);
         repaintContactList();
+    }
+
+    public void getContactsForce(){
+        presenter.getContactList(true);
     }
 
     public void repaintContactList(){
@@ -256,6 +221,21 @@ public class ChatForm implements IChatForm {
     public void setSelfUserPhoto(Image photo){
         //Todo
     }
+
+    private synchronized void showContactListFilter(String searchString) {
+        if (searchString.equals("")) {
+            contactsList.setModel(clModel);
+        } else {
+            DefaultListModel<Person> searchModel = new DefaultListModel<>();
+            contactsList.setModel(searchModel);
+            for (int i = 0; i < clModel.getSize(); i++) {
+                if (clModel.get(i).getFullName().toLowerCase().contains(searchString.toLowerCase())) {
+                    searchModel.addElement(clModel.get(i));
+                }
+            }
+        }
+    }
+
     // стандартные методы
 
     public void setSelfName(String fullName) {
@@ -269,7 +249,7 @@ public class ChatForm implements IChatForm {
 
     @Override
     public void setPresenter(IPresenter presenter) {
-        this.presenter = (ChatFormPresenter) presenter;
+        if(this.presenter == null) this.presenter = (ChatFormPresenter) presenter;
     }
 
     @Override
@@ -291,27 +271,4 @@ public class ChatForm implements IChatForm {
         errLabel.setForeground(Color.BLACK);
     }
 
-    @Override
-    public void showLoadingProcess() {
-
-    }
-
-    @Override
-    public void hideLoadingProcess() {
-
-    }
-    private synchronized void showContactListFilter(String searchString) {
-        if (searchString.equals("")) {
-            contactsList.setModel(clModel);
-        } else {
-            DefaultListModel<Person> searchModel = new DefaultListModel<>();
-            contactsList.setModel(searchModel);
-            for (int i = 0; i < clModel.getSize(); i++) {
-                if (clModel.get(i).getFullName().toLowerCase().contains(searchString.toLowerCase())) {
-                    searchModel.addElement(clModel.get(i));
-                }
-            }
-        }
-
-    }
 }
