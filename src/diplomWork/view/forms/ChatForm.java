@@ -18,14 +18,13 @@ import java.util.Collections;
 
 
 public class ChatForm implements IView {
-    //private DefaultListModel<ContactPanel> contactListModel;
     private DefaultListModel<Person> clModel;
     private DefaultListModel<ChatPanel> chatListModel;
     private JPanel contactListPanel, chatPanel, rootPanel, avatarPanelMini, chatWithPanel, chatInfoPanel, chatAvatarPanel,
-            chatInputPanel, sendButtonPanel, searchButton, titlePanel, cList2, sPanel;
+            chatInputPanel, sendButtonPanel, searchButton, titlePanel, cList2, sPanel, floatAddContactButton;
     private JTextArea chatInputField;
     private JTextField searchField;
-    private JButton addContactsButton;
+    private JButton addContactsButton;      //Todo убрать
     private JLabel settingsButton, iconLabel, selfNameLabel, chatWithName, editContactsButton, errLabel;
     private JList chatArea, contactsList; // контакт лист
     BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon, addButtonIcon;
@@ -40,6 +39,7 @@ public class ChatForm implements IView {
     }
 
     private ChatForm() {     //отработано
+        addContactsButton.setVisible(false);
         selfNameLabel.setText("Василий");
         cList2.setLayout(new BoxLayout(cList2, BoxLayout.Y_AXIS));
         JScrollPane contactsScrollPane = new JScrollPane(contactsList);
@@ -51,7 +51,7 @@ public class ChatForm implements IView {
         chatScrollPane.setBorder(BorderFactory.createEmptyBorder());
         chatPanel.add(chatScrollPane);
 
-        addContactsButton.addMouseListener(new MouseAdapter() {
+        floatAddContactButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -185,7 +185,21 @@ public class ChatForm implements IView {
                 g.drawImage(searchButtonIcon, 20, 5, null);
             }
         };
-
+        floatAddContactButton = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {       //рисовка кнопки добавить
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(new Color(0, 179, 230));
+                g2d.fillOval(0,0,48,48);
+                g2d.setColor(new Color(250, 250, 250));
+                g2d.fillRoundRect(21,4, 6, 40, 3,3);
+                g2d.fillRoundRect(4,21, 40, 6,3,3);
+            }
+        };
+        frame.setFloatButton(floatAddContactButton);
+        frame.showFloatButton();
 
     }
 

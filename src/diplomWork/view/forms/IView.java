@@ -7,6 +7,8 @@ import diplomWork.view.forms.PhoneNumber;
 import javax.swing.*;
 
 public interface IView {
+    MainFrame frame = MainFrame.getInstance();
+
     default void goBackToPhoneInput() {
         PhoneNumber.getInstance();
     }
