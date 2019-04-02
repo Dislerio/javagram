@@ -2,6 +2,7 @@ package diplomWork.view.forms;
 
 import diplomWork.Loader;
 import diplomWork.Log;
+import diplomWork.view.components.OverlayHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,49 +17,65 @@ public class MainFrame extends JFrame{      //++
     private JLabel minButton;
     private JLabel closeButton;
     private JPanel floatAddContactButton;
-    //private JFrame frame;
+    private OverlayHandler handler  = new OverlayHandler();
 
-
-    private MainFrame() {
-        layeredPane = getLayeredPane();
-        //frame = new MainFrame();
-        setTitle("Javagram");
-        setDefaultCloseOperation(3);
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        setLocationRelativeTo(null);
-    }
-
-    @Override
-    public void setContentPane(Container contentPane) {
-        super.setContentPane(contentPane);
-        //rootPanel.add(contentPane, BorderLayout.CENTER, 0);
-        refreshForm();
-    }
-
-    void setFloatButton(JPanel floatAddContactButton){
-        this.floatAddContactButton = floatAddContactButton;
-        this.floatAddContactButton.setBounds(20, frame.getHeight() - 120, 48, 48);
-        this.floatAddContactButton.setOpaque(false);
-    }
-
-    public void showFloatButton() {
-        if (floatAddContactButton != null) {
-            layeredPane.add(floatAddContactButton, JLayeredPane.MODAL_LAYER-1, 50);
-        } else {
-            Log.info("Не установлены плавающие компоненты формы! floatComponents не заданы!");
-        }
-    }
-
-    void refreshForm(){
-        revalidate();
-        repaint();
-        setVisible(true);
-    }
 
     public static synchronized MainFrame getInstance(){
         if(frame == null){
             frame = new MainFrame();
         }
         return frame;
+    }
+
+    private MainFrame() {
+        layeredPane = getLayeredPane();
+        setTitle("Javagram");
+        setDefaultCloseOperation(3);
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        setLocationRelativeTo(null);
+
+        setOverlayAsDefault();
+    }
+
+    @Override
+    public void setContentPane(Container contentPane) {
+        changeContentPanel(contentPane);
+
+//        super.setContentPane(contentPane);
+        refreshForm();
+    }
+
+    public void setOverlayAsDefault(){
+        rootPanel.add(handler, BorderLayout.CENTER);
+        super.setContentPane(rootPanel);
+    }
+
+    public void changeContentPanel(Container contentPanel) {
+        handler.setContentPanel(contentPanel);
+    }
+
+    public void changeOverlayPanel(Container overlayPanel) {
+        handler.setOverlayPanel(overlayPanel);
+    }
+
+    void setFloatButton(JPanel floatAddContactButton){
+        this.floatAddContactButton = floatAddContactButton;
+        this.floatAddContactButton.setBounds(20, frame.getHeight() - 120, 48, 48);
+        this.floatAddContactButton.setOpaque(false);
+        layeredPane.add(floatAddContactButton, JLayeredPane.MODAL_LAYER-1, 50);
+    }
+
+    public void showFloatButton() {
+        floatAddContactButton.setVisible(true);
+    }
+
+    public void hideFloatButton() {
+        floatAddContactButton.setVisible(false);
+    }
+
+    void refreshForm(){
+        revalidate();
+        repaint();
+        setVisible(true);
     }
 }

@@ -221,6 +221,37 @@
               <text value=""/>
             </properties>
           </component>
+          <grid id="9d8d4" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints border-constraint="East"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="66ff8" class="javax.swing.JButton" binding="getCLButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="getCL"/>
+                </properties>
+              </component>
+              <component id="6117a" class="javax.swing.JButton" binding="getCLForce">
+                <constraints/>
+                <properties>
+                  <text value="getCLForce"/>
+                </properties>
+              </component>
+              <component id="386cd" class="javax.swing.JButton" binding="showFBButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="showFB"/>
+                </properties>
+              </component>
+              <component id="4552e" class="javax.swing.JButton" binding="hideFBButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="hideFB"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

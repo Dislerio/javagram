@@ -3,6 +3,7 @@ package diplomWork.view.forms;
 import diplomWork.Configs;
 import diplomWork.presenter.AddContactPresenter;
 import diplomWork.presenter.IPresenter;
+import diplomWork.view.components.TransparentBackground;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class AddContactsForm implements IView {
+public class AddContactsForm extends TransparentBackground implements IView {
     private BufferedImage phoneIcon;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
@@ -27,6 +28,7 @@ public class AddContactsForm implements IView {
     private JTextField firstName;
     private JTextField lastName;
     private JTextField numberField;
+    private JLabel errLabel;
     private AddContactPresenter presenter;
     private static AddContactsForm instance;
 
@@ -79,8 +81,7 @@ public class AddContactsForm implements IView {
     }
 
     private void createUIComponents() {
-        numPanel = new JPanel();
-        // TODO: place custom component creation code here
+        rootPanel = this;
     }
 
     @Override
@@ -90,26 +91,20 @@ public class AddContactsForm implements IView {
 
     @Override
     public void showInfo(String info) {
+        clearError();
+        errLabel.setText(info);
     }
 
     @Override
     public void showError(String strError) {
-
+        errLabel.setForeground(Color.RED);
+        errLabel.setText(strError);
     }
 
     @Override
     public void clearError() {
-
-    }
-
-    @Override
-    public void showLoadingProcess() {
-
-    }
-
-    @Override
-    public void hideLoadingProcess() {
-
+        errLabel.setForeground(Color.WHITE);
+        errLabel.setText("");
     }
 
     @Override

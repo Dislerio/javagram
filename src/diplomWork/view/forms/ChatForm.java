@@ -26,7 +26,13 @@ public class ChatForm implements IView {
     private JTextField searchField;
     private JButton addContactsButton;      //Todo убрать
     private JLabel settingsButton, iconLabel, selfNameLabel, chatWithName, editContactsButton, errLabel;
-    private JList chatArea, contactsList; // контакт лист
+    private JList chatArea
+    , contactsList; // контакт лист
+    private JButton getCLButton;
+    private JButton getCLForce;
+    private JButton showFBButton;
+    private JButton hideFBButton;
+
     BufferedImage logo, settingsIcon, tavatar, maskBlueMini, maskGray, editButtonIcon, sendButtonIcon, searchButtonIcon, addButtonIcon;
     private ChatFormPresenter presenter;
     private static ChatForm instance;
@@ -39,6 +45,7 @@ public class ChatForm implements IView {
     }
 
     private ChatForm() {     //отработано
+
         addContactsButton.setVisible(false);
         selfNameLabel.setText("Василий");
         cList2.setLayout(new BoxLayout(cList2, BoxLayout.Y_AXIS));
@@ -46,10 +53,38 @@ public class ChatForm implements IView {
         cList2.add(contactsScrollPane);
         searchField.setBorder(BorderFactory.createEmptyBorder());
         errLabel.setBackground(Color.BLUE);
-
         JScrollPane chatScrollPane = new JScrollPane(chatArea);
         chatScrollPane.setBorder(BorderFactory.createEmptyBorder());
         chatPanel.add(chatScrollPane);
+        contactsList.setCellRenderer(new ContactListRenderer());
+        setListeners();
+
+        getCLButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presenter.getContactList(false);
+            }
+        });
+        getCLForce.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presenter.getContactList(true);
+            }
+        });
+        showFBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.showFloatButton();
+            }
+        });
+        hideFBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.hideFloatButton();
+            }
+        });
+    }
+    private void setListeners(){
 
         floatAddContactButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -76,7 +111,6 @@ public class ChatForm implements IView {
         avatarPanelMini.addMouseListener(settingsAdapter);
         selfNameLabel.addMouseListener(settingsAdapter);
         settingsButton.addMouseListener(settingsAdapter);
-        contactsList.setCellRenderer(new ContactListRenderer());
         contactsList.addListSelectionListener(e -> {
             Person person = (Person) contactsList.getSelectedValue();
             if(person != null){
@@ -84,7 +118,8 @@ public class ChatForm implements IView {
                 chatAvatarPanel.getGraphics().drawImage(person.getPhotoSmall(),0,0,41,41, null);
                 chatAvatarPanel.repaint();
                 presenter.getChat(person.getId());
-                chatListModel.removeAllElements();
+            } else {
+//                chatListModel.removeAllElements();
             }
         });
         searchField.addKeyListener(new KeyAdapter() {

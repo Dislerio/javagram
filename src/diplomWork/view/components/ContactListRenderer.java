@@ -14,6 +14,8 @@ public class ContactListRenderer extends DefaultListCellRenderer {
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         Person person = (Person) value;
         ContactPanel cp = new ContactPanel(person);
+        cp.setLastMessage(person.getLastMessage());
+        cp.setMessageDate(person.getTime());
         if(isSelected){
             cp.getRootPanel().setBorder(BorderFactory.createMatteBorder(0,0,0,3,selected));
 

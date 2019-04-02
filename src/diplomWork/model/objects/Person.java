@@ -8,12 +8,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Person {
     private UserContact userContact;
-    private String time, lastMessage;
+    private String lastMessage;
+    private int time;
     private BufferedImage photoSmall = null;
     private boolean noFoto = false;
+    private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");      //Todo временное решение
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
+    private static SimpleDateFormat dateWithoutTime = new SimpleDateFormat("dd.MM.yyyy");
 
 
 
@@ -87,11 +93,18 @@ public class Person {
         return  userContact.toString();
     }
 
-    public String getTime() {
-        return time;
+    public String getTime() {       //Todo вынести в интерфейс
+        String dateOfMessage;
+        Date date = new Date((long)this.time * 1000);
+        if(dateWithoutTime.format(date).equals(dateWithoutTime.format(new Date(System.currentTimeMillis())))){
+            dateOfMessage = timeFormat.format(date);
+        } else {
+            dateOfMessage = dateFormat.format(date);
+        }
+        return dateOfMessage;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
     }
 

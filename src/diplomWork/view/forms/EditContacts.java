@@ -4,6 +4,7 @@ import diplomWork.Configs;
 import diplomWork.model.objects.Person;
 import diplomWork.presenter.EditContactPresenter;
 import diplomWork.presenter.IPresenter;
+import diplomWork.view.components.TransparentBackground;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class EditContacts implements IView {
+public class EditContacts extends TransparentBackground implements IView {
     private JButton deleteButton;
     private JButton saveButton;
     private JPanel avatar;
@@ -48,22 +49,23 @@ public class EditContacts implements IView {
         saveButton.setText(Configs.saveButtonText);
        editContactsToolTip.addMouseListener(new MouseAdapter() {
            @Override
-           public void mouseClicked(MouseEvent e) {
+           public void mouseClicked(MouseEvent e) {     //Todo временно!
                super.mouseClicked(e);
-               ChatForm.getInstance().repaintContactList();
+               ChatForm.getInstance();
            }
        });
        saveButton.addActionListener(e -> {
            presenter.editContact(numberField.getText(), nameField.getText(), surNameField.getText());
-           ChatForm.getInstance().getContactsForce();
+           presenter.goToMainForm();
        });
        deleteButton.addActionListener(e -> {
            presenter.deleteContact(person.getId());
-           ChatForm.getInstance().getContactsForce();
+           presenter.goToMainForm();
        });
    }
 
     private void createUIComponents() {
+        rootPanel = this;
         mainPanel = new JPanel();
         deleteButton = new JButton(Configs.deleteContactText);
         deleteButton.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
@@ -77,15 +79,16 @@ public class EditContacts implements IView {
             }
         };
         avatarPanel.setBorder(BorderFactory.createLineBorder(Color.RED, 2,true));
-        // TODO: place custom component creation code here
     }
 
     public void setEditUser(Person person){
-        this.person = person;
-        nameField.setText(person.getFirstName());
-        surNameField.setText(person.getLastName());
-        numberField.setText("+" + person.getPhone());
-        this.avatar.getGraphics().drawImage(person.getPhotoSmall(), 0,0, avatar.getWidth(), avatar.getHeight(), null);
+        if(person != null){
+            this.person = person;
+            nameField.setText(person.getFirstName());
+            surNameField.setText(person.getLastName());
+            numberField.setText("+" + person.getPhone());
+            this.avatar.getGraphics().drawImage(person.getPhotoSmall(), 0,0, avatar.getWidth(), avatar.getHeight(), null);
+        }
     }
 
     @Override

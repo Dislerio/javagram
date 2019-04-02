@@ -4,6 +4,7 @@ import diplomWork.Configs;
 import diplomWork.Log;
 import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.ProfileSettingsPresenter;
+import diplomWork.view.components.TransparentBackground;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class ProfileSettings implements IView {
+public class ProfileSettings extends TransparentBackground implements IView {
     private BufferedImage logo;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
@@ -81,31 +82,6 @@ public class ProfileSettings implements IView {
                 presenter.goToMainForm();
             }
         });
-    }
-
-    @Override
-    public void showError(String strError) {
-
-    }
-
-    @Override
-    public void showInfo(String strError) {
-
-    }
-
-    @Override
-    public void clearError() {
-
-    }
-
-    @Override
-    public void showLoadingProcess() {
-
-    }
-
-    @Override
-    public void hideLoadingProcess() {
-
     }
 
     @Override
@@ -181,5 +157,9 @@ public class ProfileSettings implements IView {
         bGr.drawImage(img, 0, 0, null);
         bGr.dispose();
         return buff;
+    }
+
+    private void createUIComponents() {
+        rootPanel = this;
     }
 }

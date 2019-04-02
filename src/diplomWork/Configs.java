@@ -76,7 +76,7 @@ public class Configs {
         IMG_LOADING_GIF = Toolkit.getDefaultToolkit().createImage("img/loading_100.gif");
         //test avatar
         tavatar = readImage("img/tavatar.jpg");
-        IMG_DEFAULT_USER = readImage("img/icon-default-user.png");
+        IMG_DEFAULT_USER = readImage("img/icon-default-user.jpg");
         IMG_DEFAULT_USER_PHOTO_41_41 = readImage("img/user-photo-def.png");
         IMG_USER_PHOTO_EMPTY_160 = readImage("img/UserPhotoEmpty.png");
         //Configs data

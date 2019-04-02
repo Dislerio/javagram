@@ -12,6 +12,7 @@ import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
 import org.javagram.response.AuthSentCode;
+import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.UserContact;
 import org.telegram.api.TLAbsMessage;
@@ -26,12 +27,13 @@ import org.telegram.api.requests.TLRequestMessagesGetHistory;
 import org.telegram.tl.TLVector;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Logger;
@@ -62,6 +64,7 @@ public class TLHandler {    //++
 
     private ArrayList<UserContact> contactList = new ArrayList<>();
     private ArrayList<Person> contactListCache = new ArrayList<>();
+    ArrayList<Dialog> dialogsCache;
 
     public static TLHandler getInstance() {
         synchronized (TLHandler.class) {
@@ -193,17 +196,6 @@ public class TLHandler {    //++
         return getContactList(true);
     }
 
-    private synchronized ArrayList<Person> getContactList(boolean force) throws IOException {
-        if (contactList.isEmpty() || contactListCache.isEmpty() || force){
-            contactList = bridge.contactsGetContacts();
-            contactListCache.clear();
-            for (UserContact user : contactList) {
-                contactListCache.add(new Person(user));
-            }
-        }
-        return contactListCache;
-    }
-
     public synchronized boolean editUserProfile(BufferedImage newPhoto, String firstName,
                                                 String lastName) {
         try {
@@ -220,6 +212,45 @@ public class TLHandler {    //++
             return false;
         }
         return true;
+    }
+
+    private synchronized ArrayList<Person> getContactList(boolean force) throws IOException {       //Todo исчезает при переходе с добавления контакта на чат
+        if (contactList.isEmpty() || contactListCache.isEmpty() || force){
+            contactList = bridge.contactsGetContacts();
+            contactListCache.clear();
+            for (UserContact user : contactList) {
+                contactListCache.add(new Person(user));
+            }
+            updateLastMessages(contactListCache);
+        }
+
+        return contactListCache;
+    }
+
+    public synchronized ArrayList<Person> updateLastMessages(ArrayList<Person> cList) throws IOException {
+        ArrayList<Dialog> dialogs = bridge.messagesGetDialogs(0,Integer.MAX_VALUE, 500);
+        ArrayList<Integer> messageIds = new ArrayList<>();
+        ArrayList<Message> messages;
+        dialogsCache = dialogs;
+        if(dialogsCache != null && dialogs.size() == dialogsCache.size()){          //исключаем лишние запросы
+            for(int i = 0; i < dialogsCache.size(); i++){
+                if(dialogs.get(i).getTopMessage() != dialogsCache.get(i).getTopMessage()){
+                    messageIds.add(dialogs.get(i).getTopMessage());
+                }
+            }
+        }
+        if(messageIds.size() > 0) {
+            messages = bridge.messagesGetMessages(messageIds);
+            for(Message m : messages){
+                for(Person p : cList){
+                    if(m.getToId() == p.getId() || m.getFromId() == p.getId()){
+                        p.setLastMessage(m.getMessage());
+                        p.setTime(m.getDate());
+                    }
+                }
+            }
+        }
+        return cList;
     }
 
     public synchronized BufferedImage getContactPhotoSmall(Person contact) {
@@ -240,6 +271,7 @@ public class TLHandler {    //++
             }
             //get contact from Telegram API
             try {
+                Log.info("Лезем в API за фото для " + contact.getFullName());
                 photoSmall = ImageIO.read(new ByteArrayInputStream(tlContact.getPhoto(true)));
                 //write cache
                 File outputFile = new File(Configs.PATH_USER_PHOTO + contact.getId() + "-small.jpg");
@@ -253,9 +285,14 @@ public class TLHandler {    //++
                 e.printStackTrace();
                 return null;
             } catch (NullPointerException e) {
-                Log.warning(
-                        "NullPointerException Repository getContactPhotoSmall()" + contact.getFullName());
-                contact.setNoFoto(true);
+                Log.warning("NullPointerException Repository getContactPhotoSmall()" + contact.getFullName());
+                File outputFile = new File(Configs.PATH_USER_PHOTO + contact.getId() + "-small.jpg");
+                try {
+                    ImageIO.write(Configs.IMG_DEFAULT_USER, "jpg", outputFile);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                Log.info("Setted default avatar to " + contact.getFullName());
                 return null;
             }
             //after every request do sleep more than 1 second or you can get ban for 12-24 hours (FLOOD_WAIT)
@@ -386,8 +423,5 @@ public class TLHandler {    //++
             Log.warning("Error in sendMessage" + id + ", " + text + ", " + l);
             e.printStackTrace();
         }
-    }
-    public void getDialogs(){
-
     }
 }

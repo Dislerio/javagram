@@ -13,7 +13,7 @@ public class AddContactPresenter implements IPresenter{
 
     public synchronized static AddContactPresenter getPresenter(IView iView){
         if(presenter == null) presenter = new AddContactPresenter(iView);
-        presenter.frame.setContentPane(presenter.view.getRootPanel());
+        presenter.frame.changeOverlayPanel(presenter.view.getRootPanel());
         return presenter;
     }
 
@@ -33,7 +33,6 @@ public class AddContactPresenter implements IPresenter{
                 int numberAddedContacts = repository.updateContact(this.phone, this.firstName, this.lastName);
                 if (numberAddedContacts == 1) {
                     view.showInfo("Контакт успешно добавлен");
-                    repository.getContactsForceUpdate();           //Todo сделать нормально загрузку контактов и плавающие окошки
                     //view.closeModalView();
                 } else if (numberAddedContacts == -1) {
                     view.showError("Пользователь с таким именем уже существует!");
@@ -52,6 +51,8 @@ public class AddContactPresenter implements IPresenter{
     }
     @Override
     public void goToMainForm(){
+        frame.changeOverlayPanel(null);
+        frame.showFloatButton();
         ChatForm.getInstance().getContactsForce();
     }
 

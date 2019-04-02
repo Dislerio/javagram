@@ -20,12 +20,14 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
     private volatile DefaultListModel<Person> contactsListModel = new DefaultListModel<>();
     private ChatForm view;
     private static ChatFormPresenter presenter;
+    private Thread upMessages;
+    boolean upMessagesStopped = false;
 
     public synchronized static ChatFormPresenter getPresenter(IView iView){
         if(presenter == null){
             presenter = new ChatFormPresenter(iView);
         }
-        frame.setContentPane(presenter.view.getRootPanel());
+        presenter.switchIn();
         return presenter;
     }
 
@@ -38,9 +40,10 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         frame.addWindowListener(new WindowAdapter() {
         });
         getContactList(false);
+        updateMessages();
     }
 
-    public synchronized void getContactList(boolean force){
+    public void getContactList(boolean force){
 
         Thread th = new Thread(() -> {
             try {
@@ -57,21 +60,21 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
                     contactsListModel.addElement(contact);
                 }
                 view.setContactList(contactsListModel);
-                refreshUserPhotos();
             } catch (Exception e) {
                 e.printStackTrace();
                 view.showError("Ошибка при получении списка контактов! IOException getContactList()");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }   //пауза
+                    try {       //пауза
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
                 getContactList(false);
             }
         });
         th.start();
+        view.repaintContactList();
+        if(force) refreshUserPhotos();
     }
-
 
     public synchronized void refreshUserPhotos() {
         //wait for Moon Phase
@@ -103,7 +106,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
 
     public synchronized void getChat(int userId){
         ArrayList<ChatPanel> panels = new ArrayList<>();
-        Thread thread = new Thread(() ->{           //Todo сделать сначала подгрузку списка, после - обновление аватарок
+        Thread thread = new Thread(() ->{
             try{
                 ArrayList<Message> messages = TLHandler.getInstance().messagesGetHistoryByUserId(userId);
                 view.showInfo("Сообщений получено - " + messages.size());
@@ -121,18 +124,49 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
 
     public void callAddPresenter(){
         AddContactsForm.getInstance();
+        switchOut();
     }
 
     public void callEditPresenter(Person person){
         EditContacts.getInstance(person);
+        switchOut();
     }
 
     public void callSettingsPresenter(){
         ProfileSettings.getInstance();
+        switchOut();
+    }
+
+    private void switchOut(){
+        frame.hideFloatButton();
+        upMessagesStopped = true;
+    }
+
+    private void switchIn(){
+        frame.hideFloatButton();
+        upMessagesStopped = false;
+        frame.setContentPane(presenter.view.getRootPanel());
     }
 
     public void sendMessage(String text, Person personTo) {
         repository.sendMessage(text, personTo.getId());
+    }
+
+    private void updateMessages(){
+        upMessages = new Thread(() ->{
+            while (true){
+                try{
+                    Thread.sleep(5000);
+                    if(upMessagesStopped) continue;
+                    repository.updateLastMessages(contactList);
+                    view.repaintContactList();
+                } catch (Exception e) {
+                    view.showError("Ошибка получения сообщений Exception updateMessages(): " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+        upMessages.start();
     }
 
 }

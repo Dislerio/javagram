@@ -12,7 +12,7 @@ public class EditContactPresenter implements IPresenter{
 
     public synchronized static EditContactPresenter getPresenter(IView iView) {
         if (presenter == null) presenter = new EditContactPresenter(iView);
-        frame.setContentPane(presenter.view.getRootPanel());
+        frame.changeOverlayPanel(presenter.view.getRootPanel());
         return presenter;
     }
 
@@ -23,7 +23,6 @@ public class EditContactPresenter implements IPresenter{
     public void editContact(String phone, String name, String surname){
         try {
             repository.updateContact(phone, name, surname);
-            ChatForm.getInstance().getContactsForce();
         } catch (IOException e) {
             e.printStackTrace();
             view.showError(e.getMessage());
@@ -33,10 +32,16 @@ public class EditContactPresenter implements IPresenter{
     public void deleteContact(int userId){
         try {
             repository.deleteContact(userId);
-            ChatForm.getInstance().getContactsForce();
         } catch (IOException e) {
             e.printStackTrace();
             view.showError(e.getMessage());
         }
+    }
+
+    @Override
+    public void goToMainForm() {
+        frame.changeOverlayPanel(null);
+        frame.showFloatButton();
+        ChatForm.getInstance().getContactsForce();
     }
 }

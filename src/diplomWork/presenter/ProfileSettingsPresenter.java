@@ -16,7 +16,7 @@ public class ProfileSettingsPresenter implements IPresenter{
         if(presenter == null){
             presenter = new ProfileSettingsPresenter(iView);
         }
-        presenter.frame.setContentPane(presenter.view.getRootPanel());
+        frame.changeOverlayPanel(presenter.view.getRootPanel());
         return presenter;
     }
 
@@ -61,5 +61,11 @@ public class ProfileSettingsPresenter implements IPresenter{
         repository.logOut();
         repository.clearApiBridge();
         PhoneNumber.getInstance();
+    }
+
+    @Override
+    public void goToMainForm() {
+        frame.changeOverlayPanel(null);
+        frame.showFloatButton();
     }
 }
