@@ -2,7 +2,7 @@ package diplomWork.presenter;
 
 import diplomWork.Configs;
 import diplomWork.model.TLHandler;
-import diplomWork.tests.PhoneFormatError;
+import diplomWork.presenter.objects.PhoneFormatError;
 import diplomWork.view.forms.PhoneNumber;
 import diplomWork.view.forms.VerificationCode;
 import diplomWork.view.forms.IView;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import diplomWork.Log;
 import diplomWork.model.TLHandler;
-import diplomWork.model.objects.Person;
+import diplomWork.presenter.objects.Person;
 import diplomWork.view.components.ChatPanel;
 import diplomWork.view.forms.*;
 import diplomWork.view.forms.IView;
@@ -143,7 +143,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
     }
 
     private void switchIn(){
-        frame.hideFloatButton();
+        frame.showFloatButton();
         upMessagesStopped = false;
         frame.setContentPane(presenter.view.getRootPanel());
     }

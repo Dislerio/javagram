@@ -1,12 +1,11 @@
 package diplomWork.view.components;
 
 import diplomWork.Configs;
-import diplomWork.model.objects.Person;
+import diplomWork.presenter.objects.Person;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 

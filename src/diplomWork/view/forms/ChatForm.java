@@ -1,7 +1,7 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
-import diplomWork.model.objects.Person;
+import diplomWork.presenter.objects.Person;
 import diplomWork.presenter.ChatFormPresenter;
 import diplomWork.presenter.IPresenter;
 import diplomWork.view.components.ChatListRenderer;
@@ -59,30 +59,6 @@ public class ChatForm implements IView {
         contactsList.setCellRenderer(new ContactListRenderer());
         setListeners();
 
-        getCLButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                presenter.getContactList(false);
-            }
-        });
-        getCLForce.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                presenter.getContactList(true);
-            }
-        });
-        showFBButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.showFloatButton();
-            }
-        });
-        hideFBButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.hideFloatButton();
-            }
-        });
     }
     private void setListeners(){
 
@@ -139,6 +115,33 @@ public class ChatForm implements IView {
                     chatInputField.setText("");
                     presenter.getChat(person.getId());
                 }
+            }
+        });
+
+        //testListeners
+
+        getCLButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presenter.getContactList(false);
+            }
+        });
+        getCLForce.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presenter.getContactList(true);
+            }
+        });
+        showFBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.showFloatButton();
+            }
+        });
+        hideFBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.hideFloatButton();
             }
         });
     }

@@ -223,7 +223,9 @@
           </component>
           <grid id="9d8d4" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints border-constraint="East"/>
-            <properties/>
+            <properties>
+              <visible value="false"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="66ff8" class="javax.swing.JButton" binding="getCLButton" default-binding="true">

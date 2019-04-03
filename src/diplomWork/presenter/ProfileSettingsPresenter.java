@@ -60,6 +60,7 @@ public class ProfileSettingsPresenter implements IPresenter{
     public void logOut() {
         repository.logOut();
         repository.clearApiBridge();
+        frame.changeOverlayPanel(null);
         PhoneNumber.getInstance();
     }
 

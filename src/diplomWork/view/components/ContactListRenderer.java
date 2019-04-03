@@ -1,6 +1,6 @@
 package diplomWork.view.components;
 
-import diplomWork.model.objects.Person;
+import diplomWork.presenter.objects.Person;
 
 import javax.swing.*;
 import java.awt.*;

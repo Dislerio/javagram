@@ -29,6 +29,7 @@ public class ProfileSettings extends TransparentBackground implements IView {
     private JPanel rootPanel;
     private JTextField nameTextField;
     private JTextField surnameTextField;
+    private JLabel btnBack;
     private ProfileSettingsPresenter presenter;
     private static ProfileSettings instance;
 
@@ -52,11 +53,11 @@ public class ProfileSettings extends TransparentBackground implements IView {
         deleteAvatar.setIcon(new ImageIcon(deleteIcon));
         numLabel.setForeground(Color.RED);
         numLabel.setFont(Configs.getFont(14));
+
         btnLogout.setForeground(Color.RED);
         btnLogout.setFont(Configs.getFont(12));
         btnLogout.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         btnLogout.setText("Выйти");
-
         btnLogout.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -65,7 +66,9 @@ public class ProfileSettings extends TransparentBackground implements IView {
             }
         });
 
-        title.addMouseListener(new MouseAdapter() {
+        btnBack.setText("");
+        btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
+        btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {        //Todo временное решение, убрать!!!
                 super.mouseClicked(e);

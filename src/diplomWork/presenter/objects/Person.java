@@ -1,4 +1,4 @@
-package diplomWork.model.objects;
+package diplomWork.presenter.objects;
 
 import diplomWork.Configs;
 import org.javagram.response.object.UserContact;

@@ -5,34 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a58a77b-d891-4371-a705-4f7bda3e5371" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/diplomWork/view/components/BufferedOverlay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diplomWork/view/components/OverlayHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diplomWork/view/components/TransparentBackground.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/Configs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/Configs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/AddContactPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/AddContactPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/170-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/171-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/172-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/173-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/174-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/175-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/176-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/177-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatars/178-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/TestLoader.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/ChatFormPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/ChatFormPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/EditContactPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/EditContactPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/PhoneNumberPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/PhoneNumberPresenter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/ProfileSettingsPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/presenter/ProfileSettingsPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/tests/ContactPanelTest$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/tests/ContactPanelTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/tests/FakeChat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/tests/FakeContact.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/tests/FakeContacts.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/components/ContactListRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/components/ContactListRenderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/AddContactsForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/AddContactsForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/EditContacts$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/EditContacts$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/EditContacts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/EditContacts.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/ProfileSettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGramNew/diplomWork/view/forms/ProfileSettings.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/Configs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/Configs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/TestLoader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/model/TLHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/model/TLHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diplomWork/model/objects/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/model/objects/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diplomWork/presenter/AddContactPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/presenter/AddContactPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/model/objects/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/presenter/objects/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/presenter/ChatFormPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/presenter/ChatFormPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diplomWork/presenter/EditContactPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/presenter/EditContactPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/presenter/PhoneNumberPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/presenter/PhoneNumberPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/presenter/ProfileSettingsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/presenter/ProfileSettingsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/presenter/objects/MyMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/tests/ContactPanelTest.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/tests/ContactPanelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/tests/FakeChat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/tests/FakeContact.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/tests/FakeContacts.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/tests/PhoneFormatError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/presenter/objects/PhoneFormatError.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/components/ContactListRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/components/ContactListRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/view/components/ContactPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/components/ContactPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.java" afterDir="false" />
@@ -49,72 +65,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1028">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="366">
+              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2815#2816#0" expanded="true" />
-                <element signature="e#2855#2856#0" expanded="true" />
-                <element signature="e#3061#3062#0" expanded="true" />
-                <element signature="e#3101#3102#0" expanded="true" />
-                <element signature="e#3344#3345#0" expanded="true" />
-                <element signature="e#3380#3381#0" expanded="true" />
-                <element signature="e#3552#3553#0" expanded="true" />
-                <element signature="e#3588#3589#0" expanded="true" />
-                <element signature="e#9019#9020#0" expanded="true" />
-                <element signature="e#9065#9066#0" expanded="true" />
-                <element signature="e#9104#9105#0" expanded="true" />
-                <element signature="e#9142#9143#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.form">
-          <provider selected="true" editor-type-id="ui-designer" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="617">
-              <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
-              <folding>
-                <element signature="method#getInstance#0;class#MainFrame#0" />
-                <element signature="e#1936#1937#0" expanded="true" />
-                <element signature="e#1990#1991#0" expanded="true" />
-                <element signature="e#2062#2063#0" expanded="true" />
-                <element signature="e#2121#2122#0" expanded="true" />
+                <element signature="e#3368#5696#0" />
+                <element signature="e#5019#5020#0" expanded="true" />
+                <element signature="e#5082#5083#0" expanded="true" />
+                <element signature="e#5233#5234#0" expanded="true" />
+                <element signature="e#5295#5296#0" expanded="true" />
+                <element signature="e#5448#5449#0" expanded="true" />
+                <element signature="e#5503#5504#0" expanded="true" />
+                <element signature="e#5656#5657#0" expanded="true" />
+                <element signature="e#5711#5712#0" expanded="true" />
+                <element signature="e#5702#9322#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/ChatFormPresenter.java">
+        <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="160" column="37" lean-forward="true" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+            <state relative-caret-position="459">
+              <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
               <folding>
-                <element signature="method#callAddPresenter#0;class#ChatFormPresenter#0" />
-                <element signature="method#callEditPresenter#0;class#ChatFormPresenter#0" />
-                <element signature="method#callSettingsPresenter#0;class#ChatFormPresenter#0" />
-                <element signature="method#switchOut#0;class#ChatFormPresenter#0" />
-                <element signature="method#switchIn#0;class#ChatFormPresenter#0" />
+                <element signature="e#1936#1937#0" expanded="true" />
+                <element signature="e#1990#1991#0" expanded="true" />
+                <element signature="e#2027#2028#0" expanded="true" />
+                <element signature="e#2082#2083#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/diplomWork/model/TLHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/diplomWork/Configs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="229" column="105" selection-start-line="229" selection-start-column="105" selection-end-line="229" selection-end-column="105" />
+            <state relative-caret-position="221">
+              <caret line="64" column="53" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7581#8346#0" />
               </folding>
             </state>
           </provider>
@@ -185,7 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/diplomWork/view/components/messages/Incoming.form" />
         <option value="$PROJECT_DIR$/src/diplomWork/presenter/objects/MyMessage.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/presenter/objects/Person.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/Loader.java" />
@@ -201,7 +191,6 @@
         <option value="$PROJECT_DIR$/src/diplomWork/view/components/messages/Incoming.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/view/components/messages/Outcoming.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/viewInterface/IVerificationCode.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/presenter/PhoneNumberPresenter.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/viewInterface/IRegisterUser.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/presenter/RegisterUserPresenter.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/presenter/IPresenter.java" />
@@ -219,23 +208,25 @@
         <option value="$PROJECT_DIR$/src/diplomWork/view/components/OverlayDialog.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/view/components/OverlayHandler.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/view/components/OverlayBackground.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.form" />
-        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.form" />
         <option value="$PROJECT_DIR$/src/diplomWork/view/components/TransparentBackground.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/Configs.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/model/objects/Person.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/presenter/ProfileSettingsPresenter.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/presenter/EditContactPresenter.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/presenter/AddContactPresenter.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.form" />
+        <option value="$PROJECT_DIR$/src/diplomWork/model/TLHandler.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.form" />
+        <option value="$PROJECT_DIR$/src/diplomWork/presenter/ChatFormPresenter.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/presenter/PhoneNumberPresenter.java" />
         <option value="$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.form" />
         <option value="$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.form" />
-        <option value="$PROJECT_DIR$/src/diplomWork/presenter/ChatFormPresenter.java" />
-        <option value="$PROJECT_DIR$/src/diplomWork/model/TLHandler.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.form" />
+        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.form" />
+        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/presenter/ProfileSettingsPresenter.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/Configs.java" />
+        <option value="$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java" />
       </list>
     </option>
   </component>
@@ -253,7 +244,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -303,21 +294,6 @@
               <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
               <item name="presenter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -326,23 +302,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ContactPanel" type="e9f4de52:FormNode" />
             </path>
             <path>
               <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
@@ -395,7 +354,34 @@
               <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="forms" type="462c0819:PsiDirectoryNode" />
+              <item name="PhoneNumber" type="e9f4de52:FormNode" />
+            </path>
+            <path>
+              <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
               <item name="ProfileSettings" type="e9f4de52:FormNode" />
+            </path>
+            <path>
+              <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
+              <item name="RegForm" type="e9f4de52:FormNode" />
+            </path>
+            <path>
+              <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaGramNew" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="diplomWork" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
+              <item name="VerificationCode" type="e9f4de52:FormNode" />
             </path>
             <path>
               <item name="JavaGramNew" type="b2602c69:ProjectViewProjectNode" />
@@ -405,11 +391,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554243036097" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554243352454" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Javagram" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -595,14 +581,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554158786858</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add: Layered Dialogs with transparency, fully func FloatButton, last messages in contact list, messageUpdates, dialogsCache(for minimaze bans)&#10;Fixed: not correctly switch forms&#10;Todo: undecorated &amp; polish GUI forms">
+      <created>1554243346695</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1554243346696</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18710022" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18923241" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -671,80 +664,10 @@
     <MESSAGE value="EditContact(beta) + send messages" />
     <MESSAGE value="Add interfaces &amp; debug&#10;Todo: LayeredPane" />
     <MESSAGE value="Layered AddButton(beta)&#10;Todo: LayeredPane" />
-    <option name="LAST_COMMIT_MESSAGE" value="Layered AddButton(beta)&#10;Todo: LayeredPane" />
+    <MESSAGE value="Add: Layered Dialogs with transparency, fully func FloatButton, last messages in contact list, messageUpdates, dialogsCache(for minimaze bans)&#10;Fixed: not correctly switch forms&#10;Todo: undecorated &amp; polish GUI forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add: Layered Dialogs with transparency, fully func FloatButton, last messages in contact list, messageUpdates, dialogsCache(for minimaze bans)&#10;Fixed: not correctly switch forms&#10;Todo: undecorated &amp; polish GUI forms" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="668" column="19" selection-start-line="668" selection-start-column="19" selection-end-line="668" selection-end-column="19" />
-          <folding>
-            <element signature="e#24832#24833#0" expanded="true" />
-            <element signature="e#24872#24873#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/components/ContactPanel.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/components/messages/Incoming.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/components/messages/Outcoming.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="67" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/components/ChatPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setBreaks#0;class#ChatPanel#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/Telegram API bridge v2.jar!/org/telegram/api/requests/TLRequestMessagesSendMessage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.desktop/javax/swing/DefaultListSelectionModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="218" selection-start-line="218" selection-end-line="218" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.desktop/java/awt/event/ActionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/RegisterUserPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding>
-            <element signature="method#isValidFirstLastNames#0;class#RegisterUserPresenter#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/viewInterface/IPhoneNumber.java" />
     <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/PhoneNumber.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
@@ -761,35 +684,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/viewInterface/IVerificationCode.java" />
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/VerificationCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="74" column="29" lean-forward="true" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
-          <folding>
-            <element signature="method#getInstance#0;class#VerificationCode#0" />
-            <element signature="method#VerificationCode#0;class#VerificationCode#0" />
-            <element signature="e#4525#4526#0" expanded="true" />
-            <element signature="e#4570#4571#0" expanded="true" />
-            <element signature="method#createUIComponents#0;class#VerificationCode#0" />
-            <element signature="method#showError#0;class#VerificationCode#0" />
-            <element signature="method#showInfo#0;class#VerificationCode#0" />
-            <element signature="method#clearError#0;class#VerificationCode#0" />
-            <element signature="method#showLoadingProcess#0;class#VerificationCode#0" />
-            <element signature="method#hideLoadingProcess#0;class#VerificationCode#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/VerificationCodePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/viewInterface/IRegisterUser.java" />
     <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/RegForm.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -810,13 +704,6 @@
     <entry file="file://$PROJECT_DIR$/src/diplomWork/viewInterface/IProfileSettings.java" />
     <entry file="file://$PROJECT_DIR$/src/diplomWork/viewInterface/IEditContact.java" />
     <entry file="file://$PROJECT_DIR$/src/diplomWork/viewInterface/IChatForm.java" />
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/objects/MyMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/model/objects/InputContact.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -852,20 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/PhoneNumberPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#checkPhone#0;class#PhoneNumberPresenter#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/view/components/OverlayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -887,12 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/IPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -903,39 +770,6 @@
             <element signature="e#321#322#0" expanded="true" />
             <element signature="e#448#449#0" expanded="true" />
             <element signature="e#506#507#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/Configs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="78" column="63" selection-start-line="78" selection-start-column="63" selection-end-line="78" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/model/objects/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getPhoto#0;class#Person#0" />
-            <element signature="method#getUserPhoto#0;class#Person#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/ProfileSettingsPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="68" column="32" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
-          <folding>
-            <element signature="method#isContactFieldsValid#0;class#ProfileSettingsPresenter#0" />
-            <element signature="method#logOut#0;class#ProfileSettingsPresenter#0" />
           </folding>
         </state>
       </provider>
@@ -951,31 +785,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
-          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
-          <folding>
-            <element signature="method#getInstance#0;class#MainFrame#0" />
-            <element signature="e#1936#1937#0" expanded="true" />
-            <element signature="e#1990#1991#0" expanded="true" />
-            <element signature="e#2062#2063#0" expanded="true" />
-            <element signature="e#2121#2122#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/view/components/TransparentBackground.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/EditContactPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -988,65 +801,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/IView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="method#formatPhoneNumber#0;class#IView#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
-          <folding>
-            <element signature="method#fillUserProfileData#0;class#ProfileSettings#0" />
-            <element signature="method#resizeAndCropImage#0;class#ProfileSettings#0" />
-            <element signature="method#cropImageInSquare#0;class#ProfileSettings#0" />
-            <element signature="method#cropHeightLong#0;class#ProfileSettings#0" />
-            <element signature="method#cropWidthLong#0;class#ProfileSettings#0" />
-            <element signature="method#cropFromPoint#0;class#ProfileSettings#0" />
-            <element signature="method#convertImageToBufferImage#0;class#ProfileSettings#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1141">
-          <caret line="90" column="9" lean-forward="true" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
-          <folding>
-            <element signature="method#showError#0;class#EditContacts#0" />
-            <element signature="method#clearError#0;class#EditContacts#0" />
-            <element signature="method#showLoadingProcess#0;class#EditContacts#0" />
-            <element signature="method#hideLoadingProcess#0;class#EditContacts#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="755">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-          <folding>
-            <element signature="e#2851#2852#0" expanded="true" />
-            <element signature="e#2883#2884#0" expanded="true" />
-            <element signature="method#showInfo#0;class#AddContactsForm#0" />
-            <element signature="method#showError#0;class#AddContactsForm#0" />
-            <element signature="method#clearError#0;class#AddContactsForm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.form">
-      <provider selected="true" editor-type-id="ui-designer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/view/components/ContactPanel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1065,49 +819,277 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.java">
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/model/TLHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1028">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="3077">
+          <caret line="228" column="105" selection-start-line="228" selection-start-column="105" selection-end-line="228" selection-end-column="105" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2815#2816#0" expanded="true" />
-            <element signature="e#2855#2856#0" expanded="true" />
-            <element signature="e#3061#3062#0" expanded="true" />
-            <element signature="e#3101#3102#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3380#3381#0" expanded="true" />
-            <element signature="e#3552#3553#0" expanded="true" />
-            <element signature="e#3588#3589#0" expanded="true" />
-            <element signature="e#9019#9020#0" expanded="true" />
-            <element signature="e#9065#9066#0" expanded="true" />
-            <element signature="e#9104#9105#0" expanded="true" />
-            <element signature="e#9142#9143#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/diplomWork/model/TLHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/objects/MyMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="229" column="105" selection-start-line="229" selection-start-column="105" selection-end-line="229" selection-end-column="105" />
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/objects/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7581#8346#0" />
+            <element signature="method#getPhoto#0;class#Person#0" />
+            <element signature="method#getUserPhoto#0;class#Person#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/VerificationCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="method#getInstance#0;class#VerificationCode#0" />
+            <element signature="method#VerificationCode#0;class#VerificationCode#0" />
+            <element signature="method#createUIComponents#0;class#VerificationCode#0" />
+            <element signature="method#showError#0;class#VerificationCode#0" />
+            <element signature="method#showInfo#0;class#VerificationCode#0" />
+            <element signature="method#clearError#0;class#VerificationCode#0" />
+            <element signature="method#showLoadingProcess#0;class#VerificationCode#0" />
+            <element signature="method#hideLoadingProcess#0;class#VerificationCode#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/TestLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/tests/FakeChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/tests/FakeContacts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="25" column="92" selection-start-line="25" selection-start-column="92" selection-end-line="25" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/tests/FakeContact.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/tests/ContactPanelTest.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/tests/ContactPanelTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/objects/PhoneFormatError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/ChatFormPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="160" column="37" lean-forward="true" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+        <state relative-caret-position="206">
+          <caret line="145" column="32" selection-start-line="145" selection-start-column="32" selection-end-line="145" selection-end-column="32" />
           <folding>
             <element signature="method#callAddPresenter#0;class#ChatFormPresenter#0" />
             <element signature="method#callEditPresenter#0;class#ChatFormPresenter#0" />
             <element signature="method#callSettingsPresenter#0;class#ChatFormPresenter#0" />
-            <element signature="method#switchOut#0;class#ChatFormPresenter#0" />
-            <element signature="method#switchIn#0;class#ChatFormPresenter#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/PhoneNumberPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/IView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+          <folding>
+            <element signature="e#747#748#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+            <element signature="method#formatPhoneNumber#0;class#IView#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/RegisterUserPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+          <folding>
+            <element signature="e#1535#1536#0" expanded="true" />
+            <element signature="e#1576#1577#0" expanded="true" />
+            <element signature="method#isValidFirstLastNames#0;class#RegisterUserPresenter#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/VerificationCodePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/RegForm.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+          <folding>
+            <element signature="e#1957#2194#0" expanded="true" />
+            <element signature="e#2193#2194#0" expanded="true" />
+            <element signature="method#showError#0;class#EditContacts#0" />
+            <element signature="method#clearError#0;class#EditContacts#0" />
+            <element signature="method#showLoadingProcess#0;class#EditContacts#0" />
+            <element signature="method#hideLoadingProcess#0;class#EditContacts#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/EditContacts.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/EditContactPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/PhoneNumber.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/presenter/ProfileSettingsPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <folding>
+            <element signature="method#isContactFieldsValid#0;class#ProfileSettingsPresenter#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
+          <folding>
+            <element signature="e#2465#2708#0" expanded="true" />
+            <element signature="e#2707#2708#0" expanded="true" />
+            <element signature="e#3138#3139#0" expanded="true" />
+            <element signature="e#3170#3171#0" expanded="true" />
+            <element signature="method#fillUserProfileData#0;class#ProfileSettings#0" />
+            <element signature="method#resizeAndCropImage#0;class#ProfileSettings#0" />
+            <element signature="method#cropImageInSquare#0;class#ProfileSettings#0" />
+            <element signature="method#cropHeightLong#0;class#ProfileSettings#0" />
+            <element signature="method#cropWidthLong#0;class#ProfileSettings#0" />
+            <element signature="method#cropFromPoint#0;class#ProfileSettings#0" />
+            <element signature="method#convertImageToBufferImage#0;class#ProfileSettings#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ProfileSettings.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="65" selection-start-line="65" selection-end-line="66" selection-end-column="58" />
+          <folding>
+            <element signature="method#showInfo#0;class#AddContactsForm#0" />
+            <element signature="method#showError#0;class#AddContactsForm#0" />
+            <element signature="method#clearError#0;class#AddContactsForm#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/AddContactsForm.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/ChatForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3368#5696#0" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5082#5083#0" expanded="true" />
+            <element signature="e#5233#5234#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5448#5449#0" expanded="true" />
+            <element signature="e#5503#5504#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
+            <element signature="e#5711#5712#0" expanded="true" />
+            <element signature="e#5702#9322#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/Configs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="64" column="53" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/diplomWork/view/forms/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+          <folding>
+            <element signature="e#1936#1937#0" expanded="true" />
+            <element signature="e#1990#1991#0" expanded="true" />
+            <element signature="e#2027#2028#0" expanded="true" />
+            <element signature="e#2082#2083#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -16,7 +16,7 @@ public class Configs {
     public static final int SYS_PHONE_NUMBER_LENGTH = 10;   //Todo для продакт сервера = 11,  для тестового - 10!
     public static final String PATH_APP_DATA, PATH_USER_PHOTO;
     public static Image IMG_LOADING_GIF;
-    public static BufferedImage LOGO, LOGO_MINI, LOGO_MICRO, ICON_BACK, ICON_EDIT, ICON_TRASH, BG_IMAGE, ICON_PHONE,
+    public static BufferedImage LOGO, LOGO_MINI, LOGO_MICRO, ICON_BACK, ICON_EDIT, ICON_TRASH, BG_IMAGE, ICON_PHONE, ICON_FRAME,
             ICON_LOCK, ICON_SETTINGS, NO_AVATAR, MASK_BLUE_MINI, MASK_GRAY, IMG_BUTTON_BG, IMG_BUTTON_SEND, IMG_BUTTON_SEARCH, ICON_PLUS, IMG_DEFAULT_USER, IMG_DEFAULT_USER_PHOTO_41_41,
     IMG_USER_PHOTO_EMPTY_160;
     public static BufferedImage tavatar;
@@ -62,6 +62,7 @@ public class Configs {
         BG_IMAGE = readImage("img/background.png");
         ICON_BACK = readImage("img/icon-back.png");
         ICON_EDIT = readImage("img/icon-edit.png");
+        ICON_FRAME = readImage("img/icon-frame.png");
         ICON_PHONE = readImage("img/icon-phone.png");
         ICON_SETTINGS = readImage("img/icon-settings.png");
         ICON_PLUS = readImage("img/icon-plus.png");

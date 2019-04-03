@@ -1,7 +1,7 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
-import diplomWork.model.objects.Person;
+import diplomWork.presenter.objects.Person;
 import diplomWork.presenter.EditContactPresenter;
 import diplomWork.presenter.IPresenter;
 import diplomWork.view.components.TransparentBackground;
@@ -24,6 +24,7 @@ public class EditContacts extends TransparentBackground implements IView {
     private JLabel numberField;
     private JTextField nameField;
     private JTextField surNameField;
+    private JLabel btnBack;
     BufferedImage logo, trashIcon, phoneLogoImage;
     EditContactPresenter presenter;
     private static EditContacts instance;
@@ -47,11 +48,20 @@ public class EditContacts extends TransparentBackground implements IView {
         editContactsToolTip.setText(Configs.editContactText);
         saveButton.setFont(Configs.font22);
         saveButton.setText(Configs.saveButtonText);
+       btnBack.setText("");
+       btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
+       btnBack.addMouseListener(new MouseAdapter() {
+           @Override
+           public void mouseClicked(MouseEvent e) {        //Todo временное решение, убрать!!!
+               super.mouseClicked(e);
+               presenter.goToMainForm();
+           }
+       });
        editContactsToolTip.addMouseListener(new MouseAdapter() {
            @Override
            public void mouseClicked(MouseEvent e) {     //Todo временно!
                super.mouseClicked(e);
-               ChatForm.getInstance();
+               presenter.goToMainForm();
            }
        });
        saveButton.addActionListener(e -> {

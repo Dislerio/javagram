@@ -1,5 +1,6 @@
 package diplomWork.view.forms;
 
+import diplomWork.Configs;
 import diplomWork.Loader;
 import diplomWork.Log;
 import diplomWork.view.components.OverlayHandler;
@@ -33,7 +34,7 @@ public class MainFrame extends JFrame{      //++
         setDefaultCloseOperation(3);
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
-
+        setIconImage(Configs.ICON_FRAME);
         setOverlayAsDefault();
     }
 
