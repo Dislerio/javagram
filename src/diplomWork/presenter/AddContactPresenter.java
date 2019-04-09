@@ -6,23 +6,22 @@ import diplomWork.view.forms.IView;
 
 import java.io.IOException;
 
-public class AddContactPresenter implements IPresenter{
+public class AddContactPresenter implements IPresenter {
     AddContactsForm view;
     public static AddContactPresenter presenter;
     private String phone, firstName, lastName;
 
-    public synchronized static AddContactPresenter getPresenter(IView iView){
-        if(presenter == null) presenter = new AddContactPresenter(iView);
+    public synchronized static AddContactPresenter getPresenter(IView iView) {
+        if (presenter == null) presenter = new AddContactPresenter(iView);
         presenter.frame.changeOverlayPanel(presenter.view.getRootPanel());
         return presenter;
     }
 
-    private AddContactPresenter(IView iView){
+    private AddContactPresenter(IView iView) {
         this.view = (AddContactsForm) iView;
     }
 
-    public void addContact(String phone, String firstName, String lastName ){
-        //Todo
+    public void addContact(String phone, String firstName, String lastName) {
         this.phone = phone.trim().replaceAll("[^0-9]", "");
         this.firstName = firstName.trim();
         this.lastName = lastName.trim();
@@ -33,7 +32,6 @@ public class AddContactPresenter implements IPresenter{
                 int numberAddedContacts = repository.updateContact(this.phone, this.firstName, this.lastName);
                 if (numberAddedContacts == 1) {
                     view.showInfo("Контакт успешно добавлен");
-                    //view.closeModalView();
                 } else if (numberAddedContacts == -1) {
                     view.showError("Пользователь с таким именем уже существует!");
                 } else if (numberAddedContacts == 0) {
@@ -41,18 +39,18 @@ public class AddContactPresenter implements IPresenter{
                 } else {
                     view.showError("Неизвестная ошибка!");
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
                 view.showError("Ошибка ответа от сервера Telegram!");
             }
         }
-
     }
+
     @Override
-    public void goToMainForm(){
+    public void goToMainForm() {
         frame.changeOverlayPanel(null);
         frame.showFloatButton();
+        view.clearError();
         ChatForm.getInstance().getContactsForce();
     }
 
@@ -70,14 +68,11 @@ public class AddContactPresenter implements IPresenter{
 
         //check names
         if (firstName.equals("") || lastName.equals("")) {
-                view.showError("EmptyFirstLast");
-                return false;
+            view.showError("EmptyFirstLast");
+            return false;
         }
         return true;
     }
-
-
-
 
 
 }

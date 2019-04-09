@@ -27,8 +27,8 @@ public class VerificationCode implements IView {     //отработано
     private VerificationCodePresenter presenter;
     private static VerificationCode instance;
 
-    public static synchronized VerificationCode getInstance(){
-        if(instance == null){
+    public static synchronized VerificationCode getInstance() {
+        if (instance == null) {
             instance = new VerificationCode();
         }
         instance.setPresenter(VerificationCodePresenter.getPresenter(instance));
@@ -41,14 +41,16 @@ public class VerificationCode implements IView {     //отработано
         background = Configs.BG_IMAGE;
         phoneLogoImage = Configs.ICON_LOCK;
         buttonBG = Configs.IMG_BUTTON_BG;
+
         phonePict.setIcon(new ImageIcon(phoneLogoImage));
         codeField.setBorder(BorderFactory.createEmptyBorder());
         codeField.grabFocus();
         codeField.selectAll();
-        textTip.setFont(Configs.font18);
+        textTip.setFont(Configs.getFont(18));
         textTip.setText(Configs.verificationCodeTooltipText);
-        numLabel.setFont(Configs.font40);
+        numLabel.setFont(Configs.getFont(36));
         btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
+
         continueButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -56,7 +58,6 @@ public class VerificationCode implements IView {     //отработано
                 presenter.checkCode(String.valueOf(codeField.getPassword()));
             }
         });
-
 
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
@@ -67,7 +68,7 @@ public class VerificationCode implements IView {     //отработано
         });
     }
 
-    public void fillPhoneNumber(String phone){
+    public void fillPhoneNumber(String phone) {
         numLabel.setText(formatPhoneNumber(phone));
     }
 
@@ -88,7 +89,7 @@ public class VerificationCode implements IView {     //отработано
                 g.drawImage(logo, 10, 10, null);
             }
         };
-        continueButton = new JLabel(){
+        continueButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(buttonBG, 0, 3, null);
@@ -147,7 +148,7 @@ public class VerificationCode implements IView {     //отработано
 
     @Override
     public void setPresenter(IPresenter presenter) {
-        this.presenter = (VerificationCodePresenter)presenter;
+        this.presenter = (VerificationCodePresenter) presenter;
     }
 
     @Override

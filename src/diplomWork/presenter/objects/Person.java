@@ -16,18 +16,16 @@ public class Person {
     private String lastMessage;
     private int time;
     private BufferedImage photoSmall = null;
-    private boolean noFoto = false;
-    private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");      //Todo временное решение
+    private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
     private static SimpleDateFormat dateWithoutTime = new SimpleDateFormat("dd.MM.yyyy");
-
 
 
     public Person(UserContact userContact) {
         this.userContact = userContact;
     }
 
-    public boolean isOnline(){
+    public boolean isOnline() {
         return userContact.isOnline();
     }
 
@@ -90,13 +88,14 @@ public class Person {
     }
 
     public String getFullName() {
-        return  userContact.toString();
+        return userContact.toString();
     }
 
-    public String getTime() {       //Todo вынести в интерфейс
+    public String getTime() {
+        if (time == 0) return "";
         String dateOfMessage;
-        Date date = new Date((long)this.time * 1000);
-        if(dateWithoutTime.format(date).equals(dateWithoutTime.format(new Date(System.currentTimeMillis())))){
+        Date date = new Date(((long) this.time) * 1000);
+        if (dateWithoutTime.format(date).equals(dateWithoutTime.format(new Date(System.currentTimeMillis())))) {
             dateOfMessage = timeFormat.format(date);
         } else {
             dateOfMessage = dateFormat.format(date);
@@ -121,7 +120,7 @@ public class Person {
     }
 
     public BufferedImage getPhotoSmall() {
-        if(photoSmall != null) return photoSmall;
+        if (photoSmall != null) return photoSmall;
         else return Configs.IMG_USER_PHOTO_EMPTY_160;
     }
 
@@ -129,11 +128,4 @@ public class Person {
         this.photoSmall = photoSmall;
     }
 
-    public boolean isNoFoto() {
-        return noFoto;
-    }
-
-    public void setNoFoto(boolean noFoto) {
-        this.noFoto = noFoto;
-    }
 }

@@ -23,7 +23,7 @@ public class OverlayHandler extends BufferedOverlay {
     }
 
     public void setContentPanel(Component component) {
-        if(getContentPanel() != component) {
+        if (getContentPanel() != component) {
             contentPanel.removeAll();
             if (component != null)
                 contentPanel.add(component);
@@ -34,16 +34,16 @@ public class OverlayHandler extends BufferedOverlay {
     }
 
     public Component getContentPanel() {
-        if(contentPanel.getComponents().length > 0)
+        if (contentPanel.getComponents().length > 0)
             return contentPanel.getComponent(0);
         else
             return null;
     }
 
     public void setOverlayPanel(Component component) {
-        if(getOverlayPanel() != component) {
+        if (getOverlayPanel() != component) {
             overlayPanel.removeAll();
-            if(component != null) {
+            if (component != null) {
                 overlayPanel.add(component);
                 setIndex(OVERLAY_PANEL);
             } else {
@@ -55,7 +55,7 @@ public class OverlayHandler extends BufferedOverlay {
     }
 
     public Component getOverlayPanel() {
-        if(overlayPanel.getComponents().length > 0)
+        if (overlayPanel.getComponents().length > 0)
             return overlayPanel.getComponent(0);
         else
             return null;

@@ -1,17 +1,17 @@
 package diplomWork.presenter;
 
 import diplomWork.Log;
-import diplomWork.view.forms.RegForm;
 import diplomWork.view.forms.IView;
+import diplomWork.view.forms.RegForm;
 
 import java.io.IOException;
 
-public class RegisterUserPresenter implements IPresenter{
+public class RegisterUserPresenter implements IPresenter {
     private RegForm view;
     private static RegisterUserPresenter instance;
 
     public synchronized static RegisterUserPresenter getPresenter(IView iView) {
-        if(instance ==null){
+        if (instance == null) {
             instance = new RegisterUserPresenter(iView);
         }
         frame.setContentPane(instance.view.getRootPanel());
@@ -25,7 +25,7 @@ public class RegisterUserPresenter implements IPresenter{
     public void signUp(String firstName, String lastName) {
         Log.info(repository.getSmsCodeChecked());
 
-        if(isValidFirstLastNames(firstName, lastName)){
+        if (isValidFirstLastNames(firstName, lastName)) {
             Thread thread = new Thread(() -> {
                 view.showLoadingProcess();
                 try {
@@ -52,8 +52,8 @@ public class RegisterUserPresenter implements IPresenter{
     private boolean isValidFirstLastNames(String firstName, String lastName) {
         if (firstName.equals("") || lastName.equals("")) {
             view.showError("Ошибка: заполните Имя и Фамилию");
-                return false;
-            }
+            return false;
+        }
         return true;
     }
 }

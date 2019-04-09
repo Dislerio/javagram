@@ -1,9 +1,9 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
-import diplomWork.presenter.objects.Person;
 import diplomWork.presenter.ChatFormPresenter;
 import diplomWork.presenter.IPresenter;
+import diplomWork.presenter.objects.Person;
 import diplomWork.view.components.ChatListRenderer;
 import diplomWork.view.components.ChatPanel;
 import diplomWork.view.components.ContactListRenderer;
@@ -26,8 +26,7 @@ public class ChatForm implements IView {
     private JTextField searchField;
     private JButton addContactsButton;      //Todo убрать
     private JLabel settingsButton, iconLabel, selfNameLabel, chatWithName, editContactsButton, errLabel;
-    private JList chatArea
-    , contactsList; // контакт лист
+    private JList chatArea, contactsList; // контакт лист
     private JButton getCLButton;
     private JButton getCLForce;
     private JButton showFBButton;
@@ -38,18 +37,17 @@ public class ChatForm implements IView {
     private static ChatForm instance;
     private ArrayList<ContactPanel> contactPanels;
 
-    public static ChatForm getInstance(){
-        if(instance == null) instance = new ChatForm();
+    public static ChatForm getInstance() {
+        if (instance == null) instance = new ChatForm();
         instance.setPresenter(ChatFormPresenter.getPresenter(instance));
         return instance;
     }
 
-    private ChatForm() {     //отработано
+    private ChatForm() {
 
         addContactsButton.setVisible(false);
-        selfNameLabel.setText("Василий");
-        cList2.setLayout(new BoxLayout(cList2, BoxLayout.Y_AXIS));
         JScrollPane contactsScrollPane = new JScrollPane(contactsList);
+        cList2.setLayout(new BoxLayout(cList2, BoxLayout.Y_AXIS));
         cList2.add(contactsScrollPane);
         searchField.setBorder(BorderFactory.createEmptyBorder());
         errLabel.setBackground(Color.BLUE);
@@ -60,7 +58,8 @@ public class ChatForm implements IView {
         setListeners();
 
     }
-    private void setListeners(){
+
+    private void setListeners() {
 
         floatAddContactButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -73,7 +72,7 @@ public class ChatForm implements IView {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                presenter.callEditPresenter((Person)contactsList.getSelectedValue());
+                presenter.callEditPresenter((Person) contactsList.getSelectedValue());
             }
         });
         MouseAdapter settingsAdapter = new MouseAdapter() {
@@ -89,11 +88,13 @@ public class ChatForm implements IView {
         settingsButton.addMouseListener(settingsAdapter);
         contactsList.addListSelectionListener(e -> {
             Person person = (Person) contactsList.getSelectedValue();
-            if(person != null){
+            if (person != null) {
                 chatWithName.setText(person.getFullName());
-                chatAvatarPanel.getGraphics().drawImage(person.getPhotoSmall(),0,0,41,41, null);
-                chatAvatarPanel.repaint();
+                chatAvatarPanel.getGraphics().drawImage(person.getPhotoSmall(), 0, 0, 41, 41, null);
+                chatAvatarPanel.getGraphics().drawImage(maskGray, 0, 0, 41, 41, null);
+//                chatAvatarPanel.repaint();
                 presenter.getChat(person.getId());
+                chatInputField.grabFocus();
             } else {
 //                chatListModel.removeAllElements();
             }
@@ -109,11 +110,12 @@ public class ChatForm implements IView {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Person person = (Person)contactsList.getSelectedValue();
-                if(person != null){
+                Person person = (Person) contactsList.getSelectedValue();
+                if (person != null) {
                     presenter.sendMessage(chatInputField.getText(), person);
-                    chatInputField.setText("");
                     presenter.getChat(person.getId());
+                    chatInputField.setText("");
+                    chatInputField.grabFocus();
                 }
             }
         });
@@ -135,7 +137,7 @@ public class ChatForm implements IView {
         showFBButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.showFloatButton();
+                presenter.refreshUserPhotos();
             }
         });
         hideFBButton.addActionListener(new ActionListener() {
@@ -149,12 +151,14 @@ public class ChatForm implements IView {
     private void createUIComponents() {   // создание интерфейса
         iconLabel = new JLabel();
         chatArea = new JList();
+        chatArea.setAutoscrolls(false);
         contactsList = new JList();
         contactsList.setCellRenderer(new ContactListRenderer());
         contactsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         contactsList.setBackground(new Color(230, 230, 230));
         contactsList.setSelectionBackground(Color.white);
         contactsList.setAutoscrolls(false);
+
 
         logo = Configs.LOGO_MICRO;
         settingsIcon = Configs.ICON_SETTINGS;
@@ -185,6 +189,8 @@ public class ChatForm implements IView {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+
+                g.drawImage(presenter.getSelfPhoto(), 0, 0, 30, 30, null);
                 g.drawImage(maskBlueMini, 0, 0, 30, 30, null);
             }
         };
@@ -197,8 +203,8 @@ public class ChatForm implements IView {
         chatAvatarPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
                 g.drawImage(maskGray, 0, 0, null);
+                super.paintComponent(g);
             }
         };
         editContactsButton = new JLabel() {
@@ -230,10 +236,10 @@ public class ChatForm implements IView {
                 Graphics2D g2d = (Graphics2D) g;
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2d.setColor(new Color(0, 179, 230));
-                g2d.fillOval(0,0,48,48);
+                g2d.fillOval(0, 0, 48, 48);
                 g2d.setColor(new Color(250, 250, 250));
-                g2d.fillRoundRect(21,4, 6, 40, 3,3);
-                g2d.fillRoundRect(4,21, 40, 6,3,3);
+                g2d.fillRoundRect(21, 4, 6, 40, 3, 3);
+                g2d.fillRoundRect(4, 21, 40, 6, 3, 3);
             }
         };
         frame.setFloatButton(floatAddContactButton);
@@ -242,16 +248,16 @@ public class ChatForm implements IView {
     }
 
     public void setChatList(ArrayList<ChatPanel> panels) {
-        //Todo
         Collections.reverse(panels);
         chatArea.setCellRenderer(new ChatListRenderer());       // создание чата
         chatListModel = new DefaultListModel<>();
-        chatListModel.ensureCapacity(1);;
-        for(ChatPanel panel : panels){
+        chatListModel.ensureCapacity(1);
+        ;
+        for (ChatPanel panel : panels) {
             chatListModel.addElement(panel);
         }
         chatArea.setModel(chatListModel);
-        chatArea.ensureIndexIsVisible(chatListModel.getSize() -1);
+        chatArea.ensureIndexIsVisible(chatListModel.getSize() - 1);
 
     }
 
@@ -261,15 +267,15 @@ public class ChatForm implements IView {
         repaintContactList();
     }
 
-    public void getContactsForce(){
+    public void getContactsForce() {
         presenter.getContactList(true);
     }
 
-    public void repaintContactList(){
+    public void repaintContactList() {
         contactsList.repaint();
     }
 
-    public void setSelfUserPhoto(Image photo){
+    public void setSelfUserPhoto(Image photo) {
         //Todo
     }
 
@@ -300,7 +306,7 @@ public class ChatForm implements IView {
 
     @Override
     public void setPresenter(IPresenter presenter) {
-        if(this.presenter == null) this.presenter = (ChatFormPresenter) presenter;
+        if (this.presenter == null) this.presenter = (ChatFormPresenter) presenter;
     }
 
     @Override
@@ -311,7 +317,7 @@ public class ChatForm implements IView {
     }
 
     @Override
-    public void showInfo(String strError){
+    public void showInfo(String strError) {
         clearError();
         errLabel.setText(strError);
     }

@@ -22,7 +22,7 @@ public class BufferedOverlay extends JPanel {
         @Override
         public void paint(Graphics g) {
             //super.paint(g);
-            if(image == null || image.getHeight() != background.getHeight()
+            if (image == null || image.getHeight() != background.getHeight()
                     || image.getWidth() != background.getWidth()) {
                 image = new BufferedImage(background.getWidth(), background.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
                 Graphics2D g2d = image.createGraphics();
@@ -32,7 +32,6 @@ public class BufferedOverlay extends JPanel {
                     g2d.dispose();
                 }
             }
-
             g.drawImage(image, 0, 0, null);
         }
 
@@ -41,7 +40,7 @@ public class BufferedOverlay extends JPanel {
     public BufferedOverlay(Component background, Component... foregrounds) {
 
         this.foregrounds = Arrays.copyOf(foregrounds, foregrounds.length);
-        for(Component foreground : foregrounds) {
+        for (Component foreground : foregrounds) {
             foreground.setVisible(false);
             add(foreground);
             add(foreground);
@@ -59,23 +58,23 @@ public class BufferedOverlay extends JPanel {
 
     public void setIndex(int index) {
 
-        if(index < 0)
+        if (index < 0)
             index = -1;
         else //Проверка на диапазон
             foregrounds[index] = foregrounds[index];
 
-        if(this.index != index) {
-            if(this.index >= 0 && index >= 0) {
+        if (this.index != index) {
+            if (this.index >= 0 && index >= 0) {
                 foregrounds[this.index].setVisible(false);
                 foregrounds[index].setVisible(true);
                 this.index = index;
-            } else if(this.index >= 0) {
+            } else if (this.index >= 0) {
                 foregrounds[this.index].setVisible(false);
                 fakeBackground.setVisible(false);
                 background.setVisible(true);
                 this.index = -1;
                 image = null;
-            } else if(index >= 0) {
+            } else if (index >= 0) {
                 image = null;
                 foregrounds[index].setVisible(true);
                 fakeBackground.setVisible(true);

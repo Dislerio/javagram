@@ -1,9 +1,9 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
-import diplomWork.presenter.objects.Person;
 import diplomWork.presenter.EditContactPresenter;
 import diplomWork.presenter.IPresenter;
+import diplomWork.presenter.objects.Person;
 import diplomWork.view.components.TransparentBackground;
 
 import javax.swing.*;
@@ -37,42 +37,42 @@ public class EditContacts extends TransparentBackground implements IView {
         return instance;
     }
 
-   private EditContacts() {
+    private EditContacts() {
 
         trashIcon = Configs.ICON_TRASH;
         deleteButton.setIcon(new ImageIcon(trashIcon));
         nameField.setBorder(BorderFactory.createEmptyBorder());
         surNameField.setBorder(BorderFactory.createEmptyBorder());
-        namePanel.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.white));
+        namePanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.white));
         deleteButton.setText(Configs.deleteContactText);
         editContactsToolTip.setText(Configs.editContactText);
-        saveButton.setFont(Configs.font22);
+        saveButton.setFont(Configs.getFont(22));
         saveButton.setText(Configs.saveButtonText);
-       btnBack.setText("");
-       btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
-       btnBack.addMouseListener(new MouseAdapter() {
-           @Override
-           public void mouseClicked(MouseEvent e) {        //Todo временное решение, убрать!!!
-               super.mouseClicked(e);
-               presenter.goToMainForm();
-           }
-       });
-       editContactsToolTip.addMouseListener(new MouseAdapter() {
-           @Override
-           public void mouseClicked(MouseEvent e) {     //Todo временно!
-               super.mouseClicked(e);
-               presenter.goToMainForm();
-           }
-       });
-       saveButton.addActionListener(e -> {
-           presenter.editContact(numberField.getText(), nameField.getText(), surNameField.getText());
-           presenter.goToMainForm();
-       });
-       deleteButton.addActionListener(e -> {
-           presenter.deleteContact(person.getId());
-           presenter.goToMainForm();
-       });
-   }
+        btnBack.setText("");
+        btnBack.setIcon(new ImageIcon(Configs.ICON_BACK));
+        btnBack.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {        //Todo временное решение, убрать!!!
+                super.mouseClicked(e);
+                presenter.goToMainForm();
+            }
+        });
+        editContactsToolTip.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {     //Todo временно!
+                super.mouseClicked(e);
+                presenter.goToMainForm();
+            }
+        });
+        saveButton.addActionListener(e -> {
+            presenter.editContact(numberField.getText(), nameField.getText(), surNameField.getText());
+            presenter.goToMainForm();
+        });
+        deleteButton.addActionListener(e -> {
+            presenter.deleteContact(person.getId());
+            presenter.goToMainForm();
+        });
+    }
 
     private void createUIComponents() {
         rootPanel = this;
@@ -80,24 +80,24 @@ public class EditContacts extends TransparentBackground implements IView {
         deleteButton = new JButton(Configs.deleteContactText);
         deleteButton.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
         deleteButton.setBackground(Color.BLACK);
-        avatarPanel = new JPanel(){
+        avatarPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(Color.RED);
-                g.drawString("No Image",3,30);
+                g.setColor(Color.RED);  //заглушка
+                g.drawString("No Image", 3, 30);
             }
         };
-        avatarPanel.setBorder(BorderFactory.createLineBorder(Color.RED, 2,true));
+        avatarPanel.setBorder(BorderFactory.createLineBorder(Color.RED, 2, true));
     }
 
-    public void setEditUser(Person person){
-        if(person != null){
+    public void setEditUser(Person person) {
+        if (person != null) {
             this.person = person;
             nameField.setText(person.getFirstName());
             surNameField.setText(person.getLastName());
             numberField.setText("+" + person.getPhone());
-            this.avatar.getGraphics().drawImage(person.getPhotoSmall(), 0,0, avatar.getWidth(), avatar.getHeight(), null);
+            this.avatar.getGraphics().drawImage(person.getPhotoSmall(), 0, 0, avatar.getWidth(), avatar.getHeight(), null);
         }
     }
 
@@ -127,8 +127,8 @@ public class EditContacts extends TransparentBackground implements IView {
     }
 
     @Override
-    public void setPresenter(IPresenter presenter){
-       this.presenter = (EditContactPresenter) presenter;
+    public void setPresenter(IPresenter presenter) {
+        this.presenter = (EditContactPresenter) presenter;
     }
 
 }

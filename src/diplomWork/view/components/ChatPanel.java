@@ -1,7 +1,9 @@
 package diplomWork.view.components;
 
-import diplomWork.view.components.messages.*;
+import diplomWork.view.components.messages.Incoming;
+import diplomWork.view.components.messages.Outcoming;
 import org.javagram.response.object.Message;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
@@ -18,16 +20,16 @@ public class ChatPanel extends JPanel {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy в HH:mm:ss");
     private static SimpleDateFormat dateWithoutTime = new SimpleDateFormat("dd.MM.yyyy");
 
-    public ChatPanel (Message message){
+    public ChatPanel(Message message) {
         this(message.getMessage(), message.getDate(), !message.isOut());
     }
 
-    public ChatPanel(String text,int dateInt, boolean income) {
+    private ChatPanel(String text, int dateInt, boolean income) {
         this.messageText = setBreaks(text);
         this.income = income;
 
-        Date date = new Date((long)dateInt * 1000);
-        if(dateWithoutTime.format(date).equals(dateWithoutTime.format(new Date(System.currentTimeMillis())))){
+        Date date = new Date((long) dateInt * 1000);
+        if (dateWithoutTime.format(date).equals(dateWithoutTime.format(new Date(System.currentTimeMillis())))) {
             this.dateOfMessage = timeFormat.format(date);
         } else {
             this.dateOfMessage = dateFormat.format(date);
@@ -42,9 +44,9 @@ public class ChatPanel extends JPanel {
         }
     }
 
-    private String setBreaks(String text){
+    private String setBreaks(String text) {
         text = text.replaceAll("\n", "<br>");
-        return ("<html><p style=\"width:350px\">"+text+"</p></html>");
+        return ("<html><p style=\"width:350px\">" + text + "</p></html>");
     }
 
     public JPanel getRootPanel() {

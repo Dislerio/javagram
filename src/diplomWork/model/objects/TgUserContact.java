@@ -1,4 +1,4 @@
-package diplomWork.model;
+package diplomWork.model.objects;
 
 public class TgUserContact {
     String name, time, lastMessage;

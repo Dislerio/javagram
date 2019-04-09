@@ -1,14 +1,12 @@
 package diplomWork.view.forms;
 
 import diplomWork.Configs;
-import diplomWork.Loader;
-import diplomWork.Log;
 import diplomWork.view.components.OverlayHandler;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame{      //++
+public class MainFrame extends JFrame {
     static final int FRAME_WIDTH = 900;
     static final int FRAME_HEIGHT = 630;
     static MainFrame frame;
@@ -18,11 +16,11 @@ public class MainFrame extends JFrame{      //++
     private JLabel minButton;
     private JLabel closeButton;
     private JPanel floatAddContactButton;
-    private OverlayHandler handler  = new OverlayHandler();
+    private OverlayHandler handler = new OverlayHandler();
 
 
-    public static synchronized MainFrame getInstance(){
-        if(frame == null){
+    public static synchronized MainFrame getInstance() {
+        if (frame == null) {
             frame = new MainFrame();
         }
         return frame;
@@ -41,12 +39,10 @@ public class MainFrame extends JFrame{      //++
     @Override
     public void setContentPane(Container contentPane) {
         changeContentPanel(contentPane);
-
-//        super.setContentPane(contentPane);
         refreshForm();
     }
 
-    public void setOverlayAsDefault(){
+    public void setOverlayAsDefault() {
         rootPanel.add(handler, BorderLayout.CENTER);
         super.setContentPane(rootPanel);
     }
@@ -59,11 +55,11 @@ public class MainFrame extends JFrame{      //++
         handler.setOverlayPanel(overlayPanel);
     }
 
-    void setFloatButton(JPanel floatAddContactButton){
+    void setFloatButton(JPanel floatAddContactButton) {
         this.floatAddContactButton = floatAddContactButton;
         this.floatAddContactButton.setBounds(20, frame.getHeight() - 120, 48, 48);
         this.floatAddContactButton.setOpaque(false);
-        layeredPane.add(floatAddContactButton, JLayeredPane.MODAL_LAYER-1, 50);
+        layeredPane.add(floatAddContactButton, JLayeredPane.MODAL_LAYER - 1, 50);
     }
 
     public void showFloatButton() {
@@ -74,7 +70,7 @@ public class MainFrame extends JFrame{      //++
         floatAddContactButton.setVisible(false);
     }
 
-    void refreshForm(){
+    void refreshForm() {
         revalidate();
         repaint();
         setVisible(true);

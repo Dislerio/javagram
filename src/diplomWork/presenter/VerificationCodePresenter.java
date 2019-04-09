@@ -2,18 +2,18 @@ package diplomWork.presenter;
 
 import diplomWork.Configs;
 import diplomWork.model.TLHandler;
-import diplomWork.view.forms.VerificationCode;
 import diplomWork.view.forms.IView;
+import diplomWork.view.forms.VerificationCode;
 import org.telegram.api.engine.RpcException;
 
 import java.io.IOException;
 
-public class VerificationCodePresenter implements IPresenter{
+public class VerificationCodePresenter implements IPresenter {
     VerificationCode view;
     private static VerificationCodePresenter instance;
 
-    public synchronized static VerificationCodePresenter getPresenter(IView iView){
-        if(instance == null){
+    public synchronized static VerificationCodePresenter getPresenter(IView iView) {
+        if (instance == null) {
             instance = new VerificationCodePresenter(iView);
         }
         instance.frame.setContentPane(instance.view.getRootPanel());
@@ -21,11 +21,11 @@ public class VerificationCodePresenter implements IPresenter{
         return instance;
     }
 
-    private VerificationCodePresenter(IView iView){
-        this.view = (VerificationCode)iView;
+    private VerificationCodePresenter(IView iView) {
+        this.view = (VerificationCode) iView;
     }
 
-    private void sendCode(){
+    private void sendCode() {
         view.clearError();
         try {
             TLHandler.getInstance().sendCode();
@@ -35,22 +35,22 @@ public class VerificationCodePresenter implements IPresenter{
         }
     }
 
-    public void checkCode(String confirmCode){
+    public void checkCode(String confirmCode) {
         view.showLoadingProcess();
         Thread thread = new Thread(() -> {
             try {
                 TLHandler.getInstance().checkCode(confirmCode);
             } catch (RpcException e) {
-                if(e.getErrorTag().equals("PHONE_CODE_INVALID")){
+                if (e.getErrorTag().equals("PHONE_CODE_INVALID")) {
                     view.showError(Configs.errPhoneCodeInvalid);
-                } else if(e.getErrorTag().equals("PHONE_NUMBER_UNOCCUPIED")){
+                } else if (e.getErrorTag().equals("PHONE_NUMBER_UNOCCUPIED")) {
                     view.showInfo(Configs.errPhoneUnoccupied);
                     view.callViewSignUp();
                 } else {
                     view.showError(Configs.errUnknown);
                 }
                 return;
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 return;
             } finally {
@@ -62,7 +62,7 @@ public class VerificationCodePresenter implements IPresenter{
         thread.start();
     }
 
-@Override
+    @Override
     public void goBackToPhoneInput() {
         view.goBackToPhoneInput();
     }

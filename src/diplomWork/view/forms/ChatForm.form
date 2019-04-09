@@ -192,7 +192,6 @@
                   <maximumSize width="718" height="45"/>
                   <minimumSize width="718" height="45"/>
                   <preferredSize width="718" height="45"/>
-                  <text value="Съешь еще этих мягких французских булок, да выпей же чая"/>
                   <wrapStyleWord value="true"/>
                 </properties>
               </component>
@@ -243,7 +242,7 @@
               <component id="386cd" class="javax.swing.JButton" binding="showFBButton" default-binding="true">
                 <constraints/>
                 <properties>
-                  <text value="showFB"/>
+                  <text value="refrPhot"/>
                 </properties>
               </component>
               <component id="4552e" class="javax.swing.JButton" binding="hideFBButton" default-binding="true">

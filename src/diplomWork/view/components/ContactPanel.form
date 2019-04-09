@@ -31,7 +31,7 @@
             </constraints>
             <properties>
               <font name="Open Sans" size="16" style="1"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="ff66f" class="javax.swing.JLabel" binding="lastMessage">
@@ -41,7 +41,7 @@
             <properties>
               <font size="12"/>
               <foreground color="-7895161"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
@@ -51,7 +51,7 @@
         <properties>
           <font size="10"/>
           <foreground color="-6513508"/>
-          <text value="Label"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

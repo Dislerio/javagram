@@ -22,8 +22,8 @@ public class PhoneNumber implements IView {  //++
     private PhoneNumberPresenter presenter;
     private static PhoneNumber instance;
 
-    public static PhoneNumber getInstance(){
-        if(instance == null){
+    public static PhoneNumber getInstance() {
+        if (instance == null) {
             instance = new PhoneNumber();
         }
         instance.setPresenter(PhoneNumberPresenter.getPresenter(instance));
@@ -31,7 +31,7 @@ public class PhoneNumber implements IView {  //++
         return instance;
     }
 
-    private PhoneNumber(){   //отработано
+    private PhoneNumber() {
         logo = Configs.LOGO;
         background = Configs.BG_IMAGE;
         phoneLogoImage = Configs.ICON_PHONE;
@@ -40,12 +40,12 @@ public class PhoneNumber implements IView {  //++
         text.setForeground(Color.WHITE);
         text.setFont(Configs.getFont(18));
         text.setText(Configs.phoneNumberTooltipText);
-        text.setBorder(BorderFactory.createEmptyBorder(50,0,10,0));
+        text.setBorder(BorderFactory.createEmptyBorder(50, 0, 10, 0));
 
         phoneLogo.setIcon(new ImageIcon(phoneLogoImage));
         numberField.setBorder(BorderFactory.createEmptyBorder());
         numberField.setFont(Configs.getFont(32));
-        label1.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        label1.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         continueButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -55,25 +55,25 @@ public class PhoneNumber implements IView {  //++
         });
 
         setNumberFieldMask(numberField);
-        numberField.setText("9996624444");
+        numberField.setText("9996624444");  //тестовый по умолчанию
     }
 
     private void createUIComponents() {
-        rootPanel = new JPanel(){
+        rootPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(background, 0,0, null);
+                g.drawImage(background, 0, 0, null);
             }
         };
-        logoPanel = new JPanel(){
+        logoPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(logo, 18,10, null);
+                g.drawImage(logo, 18, 10, null);
             }
         };
-        continueButton = new JLabel(){
+        continueButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(buttonBG, 0, 3, null);
@@ -87,7 +87,7 @@ public class PhoneNumber implements IView {  //++
         continueButton.setText(Configs.continueButtonText);
 
         numPanel = new JPanel();
-        numPanel.setBorder(BorderFactory.createMatteBorder(0,0,3, 0 ,(new Color (255,255,255))));
+        numPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, (new Color(255, 255, 255))));
 
     }
 

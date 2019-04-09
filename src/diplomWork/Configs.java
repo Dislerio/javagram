@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class Configs {
-    //public static final String TL_SERVER_TEST = "149.154.167.40:443";        //тест - 149.154.167.40:443     прод - 149.154.167.50:443
     public static final String TL_SERVER = "149.154.167.40:443";        //тест - 149.154.167.40:443     прод - 149.154.167.50:443
     public static final Integer TL_APP_ID = 612669;
     public static final String TL_APP_HASH = "87ec4522ab7da2903206d4715eb4801a";
@@ -26,15 +25,7 @@ public class Configs {
 
     public static String INTERFACE_PHONE_MASK;
     public static char INTERFACE_PHONE_MASK_PLACEHOLDER;
-    public static Font font16, font18, font22, font25, font32, font40;
     static{
-        //Fonts
-        font16 = getFont(16);
-        font18 = getFont(18);
-        font22 = getFont(22);
-        font25 = getFont(25);
-        font32 = getFont(32);
-        font40 = getFont(40);
         //Strings
         phoneNumberTooltipText = "<html><center>Введите код страны и номер<br>вашего мобильного телефона<center></html>";
         verificationCodeTooltipText = "<html><center>Введите код страны и номер<br>вашего мобильного телефона<center></html>";
@@ -44,7 +35,6 @@ public class Configs {
         deleteContactText = "Удалить пользователя";
         saveButtonText = "Сохранить";
         continueButtonText = "Продолжить";
-
 
         //Ошибки
         errNoNumber = "Не введен номер телефона!";

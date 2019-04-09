@@ -1,21 +1,20 @@
 package diplomWork.presenter;
 
-import java.awt.event.WindowAdapter;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import diplomWork.Log;
 import diplomWork.model.TLHandler;
 import diplomWork.presenter.objects.Person;
 import diplomWork.view.components.ChatPanel;
 import diplomWork.view.forms.*;
-import diplomWork.view.forms.IView;
-import org.javagram.response.object.*;
+import org.javagram.response.object.Message;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
 
-public class ChatFormPresenter implements IPresenter{       //+ +/-
+public class ChatFormPresenter implements IPresenter {       //+ +/-
     private volatile ArrayList<Person> contactList = new ArrayList<>();
     private volatile DefaultListModel<Person> contactsListModel = new DefaultListModel<>();
     private ChatForm view;
@@ -23,32 +22,33 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
     private Thread upMessages;
     boolean upMessagesStopped = false;
 
-    public synchronized static ChatFormPresenter getPresenter(IView iView){
-        if(presenter == null){
+    public synchronized static ChatFormPresenter getPresenter(IView iView) {
+        if (presenter == null) {
             presenter = new ChatFormPresenter(iView);
         }
         presenter.switchIn();
         return presenter;
     }
 
-    private ChatFormPresenter(IView iView){
-        view = (ChatForm)iView;
-        view.setSelfName(TLHandler.getInstance().getUserNameFull());
-        view.setSelfUserPhoto(TLHandler.getInstance().getUserPhoto());
+    private ChatFormPresenter(IView iView) {
+        view = (ChatForm) iView;
+        view.setSelfName(repository.getUserNameFull());
+        view.setSelfUserPhoto(repository.getUserPhoto());
         view.showInfo(String.valueOf(TLHandler.getInstance().getUserId()));
         frame.setContentPane(view.getRootPanel());
         frame.addWindowListener(new WindowAdapter() {
+            //заглушка
         });
         getContactList(false);
         updateMessages();
     }
 
-    public void getContactList(boolean force){
+    public void getContactList(boolean force) {
 
         Thread th = new Thread(() -> {
             try {
                 //get from Telegram Api
-                if(force)
+                if (force)
                     contactList = repository.getContactsForceUpdate();
                 else
                     contactList = repository.getContacts();
@@ -63,17 +63,17 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
             } catch (Exception e) {
                 e.printStackTrace();
                 view.showError("Ошибка при получении списка контактов! IOException getContactList()");
-                    try {       //пауза
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
+                try {       //пауза
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
                 getContactList(false);
             }
         });
         th.start();
         view.repaintContactList();
-        if(force) refreshUserPhotos();
+        refreshUserPhotos();
     }
 
     public synchronized void refreshUserPhotos() {
@@ -89,7 +89,6 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
             public void run() {
                 for (int i = 0; i < contactsListModel.getSize(); i++) {
                     Person c = contactsListModel.get(i);
-                    if(c.isNoFoto()) continue;
                     Log.info("start set small photo to contact " + c.getFullName() + "(" + c.getId() + ")");
                     BufferedImage photoSmall = repository.getContactPhotoSmall(c);
                     if (photoSmall != null) {
@@ -104,17 +103,17 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         threadGetPhotos.start();
     }
 
-    public synchronized void getChat(int userId){
+    public synchronized void getChat(int userId) {
         ArrayList<ChatPanel> panels = new ArrayList<>();
-        Thread thread = new Thread(() ->{
-            try{
+        Thread thread = new Thread(() -> {
+            try {
                 ArrayList<Message> messages = TLHandler.getInstance().messagesGetHistoryByUserId(userId);
                 view.showInfo("Сообщений получено - " + messages.size());
-                for(Message m : messages){
+                for (Message m : messages) {
                     panels.add(new ChatPanel(m));
                 }
             } catch (IOException e) {
-                view.showError("Ошибка получения списка контактов IOException getChat()");
+                view.showError("Ошибка получения списка контактов IOException getChat() для " + userId);
                 e.printStackTrace();
             }
             view.setChatList(panels);
@@ -122,27 +121,27 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         thread.start();
     }
 
-    public void callAddPresenter(){
+    public void callAddPresenter() {
         AddContactsForm.getInstance();
         switchOut();
     }
 
-    public void callEditPresenter(Person person){
+    public void callEditPresenter(Person person) {
         EditContacts.getInstance(person);
         switchOut();
     }
 
-    public void callSettingsPresenter(){
+    public void callSettingsPresenter() {
         ProfileSettings.getInstance();
         switchOut();
     }
 
-    private void switchOut(){
+    private void switchOut() {
         frame.hideFloatButton();
         upMessagesStopped = true;
     }
 
-    private void switchIn(){
+    private void switchIn() {
         frame.showFloatButton();
         upMessagesStopped = false;
         frame.setContentPane(presenter.view.getRootPanel());
@@ -152,14 +151,15 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         repository.sendMessage(text, personTo.getId());
     }
 
-    private void updateMessages(){
-        upMessages = new Thread(() ->{
-            while (true){
-                try{
-                    Thread.sleep(5000);
-                    if(upMessagesStopped) continue;
+    private void updateMessages() {
+        upMessages = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(6000);
+                    if (upMessagesStopped) continue;
                     repository.updateLastMessages(contactList);
                     view.repaintContactList();
+                    view.showInfo("Обновление сообщений успешно");
                 } catch (Exception e) {
                     view.showError("Ошибка получения сообщений Exception updateMessages(): " + e.getMessage());
                     e.printStackTrace();
@@ -169,4 +169,7 @@ public class ChatFormPresenter implements IPresenter{       //+ +/-
         upMessages.start();
     }
 
+    public Image getSelfPhoto() {
+        return repository.getUserPhoto();
+    }
 }

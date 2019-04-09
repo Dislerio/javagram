@@ -1,26 +1,27 @@
 package diplomWork.presenter;
 
 import diplomWork.view.forms.ChatForm;
+import diplomWork.view.forms.IView;
 import diplomWork.view.forms.PhoneNumber;
 import diplomWork.view.forms.ProfileSettings;
-import diplomWork.view.forms.IView;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class ProfileSettingsPresenter implements IPresenter{
+public class ProfileSettingsPresenter implements IPresenter {
     ProfileSettings view;
     public static ProfileSettingsPresenter presenter;
     private String firstName, lastName;
 
-    public synchronized static ProfileSettingsPresenter getPresenter(IView iView){
-        if(presenter == null){
+    public synchronized static ProfileSettingsPresenter getPresenter(IView iView) {
+        if (presenter == null) {
             presenter = new ProfileSettingsPresenter(iView);
         }
         frame.changeOverlayPanel(presenter.view.getRootPanel());
         return presenter;
     }
 
-    private ProfileSettingsPresenter(IView iView){
+    private ProfileSettingsPresenter(IView iView) {
         this.view = (ProfileSettings) iView;
     }
 
@@ -68,5 +69,10 @@ public class ProfileSettingsPresenter implements IPresenter{
     public void goToMainForm() {
         frame.changeOverlayPanel(null);
         frame.showFloatButton();
+        view.clearError();
+    }
+
+    public Image getUserPhoto() {
+        return repository.getUserPhoto();
     }
 }

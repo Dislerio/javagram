@@ -19,8 +19,8 @@ public class RegForm implements IView {
     private static RegForm instance;
     private RegisterUserPresenter presenter;
 
-    public static RegForm getInstance(){
-        if(instance == null){
+    public static RegForm getInstance() {
+        if (instance == null) {
             instance = new RegForm();
         }
         instance.setPresenter(RegisterUserPresenter.getPresenter(instance));
@@ -39,8 +39,8 @@ public class RegForm implements IView {
         nameTextField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.white));
         avatarField.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         // listeners
-        regButton.addActionListener( e -> {
-                presenter.signUp(nameTextField.getText().trim(), surnameTextField.getText().trim());
+        regButton.addActionListener(e -> {
+            presenter.signUp(nameTextField.getText().trim(), surnameTextField.getText().trim());
         });
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
@@ -78,7 +78,7 @@ public class RegForm implements IView {
 
     @Override
     public void setPresenter(IPresenter af) {
-        this.presenter = (RegisterUserPresenter)af;
+        this.presenter = (RegisterUserPresenter) af;
     }
 
     @Override
@@ -95,14 +95,10 @@ public class RegForm implements IView {
     }
 
     @Override
-    public void showLoadingProcess() {      //Todo сделать через метку вместо кнопки
+    public void showLoadingProcess() {
         nameTextField.setEnabled(false);
         surnameTextField.setEnabled(false);
         regButton.setEnabled(false);
-        //continueButton.setText("");
-//        imageIcon = new ImageIcon(Configs.IMG_LOADING_GIF);
-//        imageIcon.setImageObserver(continueButton);
-//        continueButton.setDisabledIcon(imageIcon);
     }
 
     @Override
@@ -116,7 +112,7 @@ public class RegForm implements IView {
         return rootPanel;
     }
 
-    public void goBackToPhoneInput(){
+    public void goBackToPhoneInput() {
         PhoneNumber.getInstance();
     }
 }

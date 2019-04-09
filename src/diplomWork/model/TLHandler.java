@@ -1,6 +1,3 @@
-/**
- * Project Javagram Created by Shibkov Konstantin on 04.03.2019.
- */
 package diplomWork.model;
 
 
@@ -11,7 +8,6 @@ import diplomWork.presenter.objects.Person;
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
-import org.javagram.response.AuthSentCode;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.UserContact;
@@ -27,7 +23,7 @@ import org.telegram.api.requests.TLRequestMessagesGetHistory;
 import org.telegram.tl.TLVector;
 
 import javax.imageio.ImageIO;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -43,7 +39,7 @@ import static java.lang.Thread.sleep;
  * Singleton Concurrency Pattern
  */
 
-public class TLHandler {    //++
+public class TLHandler {
 
     private static volatile TLHandler instance;
     private static Logger l = Logger.getLogger("1");
@@ -54,16 +50,15 @@ public class TLHandler {    //++
     private AuthAuthorization authorization;
     private String smsCodeChecked = "";
 
-    String userFullName;
-    String userFirstName;
-    String userLastName;
-    int userId;
-    Image userPhotoSmall = null;
-    Image getUserPhotoBig = null;
+    private String userFullName;
+    private String userFirstName;
+    private String userLastName;
+    private int userId;
+    private Image userPhotoSmall = null;
+    private Image userPhotoBig = null;
 
     private ArrayList<UserContact> contactList = new ArrayList<>();
     private ArrayList<Person> contactListCache = new ArrayList<>();
-    ArrayList<Dialog> dialogsCache;
 
     public static TLHandler getInstance() {
         synchronized (TLHandler.class) {
@@ -80,7 +75,7 @@ public class TLHandler {    //++
             bridge = new TelegramApiBridge(Configs.TL_SERVER, Configs.TL_APP_ID, Configs.TL_APP_HASH);
             //получаем доступ и ссылку на параметр api TelegramApiBridge
             getTlApiReflection();
-            l.warning("tlApi.getState()" + tlApi.getState());
+            Log.warning("tlApi.getState()" + tlApi.getState());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,7 +104,7 @@ public class TLHandler {    //++
     public void sendCode() throws IOException {
         if (isPhoneRegistered) {
             //Отправляем проверочный код для пользователя с введеным номером телефона
-            AuthSentCode sentCode = bridge.authSendCode(userPhone);
+            bridge.authSendCode(userPhone);
         }
     }
 
@@ -124,7 +119,7 @@ public class TLHandler {    //++
     }
 
     public void signUp(String smsCode, String firstName, String lastName) throws IOException {
-        AuthAuthorization auth = bridge.authSignUp(smsCode, firstName, lastName);
+        bridge.authSignUp(smsCode, firstName, lastName);
     }
 
     public void signIn(String confirmCode) throws IOException {
@@ -168,12 +163,7 @@ public class TLHandler {    //++
                 } else {
                     File filePhotoSmall = new File(Configs.PATH_USER_PHOTO + "_user-small.jpg");
                     if (filePhotoSmall.exists() && filePhotoSmall.isFile()) {
-                        try {
-                            userPhotoSmall = ImageIO.read(filePhotoSmall);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            l.warning("ошибка чтения фото профиля с диска!");
-                        }
+                        userPhotoSmall = ImageIO.read(filePhotoSmall);
                     }
                 }
             } catch (IOException e) {
@@ -195,16 +185,13 @@ public class TLHandler {    //++
         return getContactList(true);
     }
 
-    public synchronized boolean editUserProfile(BufferedImage newPhoto, String firstName,
-                                                String lastName) {
+    public synchronized boolean editUserProfile(BufferedImage newPhoto, String firstName, String lastName) {
         try {
             bridge.accountUpdateProfile(firstName, lastName);
-            if(newPhoto != null) updateUserPhoto(newPhoto);
+            if (newPhoto != null) updateUserPhoto(newPhoto);
             this.userFirstName = firstName;
             this.userLastName = lastName;
             userPhotoSmall = newPhoto;
-
-
         } catch (IOException e) {
             e.printStackTrace();
             Log.warning("TLHandler editUserProfile - IOException");
@@ -213,8 +200,8 @@ public class TLHandler {    //++
         return true;
     }
 
-    private synchronized ArrayList<Person> getContactList(boolean force) throws IOException {       //Todo исчезает при переходе с добавления контакта на чат
-        if (contactList.isEmpty() || contactListCache.isEmpty() || force){
+    private synchronized ArrayList<Person> getContactList(boolean force) throws IOException {
+        if (contactList.isEmpty() || contactListCache.isEmpty() || force) {
             contactList = bridge.contactsGetContacts();
             contactListCache.clear();
             for (UserContact user : contactList) {
@@ -222,27 +209,20 @@ public class TLHandler {    //++
             }
             updateLastMessages(contactListCache);
         }
-
         return contactListCache;
     }
 
     public synchronized ArrayList<Person> updateLastMessages(ArrayList<Person> cList) throws IOException {
-        ArrayList<Dialog> dialogs = bridge.messagesGetDialogs(0,Integer.MAX_VALUE, 500);
+        ArrayList<Dialog> dialogs = bridge.messagesGetDialogs(0, Integer.MAX_VALUE, 500);
         ArrayList<Integer> messageIds = new ArrayList<>();
         ArrayList<Message> messages;
-        dialogsCache = dialogs;
-        if(dialogsCache != null && dialogs.size() == dialogsCache.size()){          //исключаем лишние запросы
-            for(int i = 0; i < dialogsCache.size(); i++){
-                if(dialogs.get(i).getTopMessage() != dialogsCache.get(i).getTopMessage()){
-                    messageIds.add(dialogs.get(i).getTopMessage());
-                }
-            }
-        }
-        if(messageIds.size() > 0) {
+        for (Dialog d : dialogs)
+            messageIds.add(d.getTopMessage());
+        if (messageIds.size() > 0) {
             messages = bridge.messagesGetMessages(messageIds);
-            for(Message m : messages){
-                for(Person p : cList){
-                    if(m.getToId() == p.getId() || m.getFromId() == p.getId()){
+            for (Message m : messages) {
+                for (Person p : cList) {
+                    if (m.getToId() == p.getId() || m.getFromId() == p.getId()) {
                         p.setLastMessage(m.getMessage());
                         p.setTime(m.getDate());
                     }
@@ -253,7 +233,6 @@ public class TLHandler {    //++
     }
 
     public synchronized BufferedImage getContactPhotoSmall(Person contact) {
-        if(contact.isNoFoto() == true) return null;
         BufferedImage photoSmall = null;
         if (contactListCache.contains(contact)) {
             //get native UserContact for use API methods
@@ -317,29 +296,9 @@ public class TLHandler {    //++
             e.printStackTrace();
         }
     }
- /*
- public static void getCurrentUser(){
 
-    TLInputContact contact = new TLInputContact(0,"9996624443", "1", "1");
-    TLVector<TLInputContact> v = new TLVector();
-    v.add(contact);
-    TLRequestContactsImportContacts ci = new TLRequestContactsImportContacts(v, true);
-    TLImportedContacts ic = new TLImportedContacts();
-    try {
-      ic = (TLImportedContacts) tlApi.doRpcCall(ci);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    TLVector<TLImportedContact> listIC = ic.getImported();
-
-    System.out.println(listIC.isEmpty());
-  }
-  */
-
-
-    //  получаем доступ к приватной переменной api из TelegramApiBridge
     private void getTlApiReflection() {
+        //  получаем доступ к приватной переменной api из TelegramApiBridge
         Field fieldApi;
         try {
             //попытка получить параметр api класса TelegramApiBridge
@@ -379,7 +338,6 @@ public class TLHandler {    //++
     }
 
     public int updateContact(String phone, String firstname, String lastName) throws IOException {
-
         //check if contact already exist
         for (UserContact userContact : contactList) {
             if (userContact.getPhone().equals(phone)) {
@@ -403,18 +361,18 @@ public class TLHandler {    //++
     }
 
     public boolean deleteContact(int userId) throws IOException {
-
-        return  bridge.contactsDeleteContact(userId);
+        return bridge.contactsDeleteContact(userId);
     }
 
     public void updateUserPhoto(BufferedImage photo) throws IOException {
+        //заглушка
         File outputFile = new File(Configs.PATH_USER_PHOTO + "_user-small.jpg");
         ImageIO.write(photo, "jpg", outputFile);
     }
 
-
     public void sendMessage(String text, int id) {
-        Long l = (long)(Math.random()*1000000);
+        //генерируем рандом ид сообщения
+        Long l = (long) (Math.random() * 1000000);
         try {
             bridge.messagesSendMessage(id, text, l);
             Log.info("sendMessage" + id + ", " + text + ", " + l);

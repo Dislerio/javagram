@@ -1,8 +1,6 @@
 package diplomWork.view.forms;
 
 import diplomWork.presenter.IPresenter;
-import diplomWork.view.forms.ChatForm;
-import diplomWork.view.forms.PhoneNumber;
 
 import javax.swing.*;
 
@@ -15,26 +13,31 @@ public interface IView {
 
     void setPresenter(IPresenter af);
 
-    default void showInfo(String strError){};
+    default void showInfo(String strError) {
+    }
 
-    default void showError(String strError){};
+    default void showError(String strError) {
+    }
 
-    default void clearError(){};
+    default void clearError() {
+    }
 
     //show Loading Icon (animated)
-    default void showLoadingProcess(){};
+    default void showLoadingProcess() {
+    }
 
     //hide Loading Icon (animated)
-    default void hideLoadingProcess(){};
+    default void hideLoadingProcess() {
+    }
 
     //main panel to show in frame
     JPanel getRootPanel();
 
-    default void goToMainForm(){
+    default void goToMainForm() {
         ChatForm.getInstance();
     }
 
-    default String formatPhoneNumber(String phone){
-        return "+" + phone.substring(0,1) + " (" + phone.substring(1,4) + ") " + phone.substring(4);
+    default String formatPhoneNumber(String phone) {
+        return "+" + phone.substring(0, 1) + " (" + phone.substring(1, 4) + ") " + phone.substring(4);
     }
 }

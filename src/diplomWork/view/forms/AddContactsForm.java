@@ -32,14 +32,14 @@ public class AddContactsForm extends TransparentBackground implements IView {
     private AddContactPresenter presenter;
     private static AddContactsForm instance;
 
-    public synchronized static AddContactsForm getInstance(){
-        if(instance == null) instance = new AddContactsForm();
+    public synchronized static AddContactsForm getInstance() {
+        if (instance == null) instance = new AddContactsForm();
         instance.clearFields();
         instance.setPresenter(AddContactPresenter.getPresenter(instance));
         return instance;
     }
 
-    private AddContactsForm() {      //отработано
+    private AddContactsForm() {
 
         phoneIcon = Configs.ICON_PHONE;
         editIcon = Configs.ICON_EDIT;
@@ -60,7 +60,7 @@ public class AddContactsForm extends TransparentBackground implements IView {
                 super.mouseClicked(e);
                 presenter.addContact(numberField.getText(), firstName.getText(),
                         lastName.getText().trim());
-                presenter.goToMainForm();
+                //presenter.goToMainForm();     //вкл - сразу переходит обратно на чат
             }
         });
         btnBack.setText("");
@@ -74,7 +74,7 @@ public class AddContactsForm extends TransparentBackground implements IView {
         });
     }
 
-    private void clearFields(){
+    private void clearFields() {
         numberField.setText("");
         firstName.setText("");
         lastName.setText("");
@@ -86,7 +86,7 @@ public class AddContactsForm extends TransparentBackground implements IView {
 
     @Override
     public void setPresenter(IPresenter af) {
-        this.presenter = (AddContactPresenter)af;
+        this.presenter = (AddContactPresenter) af;
     }
 
     @Override

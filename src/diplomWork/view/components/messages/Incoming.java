@@ -2,11 +2,8 @@ package diplomWork.view.components.messages;
 
 import diplomWork.Configs;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class Incoming extends JPanel {
     private JPanel rootPanel;
@@ -21,10 +18,8 @@ public class Incoming extends JPanel {
     public Incoming(String text, String dateText) {
 
         message.setText(text);
-        message.setFont(Configs.font18);
+        message.setFont(Configs.getFont(18));
         message.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 5));
-
-
         dateOfMessage.setText(dateText);
         dateOfMessage.setHorizontalAlignment(SwingConstants.RIGHT);
         rootPanel.add(dateOfMessage, BorderLayout.SOUTH);
@@ -35,7 +30,6 @@ public class Incoming extends JPanel {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         message = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {

@@ -42,6 +42,7 @@ public class EditContactPresenter implements IPresenter{
     public void goToMainForm() {
         frame.changeOverlayPanel(null);
         frame.showFloatButton();
+        view.clearError();
         ChatForm.getInstance().getContactsForce();
     }
 }

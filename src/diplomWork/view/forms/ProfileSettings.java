@@ -6,17 +6,23 @@ import diplomWork.presenter.IPresenter;
 import diplomWork.presenter.ProfileSettingsPresenter;
 import diplomWork.view.components.TransparentBackground;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ProfileSettings extends TransparentBackground implements IView {
+    File fileUserPhotoSelected;
+    String[] extensions = {"jpg", "jpeg"};
     private BufferedImage logo;
     private BufferedImage editIcon;
     private BufferedImage deleteIcon;
-    private BufferedImage avatar;
+    private Image avatar;
     private BufferedImage userPhotoNew;
     private JButton saveButton;
     private JLabel btnLogout;
@@ -46,7 +52,7 @@ public class ProfileSettings extends TransparentBackground implements IView {
         deleteIcon = Configs.ICON_TRASH;
 
         setPresenter(ProfileSettingsPresenter.getPresenter(this));
-
+        fillUserPhoto(presenter.getUserPhoto());
         nameTextField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.white));
         surnameTextField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.white));
         editAvatar.setIcon(new ImageIcon(editIcon));
@@ -85,6 +91,31 @@ public class ProfileSettings extends TransparentBackground implements IView {
                 presenter.goToMainForm();
             }
         });
+        avPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                JFileChooser fc = new JFileChooser();
+                fc.setFileFilter(new FileNameExtensionFilter("Image files (.jpg, .jpeg)", extensions));
+                fc.showOpenDialog(frame);
+                fileUserPhotoSelected = fc.getSelectedFile();
+                Log.warning(fileUserPhotoSelected.getAbsolutePath());
+                if (fileUserPhotoSelected.exists()) {
+                    try {
+                        Image uploadedPhoto = ImageIO.read(fileUserPhotoSelected);
+                        Log.warning("ширина выбранного файла:" + ((BufferedImage) uploadedPhoto).getWidth());
+                        fillUserPhoto(uploadedPhoto);
+                        //frame.repaint();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                        showError("Ошибка чтения файла! Пожалуйста, попробуйте еще раз");
+                    }
+                } else {
+                    fileUserPhotoSelected = null;
+                    showError("Выбран несуществующий файл! Пожалуйста, попробуйте еще раз");
+                }
+            }
+        });
     }
 
     @Override
@@ -110,7 +141,7 @@ public class ProfileSettings extends TransparentBackground implements IView {
         } else {
             avatar = resizeAndCropImage(photo, 160, 160);
         }
-        avPanel.getGraphics().drawImage(avatar, 0, 0, 160, 160, avPanel);     //Todo не работает
+        avPanel.getGraphics().drawImage(avatar, 0, 0, 160, 160, null);     //Todo не работает
 
     }
 
